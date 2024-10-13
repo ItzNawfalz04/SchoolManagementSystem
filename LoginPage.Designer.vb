@@ -23,96 +23,124 @@ Partial Class LoginForm
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Panel1 = New Panel()
-        Title = New Label()
-        GroupBox1 = New GroupBox()
         PictureBox1 = New PictureBox()
-        ShowPasswordBtn = New Button()
-        InsLabel = New Label()
-        LoginBtn = New Button()
-        PasswordTextBox = New TextBox()
-        Label2 = New Label()
-        UsernameTextBox = New TextBox()
-        Label1 = New Label()
         Label3 = New Label()
-        Panel1.SuspendLayout()
-        GroupBox1.SuspendLayout()
+        Title = New Label()
+        Panel2 = New Panel()
+        Label4 = New Label()
+        Label1 = New Label()
+        UsernameTextBox = New TextBox()
+        Label2 = New Label()
+        PasswordTextBox = New TextBox()
+        LoginBtn = New Button()
+        InsLabel = New Label()
+        ShowPasswordBtn = New Button()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
-        ' Panel1
-        ' 
-        Panel1.BackColor = Color.Teal
-        Panel1.Controls.Add(Label3)
-        Panel1.Controls.Add(Title)
-        Panel1.Dock = DockStyle.Top
-        Panel1.Location = New Point(0, 0)
-        Panel1.Name = "Panel1"
-        Panel1.Size = New Size(882, 95)
-        Panel1.TabIndex = 0
-        ' 
-        ' Title
-        ' 
-        Title.AutoSize = True
-        Title.Font = New Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Title.ForeColor = Color.White
-        Title.Location = New Point(12, 9)
-        Title.Name = "Title"
-        Title.Size = New Size(454, 38)
-        Title.TabIndex = 1
-        Title.Text = "SCHOOL MANAGEMENT SYSTEM"
-        Title.TextAlign = ContentAlignment.MiddleCenter
-        ' 
-        ' GroupBox1
-        ' 
-        GroupBox1.BackColor = SystemColors.Control
-        GroupBox1.Controls.Add(PictureBox1)
-        GroupBox1.Controls.Add(ShowPasswordBtn)
-        GroupBox1.Controls.Add(InsLabel)
-        GroupBox1.Controls.Add(LoginBtn)
-        GroupBox1.Controls.Add(PasswordTextBox)
-        GroupBox1.Controls.Add(Label2)
-        GroupBox1.Controls.Add(UsernameTextBox)
-        GroupBox1.Controls.Add(Label1)
-        GroupBox1.Dock = DockStyle.Fill
-        GroupBox1.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        GroupBox1.ForeColor = SystemColors.ControlText
-        GroupBox1.Location = New Point(0, 95)
-        GroupBox1.Name = "GroupBox1"
-        GroupBox1.Size = New Size(882, 358)
-        GroupBox1.TabIndex = 2
-        GroupBox1.TabStop = False
-        GroupBox1.Text = "Login"
-        ' 
         ' PictureBox1
         ' 
-        PictureBox1.BackColor = SystemColors.ControlLightLight
+        PictureBox1.BackColor = SystemColors.Control
         PictureBox1.BorderStyle = BorderStyle.FixedSingle
-        PictureBox1.Location = New Point(515, 37)
+        PictureBox1.Location = New Point(33, 135)
         PictureBox1.Name = "PictureBox1"
-        PictureBox1.Size = New Size(325, 250)
+        PictureBox1.Size = New Size(276, 271)
         PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage
         PictureBox1.TabIndex = 7
         PictureBox1.TabStop = False
         ' 
-        ' ShowPasswordBtn
+        ' Label3
         ' 
-        ShowPasswordBtn.Cursor = Cursors.Hand
-        ShowPasswordBtn.Image = My.Resources.Resources.eye_1_
-        ShowPasswordBtn.Location = New Point(421, 117)
-        ShowPasswordBtn.Name = "ShowPasswordBtn"
-        ShowPasswordBtn.Size = New Size(33, 28)
-        ShowPasswordBtn.TabIndex = 6
-        ShowPasswordBtn.UseVisualStyleBackColor = True
+        Label3.AutoSize = True
+        Label3.Font = New Font("Segoe UI", 10.8F, FontStyle.Italic, GraphicsUnit.Point, CByte(0))
+        Label3.ForeColor = Color.White
+        Label3.Location = New Point(113, 96)
+        Label3.Name = "Label3"
+        Label3.Size = New Size(117, 25)
+        Label3.TabIndex = 2
+        Label3.Text = "School Name"
+        Label3.TextAlign = ContentAlignment.MiddleCenter
         ' 
-        ' InsLabel
+        ' Title
         ' 
-        InsLabel.AutoSize = True
-        InsLabel.Font = New Font("Segoe UI", 9F, FontStyle.Italic, GraphicsUnit.Point, CByte(0))
-        InsLabel.Location = New Point(40, 174)
-        InsLabel.Name = "InsLabel"
-        InsLabel.Size = New Size(277, 20)
-        InsLabel.TabIndex = 5
-        InsLabel.Text = "Instruction: Enter username and password."
+        Title.AutoSize = True
+        Title.Font = New Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Title.ForeColor = Color.White
+        Title.Location = New Point(33, 23)
+        Title.Name = "Title"
+        Title.Size = New Size(276, 62)
+        Title.TabIndex = 1
+        Title.Text = "SCHOOL MANAGEMENT" & vbCrLf & "SYSTEM"
+        Title.TextAlign = ContentAlignment.MiddleCenter
+        ' 
+        ' Panel2
+        ' 
+        Panel2.BackColor = Color.Teal
+        Panel2.Controls.Add(PictureBox1)
+        Panel2.Controls.Add(Title)
+        Panel2.Controls.Add(Label3)
+        Panel2.Dock = DockStyle.Left
+        Panel2.Location = New Point(0, 0)
+        Panel2.Name = "Panel2"
+        Panel2.Size = New Size(347, 434)
+        Panel2.TabIndex = 7
+        ' 
+        ' Label4
+        ' 
+        Label4.AutoSize = True
+        Label4.Font = New Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label4.ForeColor = Color.Black
+        Label4.Location = New Point(375, 23)
+        Label4.Name = "Label4"
+        Label4.Size = New Size(206, 38)
+        Label4.TabIndex = 8
+        Label4.Text = "Login Account"
+        Label4.TextAlign = ContentAlignment.MiddleCenter
+        ' 
+        ' Label1
+        ' 
+        Label1.AutoSize = True
+        Label1.Font = New Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        Label1.Location = New Point(375, 85)
+        Label1.Name = "Label1"
+        Label1.Size = New Size(95, 25)
+        Label1.TabIndex = 0
+        Label1.Text = "Username:"
+        ' 
+        ' UsernameTextBox
+        ' 
+        UsernameTextBox.BackColor = Color.White
+        UsernameTextBox.BorderStyle = BorderStyle.FixedSingle
+        UsernameTextBox.Cursor = Cursors.IBeam
+        UsernameTextBox.Font = New Font("Consolas", 10.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        UsernameTextBox.Location = New Point(375, 113)
+        UsernameTextBox.Name = "UsernameTextBox"
+        UsernameTextBox.Size = New Size(285, 29)
+        UsernameTextBox.TabIndex = 1
+        ' 
+        ' Label2
+        ' 
+        Label2.AutoSize = True
+        Label2.Font = New Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        Label2.Location = New Point(375, 169)
+        Label2.Name = "Label2"
+        Label2.Size = New Size(91, 25)
+        Label2.TabIndex = 2
+        Label2.Text = "Password:"
+        ' 
+        ' PasswordTextBox
+        ' 
+        PasswordTextBox.AccessibleRole = AccessibleRole.MenuBar
+        PasswordTextBox.AllowDrop = True
+        PasswordTextBox.BackColor = Color.White
+        PasswordTextBox.BorderStyle = BorderStyle.FixedSingle
+        PasswordTextBox.Cursor = Cursors.IBeam
+        PasswordTextBox.Font = New Font("Consolas", 10.8F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        PasswordTextBox.Location = New Point(375, 198)
+        PasswordTextBox.Name = "PasswordTextBox"
+        PasswordTextBox.PasswordChar = "•"c
+        PasswordTextBox.Size = New Size(285, 29)
+        PasswordTextBox.TabIndex = 3
         ' 
         ' LoginBtn
         ' 
@@ -120,92 +148,67 @@ Partial Class LoginForm
         LoginBtn.Cursor = Cursors.Hand
         LoginBtn.FlatStyle = FlatStyle.Flat
         LoginBtn.ForeColor = SystemColors.ControlLightLight
-        LoginBtn.Location = New Point(315, 226)
+        LoginBtn.Location = New Point(375, 295)
         LoginBtn.Name = "LoginBtn"
         LoginBtn.Size = New Size(100, 40)
         LoginBtn.TabIndex = 4
         LoginBtn.Text = "Login"
         LoginBtn.UseVisualStyleBackColor = False
         ' 
-        ' PasswordTextBox
+        ' InsLabel
         ' 
-        PasswordTextBox.BackColor = Color.White
-        PasswordTextBox.BorderStyle = BorderStyle.FixedSingle
-        PasswordTextBox.Location = New Point(149, 117)
-        PasswordTextBox.Name = "PasswordTextBox"
-        PasswordTextBox.PasswordChar = "•"c
-        PasswordTextBox.Size = New Size(266, 27)
-        PasswordTextBox.TabIndex = 3
+        InsLabel.AutoSize = True
+        InsLabel.Font = New Font("Segoe UI", 9F, FontStyle.Italic, GraphicsUnit.Point, CByte(0))
+        InsLabel.Location = New Point(375, 244)
+        InsLabel.Name = "InsLabel"
+        InsLabel.Size = New Size(277, 20)
+        InsLabel.TabIndex = 5
+        InsLabel.Text = "Instruction: Enter username and password."
         ' 
-        ' Label2
+        ' ShowPasswordBtn
         ' 
-        Label2.AutoSize = True
-        Label2.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        Label2.Location = New Point(46, 117)
-        Label2.Name = "Label2"
-        Label2.Size = New Size(97, 28)
-        Label2.TabIndex = 2
-        Label2.Text = "Password:"
-        ' 
-        ' UsernameTextBox
-        ' 
-        UsernameTextBox.BackColor = Color.White
-        UsernameTextBox.BorderStyle = BorderStyle.FixedSingle
-        UsernameTextBox.Location = New Point(149, 57)
-        UsernameTextBox.Name = "UsernameTextBox"
-        UsernameTextBox.Size = New Size(266, 27)
-        UsernameTextBox.TabIndex = 1
-        ' 
-        ' Label1
-        ' 
-        Label1.AutoSize = True
-        Label1.Font = New Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        Label1.Location = New Point(40, 57)
-        Label1.Name = "Label1"
-        Label1.Size = New Size(103, 28)
-        Label1.TabIndex = 0
-        Label1.Text = "Username:"
-        ' 
-        ' Label3
-        ' 
-        Label3.AutoSize = True
-        Label3.Font = New Font("Segoe UI", 12F, FontStyle.Italic, GraphicsUnit.Point, CByte(0))
-        Label3.ForeColor = Color.White
-        Label3.Location = New Point(12, 47)
-        Label3.Name = "Label3"
-        Label3.Size = New Size(128, 28)
-        Label3.TabIndex = 2
-        Label3.Text = "School Name"
-        Label3.TextAlign = ContentAlignment.MiddleCenter
+        ShowPasswordBtn.Cursor = Cursors.Hand
+        ShowPasswordBtn.Image = My.Resources.Resources.eye_1_
+        ShowPasswordBtn.Location = New Point(666, 198)
+        ShowPasswordBtn.Name = "ShowPasswordBtn"
+        ShowPasswordBtn.Size = New Size(33, 29)
+        ShowPasswordBtn.TabIndex = 6
+        ShowPasswordBtn.UseVisualStyleBackColor = True
         ' 
         ' LoginForm
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(882, 453)
-        Controls.Add(GroupBox1)
-        Controls.Add(Panel1)
+        ClientSize = New Size(735, 434)
+        Controls.Add(ShowPasswordBtn)
+        Controls.Add(Label4)
+        Controls.Add(InsLabel)
+        Controls.Add(LoginBtn)
+        Controls.Add(Panel2)
+        Controls.Add(PasswordTextBox)
+        Controls.Add(Label1)
+        Controls.Add(Label2)
+        Controls.Add(UsernameTextBox)
+        FormBorderStyle = FormBorderStyle.FixedSingle
         Name = "LoginForm"
-        Text = "Login"
-        Panel1.ResumeLayout(False)
-        Panel1.PerformLayout()
-        GroupBox1.ResumeLayout(False)
-        GroupBox1.PerformLayout()
+        Text = "Login Account"
         CType(PictureBox1, ComponentModel.ISupportInitialize).EndInit()
+        Panel2.ResumeLayout(False)
+        Panel2.PerformLayout()
         ResumeLayout(False)
+        PerformLayout()
     End Sub
-
-    Friend WithEvents Panel1 As Panel
     Friend WithEvents Title As Label
-    Friend WithEvents GroupBox1 As GroupBox
-    Friend WithEvents LoginBtn As Button
-    Friend WithEvents PasswordTextBox As TextBox
-    Friend WithEvents Label2 As Label
-    Friend WithEvents UsernameTextBox As TextBox
-    Friend WithEvents Label1 As Label
-    Friend WithEvents InsLabel As Label
-    Friend WithEvents ShowPasswordBtn As Button
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents Label3 As Label
+    Friend WithEvents Panel2 As Panel
+    Friend WithEvents Label4 As Label
+    Friend WithEvents Label1 As Label
+    Friend WithEvents UsernameTextBox As TextBox
+    Friend WithEvents Label2 As Label
+    Friend WithEvents PasswordTextBox As TextBox
+    Friend WithEvents LoginBtn As Button
+    Friend WithEvents InsLabel As Label
+    Friend WithEvents ShowPasswordBtn As Button
 
 End Class

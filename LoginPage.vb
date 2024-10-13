@@ -2,19 +2,19 @@
 
 Public Class LoginForm
     Private Sub LoginBtn_Click(sender As Object, e As EventArgs) Handles LoginBtn.Click
-        Dim connectionString As String = "server=localhost;user id=root;database=school_db;"
+        Dim connectionString = "server=localhost;user id=root;database=school_db;"
         Using conn As New MySqlConnection(connectionString)
             Try
                 conn.Open()
-                Dim username As String = UsernameTextBox.Text
-                Dim password As String = PasswordTextBox.Text
+                Dim username = UsernameTextBox.Text
+                Dim password = PasswordTextBox.Text
 
                 ' Check Registrar Table
                 If CheckLogin(conn, "registrar", username, password) Then
                     MessageBox.Show("Login Successful as Registrar")
                     Dim registrarForm As New RegistrarMainForm
                     registrarForm.Show()
-                    Me.Hide()
+                    Hide()
                     Return
                 End If
 
@@ -23,7 +23,7 @@ Public Class LoginForm
                     MessageBox.Show("Login Successful as Teacher")
                     Dim teacherForm As New TeacherMainForm
                     teacherForm.Show()
-                    Me.Hide()
+                    Hide()
                     Return
                 End If
 
@@ -32,7 +32,7 @@ Public Class LoginForm
                     MessageBox.Show("Login Successful as Staff")
                     Dim staffForm As New StaffMainForm
                     staffForm.Show()
-                    Me.Hide()
+                    Hide()
                     Return
                 End If
 
