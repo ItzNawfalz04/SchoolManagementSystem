@@ -1,0 +1,35 @@
+How to Import Database.
+
+1. Launch XAMPP / WAMP and start the necessary module.
+
+2. Open browser and go to PHPMyAdmin (http://localhost/phpmyadmin/).
+
+3. Create Database called "school_db".
+
+4. Import "school_db.sql" file from "Database" folder to the "school_db" database.
+
+
+Install "MySql.Data" Connecter to connect to the database.
+
+5. Open the project through "SchoolManagementSystem.sln" file in the main folder.
+
+6. Go to search and search "Package Manager Console" to install "MySql.Data".
+
+7. Key in "NuGet\Install-Package MySql.Data -Version 9.0.0" into the console and click enter.
+
+8. Now, you can run the project.
+
+
+USERNAME & PASSWORD:
+
+1. Registrar
+USERNAME: registrar
+PASSWORD: 123
+
+2. Teacher
+USERNAME: teacher
+PASSWORD: 123
+
+3. Staff
+USERNAME: staff
+PASSWORD: 123
