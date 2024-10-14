@@ -14,7 +14,7 @@ Public Class RegistrarStaff
     ' Method to load staff data from the database into the DataGridView
     Private Sub LoadStaffData()
         Dim connectionString As String = "server=localhost;user id=root;database=school_db;"
-        Dim query As String = "SELECT id, name, gender, birthday, email, phone, ic, username, password FROM staff"
+        Dim query As String = "SELECT id, name, gender, birthday, email, phone, ic, username, password, picture FROM staff"
         Using conn As New MySqlConnection(connectionString)
             Dim adapter As New MySqlDataAdapter(query, conn)
             Dim dataTable As New DataTable()
@@ -27,6 +27,10 @@ Public Class RegistrarStaff
     Private Sub SetDefaultFormState()
         ' Disable all input controls
         EnableInputControls(False)
+
+        ' Hide picture-related buttons
+        ImportButton.Visible = False
+        RemoveButton.Visible = False
 
         ' Set default button visibility and text
         AddBtn.Text = "Add"
@@ -50,6 +54,10 @@ Public Class RegistrarStaff
         StaffICTextBox.Enabled = enable
         StaffUsernameTextBox.Enabled = enable
         StaffPasswordTextBox.Enabled = enable
+
+        ' Show/hide Import and Remove buttons
+        ImportButton.Visible = enable
+        RemoveButton.Visible = enable
     End Sub
 
     ' Event to handle row selection in StaffDataGridView - populate TextBoxes with selected staff data
@@ -190,8 +198,8 @@ Public Class RegistrarStaff
     ' Method to save new staff to the database
     Private Sub SaveNewStaff()
         Dim connectionString As String = "server=localhost;user id=root;database=school_db;"
-        Dim query As String = "INSERT INTO staff (name, gender, birthday, email, phone, ic, username, password) " &
-                              "VALUES (@name, @gender, @birthday, @email, @phone, @ic, @username, @password)"
+        Dim query As String = "INSERT INTO staff (name, gender, birthday, email, phone, ic, username, password, picture) " &
+                              "VALUES (@name, @gender, @birthday, @email, @phone, @ic, @username, @password, @picture)"
         Using conn As New MySqlConnection(connectionString)
             Try
                 conn.Open()
@@ -217,7 +225,7 @@ Public Class RegistrarStaff
     Private Sub SaveEditedStaff()
         Dim connectionString As String = "server=localhost;user id=root;database=school_db;"
         Dim query As String = "UPDATE staff SET name=@name, gender=@gender, birthday=@birthday, email=@email, phone=@phone, " &
-                              "ic=@ic, username=@username, password=@password WHERE id=@id"
+                              "ic=@ic, username=@username, password=@password, picture = @picture WHERE id=@id"
         Using conn As New MySqlConnection(connectionString)
             Try
                 conn.Open()
@@ -298,4 +306,7 @@ Public Class RegistrarStaff
             LoadStaffData() ' Reload all staff data if search text is empty
         End If
     End Sub
+
+
+
 End Class

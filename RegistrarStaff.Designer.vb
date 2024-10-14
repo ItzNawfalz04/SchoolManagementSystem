@@ -27,6 +27,9 @@ Partial Class RegistrarStaff
         StaffDataGridView = New DataGridView()
         Label1 = New Label()
         GroupBox1 = New GroupBox()
+        RemoveButton = New Button()
+        ImportButton = New Button()
+        StaffPictureBox = New PictureBox()
         StaffICTextBox = New TextBox()
         Label10 = New Label()
         DeleteBtn = New Button()
@@ -54,6 +57,7 @@ Partial Class RegistrarStaff
         Panel1.SuspendLayout()
         CType(StaffDataGridView, ComponentModel.ISupportInitialize).BeginInit()
         GroupBox1.SuspendLayout()
+        CType(StaffPictureBox, ComponentModel.ISupportInitialize).BeginInit()
         Panel.SuspendLayout()
         SuspendLayout()
         ' 
@@ -102,6 +106,9 @@ Partial Class RegistrarStaff
         ' 
         ' GroupBox1
         ' 
+        GroupBox1.Controls.Add(RemoveButton)
+        GroupBox1.Controls.Add(ImportButton)
+        GroupBox1.Controls.Add(StaffPictureBox)
         GroupBox1.Controls.Add(StaffICTextBox)
         GroupBox1.Controls.Add(Label10)
         GroupBox1.Controls.Add(DeleteBtn)
@@ -132,6 +139,39 @@ Partial Class RegistrarStaff
         GroupBox1.TabStop = False
         GroupBox1.Text = "Staff Account Information"
         ' 
+        ' RemoveButton
+        ' 
+        RemoveButton.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        RemoveButton.ForeColor = Color.Red
+        RemoveButton.Location = New Point(518, 276)
+        RemoveButton.Name = "RemoveButton"
+        RemoveButton.Size = New Size(37, 34)
+        RemoveButton.TabIndex = 28
+        RemoveButton.Text = "X"
+        RemoveButton.UseVisualStyleBackColor = True
+        ' 
+        ' ImportButton
+        ' 
+        ImportButton.Font = New Font("Segoe UI", 9F, FontStyle.Italic, GraphicsUnit.Point, CByte(0))
+        ImportButton.Location = New Point(415, 276)
+        ImportButton.Name = "ImportButton"
+        ImportButton.Size = New Size(97, 34)
+        ImportButton.TabIndex = 27
+        ImportButton.Text = "Import..."
+        ImportButton.UseVisualStyleBackColor = True
+        ' 
+        ' StaffPictureBox
+        ' 
+        StaffPictureBox.BorderStyle = BorderStyle.Fixed3D
+        StaffPictureBox.ErrorImage = Nothing
+        StaffPictureBox.InitialImage = Nothing
+        StaffPictureBox.Location = New Point(415, 95)
+        StaffPictureBox.Name = "StaffPictureBox"
+        StaffPictureBox.Size = New Size(140, 175)
+        StaffPictureBox.SizeMode = PictureBoxSizeMode.StretchImage
+        StaffPictureBox.TabIndex = 26
+        StaffPictureBox.TabStop = False
+        ' 
         ' StaffICTextBox
         ' 
         StaffICTextBox.BackColor = Color.White
@@ -159,7 +199,7 @@ Partial Class RegistrarStaff
         DeleteBtn.Cursor = Cursors.Hand
         DeleteBtn.FlatStyle = FlatStyle.Flat
         DeleteBtn.ForeColor = SystemColors.ControlLightLight
-        DeleteBtn.Location = New Point(486, 187)
+        DeleteBtn.Location = New Point(576, 187)
         DeleteBtn.Name = "DeleteBtn"
         DeleteBtn.Size = New Size(100, 40)
         DeleteBtn.TabIndex = 23
@@ -193,7 +233,7 @@ Partial Class RegistrarStaff
         ClearBtn.Cursor = Cursors.Hand
         ClearBtn.FlatStyle = FlatStyle.Flat
         ClearBtn.ForeColor = SystemColors.ControlLightLight
-        ClearBtn.Location = New Point(486, 233)
+        ClearBtn.Location = New Point(576, 233)
         ClearBtn.Name = "ClearBtn"
         ClearBtn.Size = New Size(100, 40)
         ClearBtn.TabIndex = 20
@@ -206,7 +246,7 @@ Partial Class RegistrarStaff
         EditBtn.Cursor = Cursors.Hand
         EditBtn.FlatStyle = FlatStyle.Flat
         EditBtn.ForeColor = SystemColors.ControlLightLight
-        EditBtn.Location = New Point(486, 141)
+        EditBtn.Location = New Point(576, 141)
         EditBtn.Name = "EditBtn"
         EditBtn.Size = New Size(100, 40)
         EditBtn.TabIndex = 19
@@ -219,7 +259,7 @@ Partial Class RegistrarStaff
         AddBtn.Cursor = Cursors.Hand
         AddBtn.FlatStyle = FlatStyle.Flat
         AddBtn.ForeColor = SystemColors.ControlLightLight
-        AddBtn.Location = New Point(486, 95)
+        AddBtn.Location = New Point(576, 95)
         AddBtn.Name = "AddBtn"
         AddBtn.Size = New Size(100, 40)
         AddBtn.TabIndex = 10
@@ -402,6 +442,7 @@ Partial Class RegistrarStaff
         CType(StaffDataGridView, ComponentModel.ISupportInitialize).EndInit()
         GroupBox1.ResumeLayout(False)
         GroupBox1.PerformLayout()
+        CType(StaffPictureBox, ComponentModel.ISupportInitialize).EndInit()
         Panel.ResumeLayout(False)
         ResumeLayout(False)
     End Sub
@@ -435,5 +476,8 @@ Partial Class RegistrarStaff
     Friend WithEvents Label10 As Label
     Friend WithEvents Panel As Panel
     Friend WithEvents SearchTextBox As TextBox
+    Friend WithEvents StaffPictureBox As PictureBox
+    Friend WithEvents ImportButton As Button
+    Friend WithEvents RemoveButton As Button
 
 End Class
