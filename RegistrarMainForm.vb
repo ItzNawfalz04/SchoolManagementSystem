@@ -1,4 +1,5 @@
 ﻿Public Class RegistrarMainForm
+    Private userId As Integer
     Private Sub SignOutBtn_Click(sender As Object, e As EventArgs) Handles SignOutBtn.Click
         ' Sign Out back to login Page
         LoginForm.Show()

@@ -28,7 +28,7 @@ Partial Class RegistrarMainForm
         Button2 = New Button()
         Button3 = New Button()
         Button1 = New Button()
-        Button5 = New Button()
+        DashboardButton = New Button()
         SignOutBtn = New Button()
         Button4 = New Button()
         PictureBox1 = New PictureBox()
@@ -56,7 +56,7 @@ Partial Class RegistrarMainForm
         Panel1.Controls.Add(Button2)
         Panel1.Controls.Add(Button3)
         Panel1.Controls.Add(Button1)
-        Panel1.Controls.Add(Button5)
+        Panel1.Controls.Add(DashboardButton)
         Panel1.Controls.Add(SignOutBtn)
         Panel1.Controls.Add(Button4)
         Panel1.Controls.Add(PictureBox1)
@@ -119,18 +119,18 @@ Partial Class RegistrarMainForm
         Button1.Text = "CLASS"
         Button1.UseVisualStyleBackColor = False
         ' 
-        ' Button5
+        ' DashboardButton
         ' 
-        Button5.BackColor = Color.Teal
-        Button5.FlatStyle = FlatStyle.Flat
-        Button5.Font = New Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Button5.ForeColor = Color.White
-        Button5.Location = New Point(44, 228)
-        Button5.Name = "Button5"
-        Button5.Size = New Size(186, 40)
-        Button5.TabIndex = 8
-        Button5.Text = "DASHBOARD"
-        Button5.UseVisualStyleBackColor = False
+        DashboardButton.BackColor = Color.Teal
+        DashboardButton.FlatStyle = FlatStyle.Flat
+        DashboardButton.Font = New Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        DashboardButton.ForeColor = Color.White
+        DashboardButton.Location = New Point(44, 228)
+        DashboardButton.Name = "DashboardButton"
+        DashboardButton.Size = New Size(186, 40)
+        DashboardButton.TabIndex = 8
+        DashboardButton.Text = "DASHBOARD"
+        DashboardButton.UseVisualStyleBackColor = False
         ' 
         ' SignOutBtn
         ' 
@@ -202,7 +202,7 @@ Partial Class RegistrarMainForm
     Friend WithEvents Button4 As Button
     Friend WithEvents ShowPasswordBtn As Button
     Friend WithEvents SignOutBtn As Button
-    Friend WithEvents Button5 As Button
+    Friend WithEvents DashboardButton As Button
     Friend WithEvents Button6 As Button
     Friend WithEvents RegistrarDashboard1 As RegistrarDashboard
 End Class

@@ -1,107 +1,82 @@
 ﻿Imports MySql.Data.MySqlClient
 
 Public Class RegistrarDashboard
-    Dim editMode As Boolean = False ' To track if we are in edit mode
-    Dim originalName As String ' To store original data
-    Dim originalUsername As String
-    Dim originalPassword As String
+    Private connectionString As String = "server=localhost;user id=root;database=school_db;"
+    Private isEditing As Boolean = False
 
-    ' Form Load Event - Show data when the form loads
     Private Sub RegistrarDashboard_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LoadUserData()
-        BackBtn.Visible = False ' Hide the back button initially
+        ToggleEditMode(False)
     End Sub
 
-    ' Method to load user data from the database (for user id = 1)
     Private Sub LoadUserData()
-        Dim connectionString As String = "server=localhost;user id=root;database=school_db;"
         Using conn As New MySqlConnection(connectionString)
             Try
                 conn.Open()
-                Dim query As String = "SELECT name, username, password FROM registrar WHERE id = 1"
+                Dim query As String = "SELECT name, username, password FROM registrar WHERE username=@username"
                 Using cmd As New MySqlCommand(query, conn)
-                    Dim reader As MySqlDataReader = cmd.ExecuteReader()
-                    If reader.Read() Then
-                        ' Store original data to revert if needed
-                        originalName = reader("name").ToString()
-                        originalUsername = reader("username").ToString()
-                        originalPassword = reader("password").ToString()
-
-                        ' Display data in the textboxes
-                        NameTextBox.Text = originalName
-                        UsernameTextBox.Text = originalUsername
-                        PasswordTextBox.Text = originalPassword
-                    End If
+                    ' Assuming you have the username stored from login
+                    cmd.Parameters.AddWithValue("@username", LoginForm.UsernameTextBox.Text)
+                    Using reader As MySqlDataReader = cmd.ExecuteReader()
+                        If reader.Read() Then
+                            NameTextBox.Text = reader("name").ToString()
+                            UsernameTextBox.Text = reader("username").ToString()
+                            PasswordTextBox.Text = reader("password").ToString()
+                        End If
+                    End Using
                 End Using
-                ' Disable textboxes initially
-                EnableTextBoxes(False)
             Catch ex As MySqlException
-                MessageBox.Show("Error loading data: " & ex.Message)
+                MessageBox.Show("Error loading user data: " & ex.Message)
             End Try
         End Using
     End Sub
 
-    ' Enable or disable the textboxes based on the parameter
-    Private Sub EnableTextBoxes(enable As Boolean)
-        NameTextBox.Enabled = enable
-        UsernameTextBox.Enabled = enable
-        PasswordTextBox.Enabled = enable
-    End Sub
-
-    ' Toggle Edit Mode when Edit Button is clicked
-    Private Sub EditBtn_Click(sender As Object, e As EventArgs) Handles EditBtn.Click
-        If Not editMode Then
-            ' Enter Edit Mode
-            EnableTextBoxes(True)
-            EditBtn.Text = "Save"
-            EditBtn.BackColor = Color.Red
-            BackBtn.Visible = True ' Show the back button in edit mode
-            editMode = True
-        Else
-            ' Save the data and exit Edit Mode
+    Private Sub EditButton_Click(sender As Object, e As EventArgs) Handles EditBtn.Click
+        If isEditing Then
             SaveUserData()
-            EnableTextBoxes(False)
-            EditBtn.Text = "Edit"
-            EditBtn.BackColor = Color.Teal
-            BackBtn.Visible = False ' Hide the back button after saving
-            editMode = False
+            ToggleEditMode(False)
+        Else
+            ToggleEditMode(True)
         End If
     End Sub
 
-    ' Method to save edited data back to the database
     Private Sub SaveUserData()
-        Dim connectionString As String = "server=localhost;user id=root;database=school_db;"
         Using conn As New MySqlConnection(connectionString)
             Try
                 conn.Open()
-                Dim query As String = "UPDATE registrar SET name=@name, username=@username, password=@password WHERE id = 1"
+                Dim query As String = "UPDATE registrar SET name=@name, username=@username, password=@password WHERE username=@originalUsername"
                 Using cmd As New MySqlCommand(query, conn)
-                    ' Update parameters with the textbox values
                     cmd.Parameters.AddWithValue("@name", NameTextBox.Text)
                     cmd.Parameters.AddWithValue("@username", UsernameTextBox.Text)
                     cmd.Parameters.AddWithValue("@password", PasswordTextBox.Text)
+                    cmd.Parameters.AddWithValue("@originalUsername", LoginForm.UsernameTextBox.Text)
                     cmd.ExecuteNonQuery()
-                    MessageBox.Show("User data saved successfully!")
+                    MessageBox.Show("User  data saved successfully.")
                 End Using
             Catch ex As MySqlException
-                MessageBox.Show("Error saving data: " & ex.Message)
+                MessageBox.Show("Error saving user data: " & ex.Message)
             End Try
         End Using
     End Sub
 
-    ' Cancel Editing Mode and revert changes when Back Button is clicked
-    Private Sub BackBtn_Click(sender As Object, e As EventArgs) Handles BackBtn.Click
-        ' Revert the textboxes to the original values
-        NameTextBox.Text = originalName
-        UsernameTextBox.Text = originalUsername
-        PasswordTextBox.Text = originalPassword
+    Private Sub ToggleEditMode(editing As Boolean)
+        isEditing = editing
+        NameTextBox.Enabled = editing
+        UsernameTextBox.Enabled = editing
+        PasswordTextBox.Enabled = editing
+        BackBtn.Visible = editing
+        If editing Then
+            EditBtn.BackColor = Color.Red
+            EditBtn.Text = "Save"
+        Else
+            EditBtn.BackColor = Color.Teal
+            EditBtn.Text = "Edit"
+        End If
+    End Sub
 
-        ' Disable textboxes and return to view mode
-        EnableTextBoxes(False)
-        EditBtn.Text = "Edit"
-        EditBtn.BackColor = Color.Teal
-        BackBtn.Visible = False ' Hide the back button
-        editMode = False
+    Private Sub BackButton_Click(sender As Object, e As EventArgs) Handles BackBtn.Click
+        LoadUserData()
+        ToggleEditMode(False)
     End Sub
 
     ' Toggle Password Visibility

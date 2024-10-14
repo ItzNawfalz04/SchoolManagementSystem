@@ -22,7 +22,6 @@ Partial Class LoginForm
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Panel1 = New Panel()
         PictureBox1 = New PictureBox()
         Label3 = New Label()
         Title = New Label()
@@ -36,6 +35,7 @@ Partial Class LoginForm
         InsLabel = New Label()
         ShowPasswordBtn = New Button()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
+        Panel2.SuspendLayout()
         SuspendLayout()
         ' 
         ' PictureBox1
