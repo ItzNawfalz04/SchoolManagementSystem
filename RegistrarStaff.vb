@@ -57,18 +57,22 @@ Public Class RegistrarStaff
         If e.RowIndex >= 0 Then
             Dim selectedRow As DataGridViewRow = StaffDataGridView.Rows(e.RowIndex)
 
-            ' Populate the TextBoxes with the selected staff data
-            StaffIDTextBox.Text = selectedRow.Cells("id").Value.ToString()
-            StaffNameTextBox.Text = selectedRow.Cells("name").Value.ToString()
-            GenderComboBox.Text = selectedRow.Cells("gender").Value.ToString()
-            BirthdayDateTimePicker.Value = DateTime.Parse(selectedRow.Cells("birthday").Value.ToString())
-            StaffEmailTextBox.Text = selectedRow.Cells("email").Value.ToString()
-            PhoneTextBox.Text = selectedRow.Cells("phone").Value.ToString()
-            StaffICTextBox.Text = selectedRow.Cells("ic").Value.ToString()
-            StaffUsernameTextBox.Text = selectedRow.Cells("username").Value.ToString()
-            StaffPasswordTextBox.Text = selectedRow.Cells("password").Value.ToString()
+            If selectedRow IsNot Nothing AndAlso selectedRow.Cells("id").Value IsNot DBNull.Value Then
+                ' Populate the TextBoxes with the selected staff data
+                StaffIDTextBox.Text = selectedRow.Cells("id").Value.ToString()
+                StaffNameTextBox.Text = selectedRow.Cells("name").Value.ToString()
+                GenderComboBox.Text = selectedRow.Cells("gender").Value.ToString()
+                If selectedRow.Cells("birthday").Value IsNot DBNull.Value Then
+                    BirthdayDateTimePicker.Value = DateTime.Parse(selectedRow.Cells("birthday").Value.ToString())
+                End If
+                StaffEmailTextBox.Text = selectedRow.Cells("email").Value.ToString()
+                PhoneTextBox.Text = selectedRow.Cells("phone").Value.ToString()
+                StaffICTextBox.Text = selectedRow.Cells("ic").Value.ToString()
+                StaffUsernameTextBox.Text = selectedRow.Cells("username").Value.ToString()
+                StaffPasswordTextBox.Text = selectedRow.Cells("password").Value.ToString()
 
-            EnableInputControls(False) ' Disable controls initially
+                EnableInputControls(False) ' Disable controls initially
+            End If
         End If
     End Sub
 
@@ -115,14 +119,30 @@ Public Class RegistrarStaff
             DeleteBtn.Visible = False
             ClearBtn.Visible = False
         ElseIf isEditMode Then
-            ' Save edited staff to the database
-            If ValidateInputFields() Then
-                SaveEditedStaff()
-                LoadStaffData() ' Reload data after editing
-                SetDefaultFormState() ' Reset the form
+            If EditBtn.Text = "Cancel" Then
+                ' Cancel editing mode
+                Dim selectedRow As DataGridViewRow = StaffDataGridView.Rows(StaffDataGridView.SelectedCells(0).RowIndex)
+                StaffIDTextBox.Text = selectedRow.Cells("id").Value.ToString()
+                StaffNameTextBox.Text = selectedRow.Cells("name").Value.ToString()
+                GenderComboBox.Text = selectedRow.Cells("gender").Value.ToString()
+                BirthdayDateTimePicker.Value = DateTime.Parse(selectedRow.Cells("birthday").Value.ToString())
+                StaffEmailTextBox.Text = selectedRow.Cells("email").Value.ToString()
+                PhoneTextBox.Text = selectedRow.Cells("phone").Value.ToString()
+                StaffICTextBox.Text = selectedRow.Cells("ic").Value.ToString()
+                StaffUsernameTextBox.Text = selectedRow.Cells("username").Value.ToString()
+                StaffPasswordTextBox.Text = selectedRow.Cells("password").Value.ToString()
+                SetDefaultFormState()
+            Else
+                ' Save edited staff to the database
+                If ValidateInputFields() Then
+                    SaveEditedStaff()
+                    LoadStaffData() ' Reload data after editing
+                    SetDefaultFormState() ' Reset the form
+                End If
             End If
-        ElseIf isAddMode Or isEditMode Then
-            ' Cancel Add or Edit mode
+        ElseIf isAddMode Then
+            ' Cancel Add mode
+            ClearInputFields()
             SetDefaultFormState()
         End If
     End Sub
