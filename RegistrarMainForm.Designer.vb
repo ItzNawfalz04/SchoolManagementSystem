@@ -24,7 +24,7 @@ Partial Class RegistrarMainForm
     Private Sub InitializeComponent()
         Label1 = New Label()
         Panel1 = New Panel()
-        Button6 = New Button()
+        StaffButton = New Button()
         Button2 = New Button()
         Button3 = New Button()
         Button1 = New Button()
@@ -32,7 +32,7 @@ Partial Class RegistrarMainForm
         SignOutBtn = New Button()
         Button4 = New Button()
         PictureBox1 = New PictureBox()
-        RegistrarDashboard1 = New RegistrarDashboard()
+        Panel2 = New Panel()
         Panel1.SuspendLayout()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
@@ -40,7 +40,7 @@ Partial Class RegistrarMainForm
         ' Label1
         ' 
         Label1.AutoSize = True
-        Label1.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label1.Font = New Font("Segoe UI Semibold", 12.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Label1.ForeColor = SystemColors.ControlLightLight
         Label1.Location = New Point(44, 175)
         Label1.Name = "Label1"
@@ -52,7 +52,7 @@ Partial Class RegistrarMainForm
         ' Panel1
         ' 
         Panel1.BackColor = Color.Teal
-        Panel1.Controls.Add(Button6)
+        Panel1.Controls.Add(StaffButton)
         Panel1.Controls.Add(Button2)
         Panel1.Controls.Add(Button3)
         Panel1.Controls.Add(Button1)
@@ -64,21 +64,21 @@ Partial Class RegistrarMainForm
         Panel1.Dock = DockStyle.Left
         Panel1.Location = New Point(0, 0)
         Panel1.Name = "Panel1"
-        Panel1.Size = New Size(270, 653)
+        Panel1.Size = New Size(270, 630)
         Panel1.TabIndex = 1
         ' 
-        ' Button6
+        ' StaffButton
         ' 
-        Button6.BackColor = Color.Teal
-        Button6.FlatStyle = FlatStyle.Flat
-        Button6.Font = New Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Button6.ForeColor = Color.White
-        Button6.Location = New Point(44, 274)
-        Button6.Name = "Button6"
-        Button6.Size = New Size(186, 40)
-        Button6.TabIndex = 9
-        Button6.Text = "STAFF"
-        Button6.UseVisualStyleBackColor = False
+        StaffButton.BackColor = Color.Teal
+        StaffButton.FlatStyle = FlatStyle.Flat
+        StaffButton.Font = New Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        StaffButton.ForeColor = Color.White
+        StaffButton.Location = New Point(44, 274)
+        StaffButton.Name = "StaffButton"
+        StaffButton.Size = New Size(186, 40)
+        StaffButton.TabIndex = 9
+        StaffButton.Text = "STAFF"
+        StaffButton.UseVisualStyleBackColor = False
         ' 
         ' Button2
         ' 
@@ -135,15 +135,15 @@ Partial Class RegistrarMainForm
         ' SignOutBtn
         ' 
         SignOutBtn.Cursor = Cursors.Hand
-        SignOutBtn.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        SignOutBtn.Font = New Font("Segoe UI", 9.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         SignOutBtn.ForeColor = Color.Black
         SignOutBtn.Image = My.Resources.Resources.logout_2_
         SignOutBtn.ImageAlign = ContentAlignment.MiddleLeft
-        SignOutBtn.Location = New Point(80, 586)
+        SignOutBtn.Location = New Point(78, 561)
         SignOutBtn.Name = "SignOutBtn"
         SignOutBtn.Size = New Size(113, 50)
         SignOutBtn.TabIndex = 7
-        SignOutBtn.Text = "Sign Out"
+        SignOutBtn.Text = "Log Out"
         SignOutBtn.TextAlign = ContentAlignment.MiddleRight
         SignOutBtn.UseVisualStyleBackColor = True
         ' 
@@ -163,28 +163,30 @@ Partial Class RegistrarMainForm
         ' PictureBox1
         ' 
         PictureBox1.Image = My.Resources.Resources.settings
-        PictureBox1.Location = New Point(65, 35)
+        PictureBox1.Location = New Point(68, 35)
         PictureBox1.Name = "PictureBox1"
         PictureBox1.Size = New Size(135, 135)
         PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage
         PictureBox1.TabIndex = 1
         PictureBox1.TabStop = False
         ' 
-        ' RegistrarDashboard1
+        ' Panel2
         ' 
-        RegistrarDashboard1.Location = New Point(276, 8)
-        RegistrarDashboard1.Name = "RegistrarDashboard1"
-        RegistrarDashboard1.Size = New Size(705, 645)
-        RegistrarDashboard1.TabIndex = 2
+        Panel2.BackColor = SystemColors.ControlDarkDark
+        Panel2.Dock = DockStyle.Fill
+        Panel2.Location = New Point(270, 0)
+        Panel2.Name = "Panel2"
+        Panel2.Size = New Size(739, 630)
+        Panel2.TabIndex = 2
         ' 
         ' RegistrarMainForm
         ' 
-        AutoScaleDimensions = New SizeF(8F, 20F)
+        AutoScaleDimensions = New SizeF(8.0F, 20.0F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(982, 653)
-        Controls.Add(RegistrarDashboard1)
+        ClientSize = New Size(1009, 630)
+        Controls.Add(Panel2)
         Controls.Add(Panel1)
-        FormBorderStyle = FormBorderStyle.FixedSingle
+        FormBorderStyle = FormBorderStyle.FixedDialog
         Name = "RegistrarMainForm"
         Text = "Registrar Dashboard"
         Panel1.ResumeLayout(False)
@@ -203,6 +205,6 @@ Partial Class RegistrarMainForm
     Friend WithEvents ShowPasswordBtn As Button
     Friend WithEvents SignOutBtn As Button
     Friend WithEvents DashboardButton As Button
-    Friend WithEvents Button6 As Button
-    Friend WithEvents RegistrarDashboard1 As RegistrarDashboard
+    Friend WithEvents StaffButton As Button
+    Friend WithEvents Panel2 As Panel
 End Class

@@ -50,41 +50,42 @@ Partial Class RegistrarDashboard
         ' Label4
         ' 
         Label4.AutoSize = True
-        Label4.Font = New Font("Segoe UI", 16.2F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label4.ForeColor = Color.Black
-        Label4.Location = New Point(21, 16)
+        Label4.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label4.ForeColor = Color.White
+        Label4.Location = New Point(14, 11)
         Label4.Name = "Label4"
-        Label4.Size = New Size(284, 38)
+        Label4.Size = New Size(250, 28)
         Label4.TabIndex = 9
-        Label4.Text = "Registrar Dashboard"
+        Label4.Text = "REGISTRAR DASHBOARD"
         Label4.TextAlign = ContentAlignment.MiddleCenter
         ' 
         ' Panel1
         ' 
-        Panel1.BackColor = SystemColors.ControlLightLight
+        Panel1.BackColor = Color.Teal
         Panel1.Controls.Add(Panel4)
         Panel1.Controls.Add(Panel3)
+        Panel1.Controls.Add(Label4)
         Panel1.Controls.Add(Panel2)
-        Panel1.Location = New Point(21, 69)
+        Panel1.Location = New Point(21, 24)
         Panel1.Name = "Panel1"
-        Panel1.Size = New Size(659, 186)
+        Panel1.Size = New Size(659, 231)
         Panel1.TabIndex = 10
         ' 
         ' Panel4
         ' 
-        Panel4.BackColor = Color.Teal
+        Panel4.BackColor = Color.White
         Panel4.Controls.Add(Label6)
-        Panel4.Location = New Point(237, 17)
+        Panel4.Location = New Point(232, 42)
         Panel4.Name = "Panel4"
-        Panel4.Size = New Size(185, 154)
+        Panel4.Size = New Size(185, 171)
         Panel4.TabIndex = 1
         ' 
         ' Label6
         ' 
         Label6.AutoSize = True
         Label6.Font = New Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label6.ForeColor = SystemColors.ControlLightLight
-        Label6.Location = New Point(92, 117)
+        Label6.ForeColor = Color.Teal
+        Label6.Location = New Point(93, 135)
         Label6.Name = "Label6"
         Label6.Size = New Size(78, 25)
         Label6.TabIndex = 4
@@ -93,19 +94,19 @@ Partial Class RegistrarDashboard
         ' 
         ' Panel3
         ' 
-        Panel3.BackColor = Color.Teal
+        Panel3.BackColor = Color.White
         Panel3.Controls.Add(Label7)
-        Panel3.Location = New Point(436, 17)
+        Panel3.Location = New Point(453, 42)
         Panel3.Name = "Panel3"
-        Panel3.Size = New Size(185, 154)
+        Panel3.Size = New Size(185, 171)
         Panel3.TabIndex = 1
         ' 
         ' Label7
         ' 
         Label7.AutoSize = True
         Label7.Font = New Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label7.ForeColor = SystemColors.ControlLightLight
-        Label7.Location = New Point(117, 117)
+        Label7.ForeColor = Color.Teal
+        Label7.Location = New Point(120, 135)
         Label7.Name = "Label7"
         Label7.Size = New Size(53, 25)
         Label7.TabIndex = 5
@@ -114,19 +115,19 @@ Partial Class RegistrarDashboard
         ' 
         ' Panel2
         ' 
-        Panel2.BackColor = Color.Teal
+        Panel2.BackColor = Color.White
         Panel2.Controls.Add(Label5)
-        Panel2.Location = New Point(38, 17)
+        Panel2.Location = New Point(14, 42)
         Panel2.Name = "Panel2"
-        Panel2.Size = New Size(185, 154)
+        Panel2.Size = New Size(185, 171)
         Panel2.TabIndex = 0
         ' 
         ' Label5
         ' 
         Label5.AutoSize = True
         Label5.Font = New Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label5.ForeColor = SystemColors.ControlLightLight
-        Label5.Location = New Point(98, 117)
+        Label5.ForeColor = Color.Teal
+        Label5.Location = New Point(93, 135)
         Label5.Name = "Label5"
         Label5.Size = New Size(79, 25)
         Label5.TabIndex = 3
@@ -258,10 +259,10 @@ Partial Class RegistrarDashboard
         AutoScaleMode = AutoScaleMode.Font
         Controls.Add(GroupBox1)
         Controls.Add(Panel1)
-        Controls.Add(Label4)
         Name = "RegistrarDashboard"
         Size = New Size(706, 653)
         Panel1.ResumeLayout(False)
+        Panel1.PerformLayout()
         Panel4.ResumeLayout(False)
         Panel4.PerformLayout()
         Panel3.ResumeLayout(False)
@@ -271,7 +272,6 @@ Partial Class RegistrarDashboard
         GroupBox1.ResumeLayout(False)
         GroupBox1.PerformLayout()
         ResumeLayout(False)
-        PerformLayout()
     End Sub
 
     Friend WithEvents Label4 As Label
