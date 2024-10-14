@@ -1,4 +1,5 @@
 ﻿Imports MySql.Data.MySqlClient
+Imports System.IO
 
 Public Class RegistrarStaff
     Dim isAddMode As Boolean = False ' Track if we are in Add mode
@@ -41,6 +42,10 @@ Public Class RegistrarStaff
         EditBtn.Visible = True
         isAddMode = False
         isEditMode = False
+
+        ' Set default picture
+        StaffPictureBox.Image = My.Resources._default
+        StaffPictureBox.Tag = Nothing
     End Sub
 
     ' Enable or disable input controls (TextBoxes, ComboBox, DateTimePicker)
@@ -78,6 +83,23 @@ Public Class RegistrarStaff
                 StaffICTextBox.Text = selectedRow.Cells("ic").Value.ToString()
                 StaffUsernameTextBox.Text = selectedRow.Cells("username").Value.ToString()
                 StaffPasswordTextBox.Text = selectedRow.Cells("password").Value.ToString()
+
+                ' Load picture from the relative path stored in the database
+                If selectedRow.Cells("picture").Value IsNot DBNull.Value Then
+                    Dim relativeImagePath As String = selectedRow.Cells("picture").Value.ToString()
+                    Dim fullImagePath As String = Path.Combine(Application.StartupPath, relativeImagePath)
+                    If File.Exists(fullImagePath) Then
+                        StaffPictureBox.Image = Image.FromFile(fullImagePath)
+                        StaffPictureBox.Tag = fullImagePath
+                    Else
+                        StaffPictureBox.Image = My.Resources._default
+                        StaffPictureBox.Tag = Nothing
+                    End If
+                Else
+                    StaffPictureBox.Image = My.Resources._default
+                    StaffPictureBox.Tag = Nothing
+                End If
+
 
                 EnableInputControls(False) ' Disable controls initially
             End If
@@ -212,6 +234,8 @@ Public Class RegistrarStaff
                     cmd.Parameters.AddWithValue("@ic", StaffICTextBox.Text)
                     cmd.Parameters.AddWithValue("@username", StaffUsernameTextBox.Text)
                     cmd.Parameters.AddWithValue("@password", StaffPasswordTextBox.Text)
+                    Dim imagePath As String = SaveImage(StaffPictureBox.Image)
+                    cmd.Parameters.AddWithValue("@picture", imagePath)
                     cmd.ExecuteNonQuery()
                     MessageBox.Show("New staff added successfully!")
                 End Using
@@ -239,6 +263,8 @@ Public Class RegistrarStaff
                     cmd.Parameters.AddWithValue("@ic", StaffICTextBox.Text)
                     cmd.Parameters.AddWithValue("@username", StaffUsernameTextBox.Text)
                     cmd.Parameters.AddWithValue("@password", StaffPasswordTextBox.Text)
+                    Dim imagePath As String = SaveImage(StaffPictureBox.Image)
+                    cmd.Parameters.AddWithValue("@picture", imagePath)
                     cmd.ExecuteNonQuery()
                     MessageBox.Show("Staff data updated successfully!")
                 End Using
@@ -307,6 +333,38 @@ Public Class RegistrarStaff
         End If
     End Sub
 
+    ' Handle Import Button Click - Import picture for staff
+    Private Sub ImportBtn_Click(sender As Object, e As EventArgs) Handles ImportButton.Click
+        Using openFileDialog As New OpenFileDialog()
+            openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp"
+            If openFileDialog.ShowDialog() = DialogResult.OK Then
+                Dim sourceFilePath As String = openFileDialog.FileName
+                Dim img As Image = Image.FromFile(sourceFilePath)
+                StaffPictureBox.Image = img
+                StaffPictureBox.Tag = SaveImage(img)
+            End If
+        End Using
+    End Sub
 
+    ' Handle Remove Button Click - Remove picture from StaffPictureBox
+    Private Sub RemoveBtn_Click(sender As Object, e As EventArgs) Handles RemoveButton.Click
+        StaffPictureBox.Image = My.Resources._default
+        StaffPictureBox.Tag = Nothing ' Clear the stored path
+    End Sub
+
+    ' Method to save an image to a designated folder within the project and return the relative path
+    Private Function SaveImage(img As Image) As String
+        Dim folderPath As String = Path.Combine(Application.StartupPath, "StaffImages")
+        If Not Directory.Exists(folderPath) Then
+            Directory.CreateDirectory(folderPath)
+        End If
+        Dim fileName As String = Guid.NewGuid().ToString() & ".jpg"
+        Dim filePath As String = Path.Combine(folderPath, fileName)
+        img.Save(filePath, Imaging.ImageFormat.Jpeg)
+
+        ' Return the relative path instead of the full path
+        Dim relativePath As String = Path.Combine("StaffImages", fileName)
+        Return relativePath
+    End Function
 
 End Class
