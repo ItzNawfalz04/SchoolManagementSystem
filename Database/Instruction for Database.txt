@@ -6,7 +6,7 @@ How to Import Database.
 
 3. Create Database called "school_db".
 
-4. Import "school_db.sql" file from "Database" folder to the "school_db" database.
+4. Import "school_db.sql" file from "Database" folder to the "school_db" database in PhpMyAdmin.
 
 
 Install "MySql.Data" Connecter to connect to the database.

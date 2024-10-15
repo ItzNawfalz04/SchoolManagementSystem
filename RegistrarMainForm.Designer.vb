@@ -64,7 +64,7 @@ Partial Class RegistrarMainForm
         Panel1.Dock = DockStyle.Left
         Panel1.Location = New Point(0, 0)
         Panel1.Name = "Panel1"
-        Panel1.Size = New Size(270, 633)
+        Panel1.Size = New Size(270, 703)
         Panel1.TabIndex = 1
         ' 
         ' StaffButton
@@ -139,7 +139,7 @@ Partial Class RegistrarMainForm
         SignOutBtn.ForeColor = Color.Black
         SignOutBtn.Image = My.Resources.Resources.logout_2_
         SignOutBtn.ImageAlign = ContentAlignment.MiddleLeft
-        SignOutBtn.Location = New Point(78, 561)
+        SignOutBtn.Location = New Point(78, 641)
         SignOutBtn.Name = "SignOutBtn"
         SignOutBtn.Size = New Size(113, 50)
         SignOutBtn.TabIndex = 7
@@ -176,14 +176,14 @@ Partial Class RegistrarMainForm
         Panel2.Dock = DockStyle.Fill
         Panel2.Location = New Point(270, 0)
         Panel2.Name = "Panel2"
-        Panel2.Size = New Size(742, 633)
+        Panel2.Size = New Size(812, 703)
         Panel2.TabIndex = 2
         ' 
         ' RegistrarMainForm
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(1012, 633)
+        ClientSize = New Size(1082, 703)
         Controls.Add(Panel2)
         Controls.Add(Panel1)
         FormBorderStyle = FormBorderStyle.FixedDialog
