@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 15, 2024 at 04:33 AM
+-- Generation Time: Oct 15, 2024 at 09:05 AM
 -- Server version: 10.4.32-MariaDB
--- PHP Version: 8.0.30
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -79,15 +79,24 @@ INSERT INTO `staff` (`id`, `username`, `password`, `name`, `email`, `gender`, `p
 CREATE TABLE `teacher` (
   `id` int(11) NOT NULL,
   `username` varchar(50) NOT NULL,
-  `password` varchar(255) NOT NULL
+  `password` varchar(255) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `subject` varchar(255) DEFAULT NULL,
+  `classes` varchar(255) DEFAULT NULL,
+  `gender` varchar(5) DEFAULT NULL,
+  `phone` varchar(20) DEFAULT NULL,
+  `ic` varchar(50) DEFAULT NULL,
+  `birthday` date DEFAULT current_timestamp(),
+  `picture` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `teacher`
 --
 
-INSERT INTO `teacher` (`id`, `username`, `password`) VALUES
-(1, 'teacher', '123');
+INSERT INTO `teacher` (`id`, `username`, `password`, `name`, `email`, `subject`, `classes`, `gender`, `phone`, `ic`, `birthday`, `picture`) VALUES
+(1, 'teacher', '123', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-10-15', NULL);
 
 --
 -- Indexes for dumped tables
