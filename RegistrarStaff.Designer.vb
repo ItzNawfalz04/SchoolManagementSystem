@@ -67,9 +67,10 @@ Partial Class RegistrarStaff
         Panel1.Controls.Add(SearchTextBox)
         Panel1.Controls.Add(StaffDataGridView)
         Panel1.Controls.Add(Label1)
-        Panel1.Location = New Point(20, 23)
+        Panel1.Location = New Point(18, 17)
+        Panel1.Margin = New Padding(3, 2, 3, 2)
         Panel1.Name = "Panel1"
-        Panel1.Size = New Size(692, 330)
+        Panel1.Size = New Size(606, 248)
         Panel1.TabIndex = 0
         ' 
         ' SearchTextBox
@@ -78,19 +79,21 @@ Partial Class RegistrarStaff
         SearchTextBox.BorderStyle = BorderStyle.FixedSingle
         SearchTextBox.Cursor = Cursors.IBeam
         SearchTextBox.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        SearchTextBox.Location = New Point(531, 21)
+        SearchTextBox.Location = New Point(465, 16)
+        SearchTextBox.Margin = New Padding(3, 2, 3, 2)
         SearchTextBox.Name = "SearchTextBox"
         SearchTextBox.PlaceholderText = "  Search..."
-        SearchTextBox.Size = New Size(145, 27)
+        SearchTextBox.Size = New Size(127, 23)
         SearchTextBox.TabIndex = 26
         ' 
         ' StaffDataGridView
         ' 
         StaffDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        StaffDataGridView.Location = New Point(16, 55)
+        StaffDataGridView.Location = New Point(14, 41)
+        StaffDataGridView.Margin = New Padding(3, 2, 3, 2)
         StaffDataGridView.Name = "StaffDataGridView"
         StaffDataGridView.RowHeadersWidth = 51
-        StaffDataGridView.Size = New Size(660, 260)
+        StaffDataGridView.Size = New Size(578, 195)
         StaffDataGridView.TabIndex = 2
         ' 
         ' Label1
@@ -98,9 +101,9 @@ Partial Class RegistrarStaff
         Label1.AutoSize = True
         Label1.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Label1.ForeColor = SystemColors.ControlLightLight
-        Label1.Location = New Point(16, 20)
+        Label1.Location = New Point(14, 15)
         Label1.Name = "Label1"
-        Label1.Size = New Size(127, 28)
+        Label1.Size = New Size(99, 21)
         Label1.TabIndex = 1
         Label1.Text = "STAFF DATA"
         ' 
@@ -132,9 +135,11 @@ Partial Class RegistrarStaff
         GroupBox1.Controls.Add(Label3)
         GroupBox1.Controls.Add(StaffNameTextBox)
         GroupBox1.Controls.Add(Label2)
-        GroupBox1.Location = New Point(20, 359)
+        GroupBox1.Location = New Point(18, 269)
+        GroupBox1.Margin = New Padding(3, 2, 3, 2)
         GroupBox1.Name = "GroupBox1"
-        GroupBox1.Size = New Size(692, 383)
+        GroupBox1.Padding = New Padding(3, 2, 3, 2)
+        GroupBox1.Size = New Size(606, 287)
         GroupBox1.TabIndex = 1
         GroupBox1.TabStop = False
         GroupBox1.Text = "Staff Account Information"
@@ -143,9 +148,10 @@ Partial Class RegistrarStaff
         ' 
         RemoveButton.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         RemoveButton.ForeColor = Color.Red
-        RemoveButton.Location = New Point(518, 276)
+        RemoveButton.Location = New Point(453, 207)
+        RemoveButton.Margin = New Padding(3, 2, 3, 2)
         RemoveButton.Name = "RemoveButton"
-        RemoveButton.Size = New Size(37, 34)
+        RemoveButton.Size = New Size(32, 26)
         RemoveButton.TabIndex = 28
         RemoveButton.Text = "X"
         RemoveButton.UseVisualStyleBackColor = True
@@ -153,9 +159,10 @@ Partial Class RegistrarStaff
         ' ImportButton
         ' 
         ImportButton.Font = New Font("Segoe UI", 9F, FontStyle.Italic, GraphicsUnit.Point, CByte(0))
-        ImportButton.Location = New Point(415, 276)
+        ImportButton.Location = New Point(363, 207)
+        ImportButton.Margin = New Padding(3, 2, 3, 2)
         ImportButton.Name = "ImportButton"
-        ImportButton.Size = New Size(97, 34)
+        ImportButton.Size = New Size(85, 26)
         ImportButton.TabIndex = 27
         ImportButton.Text = "Import..."
         ImportButton.UseVisualStyleBackColor = True
@@ -165,9 +172,10 @@ Partial Class RegistrarStaff
         StaffPictureBox.BorderStyle = BorderStyle.Fixed3D
         StaffPictureBox.ErrorImage = Nothing
         StaffPictureBox.InitialImage = Nothing
-        StaffPictureBox.Location = New Point(415, 95)
+        StaffPictureBox.Location = New Point(363, 71)
+        StaffPictureBox.Margin = New Padding(3, 2, 3, 2)
         StaffPictureBox.Name = "StaffPictureBox"
-        StaffPictureBox.Size = New Size(140, 175)
+        StaffPictureBox.Size = New Size(123, 132)
         StaffPictureBox.SizeMode = PictureBoxSizeMode.StretchImage
         StaffPictureBox.TabIndex = 26
         StaffPictureBox.TabStop = False
@@ -178,18 +186,19 @@ Partial Class RegistrarStaff
         StaffICTextBox.BorderStyle = BorderStyle.FixedSingle
         StaffICTextBox.Cursor = Cursors.IBeam
         StaffICTextBox.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        StaffICTextBox.Location = New Point(105, 230)
+        StaffICTextBox.Location = New Point(92, 172)
+        StaffICTextBox.Margin = New Padding(3, 2, 3, 2)
         StaffICTextBox.Name = "StaffICTextBox"
-        StaffICTextBox.Size = New Size(284, 27)
+        StaffICTextBox.Size = New Size(249, 23)
         StaffICTextBox.TabIndex = 25
         ' 
         ' Label10
         ' 
         Label10.AutoSize = True
         Label10.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        Label10.Location = New Point(16, 232)
+        Label10.Location = New Point(14, 174)
         Label10.Name = "Label10"
-        Label10.Size = New Size(83, 20)
+        Label10.Size = New Size(68, 15)
         Label10.TabIndex = 24
         Label10.Text = "IC Number:"
         ' 
@@ -199,9 +208,10 @@ Partial Class RegistrarStaff
         DeleteBtn.Cursor = Cursors.Hand
         DeleteBtn.FlatStyle = FlatStyle.Flat
         DeleteBtn.ForeColor = SystemColors.ControlLightLight
-        DeleteBtn.Location = New Point(576, 187)
+        DeleteBtn.Location = New Point(504, 140)
+        DeleteBtn.Margin = New Padding(3, 2, 3, 2)
         DeleteBtn.Name = "DeleteBtn"
-        DeleteBtn.Size = New Size(100, 40)
+        DeleteBtn.Size = New Size(88, 30)
         DeleteBtn.TabIndex = 23
         DeleteBtn.Text = "Delete"
         DeleteBtn.UseVisualStyleBackColor = False
@@ -212,18 +222,19 @@ Partial Class RegistrarStaff
         PhoneTextBox.BorderStyle = BorderStyle.FixedSingle
         PhoneTextBox.Cursor = Cursors.IBeam
         PhoneTextBox.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        PhoneTextBox.Location = New Point(105, 185)
+        PhoneTextBox.Location = New Point(92, 139)
+        PhoneTextBox.Margin = New Padding(3, 2, 3, 2)
         PhoneTextBox.Name = "PhoneTextBox"
-        PhoneTextBox.Size = New Size(285, 27)
+        PhoneTextBox.Size = New Size(250, 23)
         PhoneTextBox.TabIndex = 22
         ' 
         ' Label9
         ' 
         Label9.AutoSize = True
         Label9.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        Label9.Location = New Point(17, 187)
+        Label9.Location = New Point(15, 140)
         Label9.Name = "Label9"
-        Label9.Size = New Size(53, 20)
+        Label9.Size = New Size(44, 15)
         Label9.TabIndex = 21
         Label9.Text = "Phone:"
         ' 
@@ -233,9 +244,10 @@ Partial Class RegistrarStaff
         ClearBtn.Cursor = Cursors.Hand
         ClearBtn.FlatStyle = FlatStyle.Flat
         ClearBtn.ForeColor = SystemColors.ControlLightLight
-        ClearBtn.Location = New Point(576, 233)
+        ClearBtn.Location = New Point(504, 175)
+        ClearBtn.Margin = New Padding(3, 2, 3, 2)
         ClearBtn.Name = "ClearBtn"
-        ClearBtn.Size = New Size(100, 40)
+        ClearBtn.Size = New Size(88, 30)
         ClearBtn.TabIndex = 20
         ClearBtn.Text = "Clear"
         ClearBtn.UseVisualStyleBackColor = False
@@ -246,9 +258,10 @@ Partial Class RegistrarStaff
         EditBtn.Cursor = Cursors.Hand
         EditBtn.FlatStyle = FlatStyle.Flat
         EditBtn.ForeColor = SystemColors.ControlLightLight
-        EditBtn.Location = New Point(576, 141)
+        EditBtn.Location = New Point(504, 106)
+        EditBtn.Margin = New Padding(3, 2, 3, 2)
         EditBtn.Name = "EditBtn"
-        EditBtn.Size = New Size(100, 40)
+        EditBtn.Size = New Size(88, 30)
         EditBtn.TabIndex = 19
         EditBtn.Text = "Edit"
         EditBtn.UseVisualStyleBackColor = False
@@ -259,27 +272,29 @@ Partial Class RegistrarStaff
         AddBtn.Cursor = Cursors.Hand
         AddBtn.FlatStyle = FlatStyle.Flat
         AddBtn.ForeColor = SystemColors.ControlLightLight
-        AddBtn.Location = New Point(576, 95)
+        AddBtn.Location = New Point(504, 71)
+        AddBtn.Margin = New Padding(3, 2, 3, 2)
         AddBtn.Name = "AddBtn"
-        AddBtn.Size = New Size(100, 40)
+        AddBtn.Size = New Size(88, 30)
         AddBtn.TabIndex = 10
         AddBtn.Text = "Add"
         AddBtn.UseVisualStyleBackColor = False
         ' 
         ' BirthdayDateTimePicker
         ' 
-        BirthdayDateTimePicker.Location = New Point(395, 40)
+        BirthdayDateTimePicker.Location = New Point(346, 30)
+        BirthdayDateTimePicker.Margin = New Padding(3, 2, 3, 2)
         BirthdayDateTimePicker.Name = "BirthdayDateTimePicker"
-        BirthdayDateTimePicker.Size = New Size(250, 27)
+        BirthdayDateTimePicker.Size = New Size(219, 23)
         BirthdayDateTimePicker.TabIndex = 18
         ' 
         ' Label8
         ' 
         Label8.AutoSize = True
         Label8.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        Label8.Location = New Point(322, 42)
+        Label8.Location = New Point(282, 32)
         Label8.Name = "Label8"
-        Label8.Size = New Size(67, 20)
+        Label8.Size = New Size(54, 15)
         Label8.TabIndex = 17
         Label8.Text = "Birthday:"
         ' 
@@ -288,18 +303,19 @@ Partial Class RegistrarStaff
         GenderComboBox.DropDownStyle = ComboBoxStyle.DropDownList
         GenderComboBox.FormattingEnabled = True
         GenderComboBox.Items.AddRange(New Object() {"Male", "Female"})
-        GenderComboBox.Location = New Point(191, 39)
+        GenderComboBox.Location = New Point(167, 29)
+        GenderComboBox.Margin = New Padding(3, 2, 3, 2)
         GenderComboBox.Name = "GenderComboBox"
-        GenderComboBox.Size = New Size(95, 28)
+        GenderComboBox.Size = New Size(84, 23)
         GenderComboBox.TabIndex = 16
         ' 
         ' Label7
         ' 
         Label7.AutoSize = True
         Label7.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        Label7.Location = New Point(125, 42)
+        Label7.Location = New Point(109, 32)
         Label7.Name = "Label7"
-        Label7.Size = New Size(60, 20)
+        Label7.Size = New Size(48, 15)
         Label7.TabIndex = 15
         Label7.Text = "Gender:"
         ' 
@@ -307,9 +323,10 @@ Partial Class RegistrarStaff
         ' 
         ShowPasswordBtn.Cursor = Cursors.Hand
         ShowPasswordBtn.Image = My.Resources.Resources.eye_1_
-        ShowPasswordBtn.Location = New Point(292, 320)
+        ShowPasswordBtn.Location = New Point(256, 240)
+        ShowPasswordBtn.Margin = New Padding(3, 2, 3, 2)
         ShowPasswordBtn.Name = "ShowPasswordBtn"
-        ShowPasswordBtn.Size = New Size(27, 27)
+        ShowPasswordBtn.Size = New Size(24, 20)
         ShowPasswordBtn.TabIndex = 14
         ShowPasswordBtn.UseVisualStyleBackColor = True
         ' 
@@ -319,18 +336,19 @@ Partial Class RegistrarStaff
         StaffEmailTextBox.BorderStyle = BorderStyle.FixedSingle
         StaffEmailTextBox.Cursor = Cursors.IBeam
         StaffEmailTextBox.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        StaffEmailTextBox.Location = New Point(105, 140)
+        StaffEmailTextBox.Location = New Point(92, 105)
+        StaffEmailTextBox.Margin = New Padding(3, 2, 3, 2)
         StaffEmailTextBox.Name = "StaffEmailTextBox"
-        StaffEmailTextBox.Size = New Size(285, 27)
+        StaffEmailTextBox.Size = New Size(250, 23)
         StaffEmailTextBox.TabIndex = 13
         ' 
         ' Label6
         ' 
         Label6.AutoSize = True
         Label6.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        Label6.Location = New Point(17, 142)
+        Label6.Location = New Point(15, 106)
         Label6.Name = "Label6"
-        Label6.Size = New Size(49, 20)
+        Label6.Size = New Size(39, 15)
         Label6.TabIndex = 12
         Label6.Text = "Email:"
         ' 
@@ -340,18 +358,19 @@ Partial Class RegistrarStaff
         StaffIDTextBox.BorderStyle = BorderStyle.FixedSingle
         StaffIDTextBox.Cursor = Cursors.IBeam
         StaffIDTextBox.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        StaffIDTextBox.Location = New Point(49, 40)
+        StaffIDTextBox.Location = New Point(43, 30)
+        StaffIDTextBox.Margin = New Padding(3, 2, 3, 2)
         StaffIDTextBox.Name = "StaffIDTextBox"
-        StaffIDTextBox.Size = New Size(46, 27)
+        StaffIDTextBox.Size = New Size(40, 23)
         StaffIDTextBox.TabIndex = 11
         ' 
         ' Label5
         ' 
         Label5.AutoSize = True
         Label5.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        Label5.Location = New Point(16, 42)
+        Label5.Location = New Point(14, 32)
         Label5.Name = "Label5"
-        Label5.Size = New Size(27, 20)
+        Label5.Size = New Size(21, 15)
         Label5.TabIndex = 10
         Label5.Text = "ID:"
         ' 
@@ -361,19 +380,20 @@ Partial Class RegistrarStaff
         StaffPasswordTextBox.BorderStyle = BorderStyle.FixedSingle
         StaffPasswordTextBox.Cursor = Cursors.IBeam
         StaffPasswordTextBox.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        StaffPasswordTextBox.Location = New Point(105, 320)
+        StaffPasswordTextBox.Location = New Point(92, 240)
+        StaffPasswordTextBox.Margin = New Padding(3, 2, 3, 2)
         StaffPasswordTextBox.Name = "StaffPasswordTextBox"
         StaffPasswordTextBox.PasswordChar = "•"c
-        StaffPasswordTextBox.Size = New Size(181, 27)
+        StaffPasswordTextBox.Size = New Size(159, 23)
         StaffPasswordTextBox.TabIndex = 9
         ' 
         ' Label4
         ' 
         Label4.AutoSize = True
         Label4.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        Label4.Location = New Point(16, 322)
+        Label4.Location = New Point(14, 242)
         Label4.Name = "Label4"
-        Label4.Size = New Size(73, 20)
+        Label4.Size = New Size(60, 15)
         Label4.TabIndex = 8
         Label4.Text = "Password:"
         ' 
@@ -383,18 +403,19 @@ Partial Class RegistrarStaff
         StaffUsernameTextBox.BorderStyle = BorderStyle.FixedSingle
         StaffUsernameTextBox.Cursor = Cursors.IBeam
         StaffUsernameTextBox.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        StaffUsernameTextBox.Location = New Point(105, 275)
+        StaffUsernameTextBox.Location = New Point(92, 206)
+        StaffUsernameTextBox.Margin = New Padding(3, 2, 3, 2)
         StaffUsernameTextBox.Name = "StaffUsernameTextBox"
-        StaffUsernameTextBox.Size = New Size(181, 27)
+        StaffUsernameTextBox.Size = New Size(159, 23)
         StaffUsernameTextBox.TabIndex = 7
         ' 
         ' Label3
         ' 
         Label3.AutoSize = True
         Label3.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        Label3.Location = New Point(16, 277)
+        Label3.Location = New Point(14, 208)
         Label3.Name = "Label3"
-        Label3.Size = New Size(78, 20)
+        Label3.Size = New Size(63, 15)
         Label3.TabIndex = 6
         Label3.Text = "Username:"
         ' 
@@ -404,18 +425,19 @@ Partial Class RegistrarStaff
         StaffNameTextBox.BorderStyle = BorderStyle.FixedSingle
         StaffNameTextBox.Cursor = Cursors.IBeam
         StaffNameTextBox.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        StaffNameTextBox.Location = New Point(105, 95)
+        StaffNameTextBox.Location = New Point(92, 71)
+        StaffNameTextBox.Margin = New Padding(3, 2, 3, 2)
         StaffNameTextBox.Name = "StaffNameTextBox"
-        StaffNameTextBox.Size = New Size(285, 27)
+        StaffNameTextBox.Size = New Size(250, 23)
         StaffNameTextBox.TabIndex = 5
         ' 
         ' Label2
         ' 
         Label2.AutoSize = True
         Label2.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        Label2.Location = New Point(17, 97)
+        Label2.Location = New Point(15, 73)
         Label2.Name = "Label2"
-        Label2.Size = New Size(52, 20)
+        Label2.Size = New Size(42, 15)
         Label2.TabIndex = 4
         Label2.Text = "Name:"
         ' 
@@ -426,17 +448,19 @@ Partial Class RegistrarStaff
         Panel.Controls.Add(Panel1)
         Panel.Dock = DockStyle.Fill
         Panel.Location = New Point(0, 0)
+        Panel.Margin = New Padding(3, 2, 3, 2)
         Panel.Name = "Panel"
-        Panel.Size = New Size(730, 760)
+        Panel.Size = New Size(639, 570)
         Panel.TabIndex = 2
         ' 
         ' RegistrarStaff
         ' 
-        AutoScaleDimensions = New SizeF(8F, 20F)
+        AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         Controls.Add(Panel)
+        Margin = New Padding(3, 2, 3, 2)
         Name = "RegistrarStaff"
-        Size = New Size(730, 760)
+        Size = New Size(639, 570)
         Panel1.ResumeLayout(False)
         Panel1.PerformLayout()
         CType(StaffDataGridView, ComponentModel.ISupportInitialize).EndInit()

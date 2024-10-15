@@ -367,4 +367,7 @@ Public Class RegistrarStaff
         Return relativePath
     End Function
 
+    Private Sub Panel_Paint(sender As Object, e As PaintEventArgs) Handles Panel.Paint
+
+    End Sub
 End Class
