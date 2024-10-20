@@ -23,7 +23,7 @@ Partial Class Registrar_Class
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Label1 = New Label()
-        className = New Label()
+        subject = New Label()
         Label3 = New Label()
         Label4 = New Label()
         TextBox1 = New TextBox()
@@ -31,6 +31,9 @@ Partial Class Registrar_Class
         TextBox3 = New TextBox()
         DataGridView1 = New DataGridView()
         GroupBox1 = New GroupBox()
+        clrBtn = New Button()
+        FormComboBox1 = New ComboBox()
+        Label2 = New Label()
         dltBtn = New Button()
         updBtn = New Button()
         viewBtn = New Button()
@@ -54,15 +57,15 @@ Partial Class Registrar_Class
         Label1.TabIndex = 0
         Label1.Text = "Class List"
         ' 
-        ' className
+        ' subject
         ' 
-        className.AutoSize = True
-        className.Font = New Font("Segoe UI", 9F)
-        className.Location = New Point(21, 32)
-        className.Name = "className"
-        className.Size = New Size(75, 15)
-        className.TabIndex = 1
-        className.Text = "Class Name :"
+        subject.AutoSize = True
+        subject.Font = New Font("Segoe UI", 9F)
+        subject.Location = New Point(21, 32)
+        subject.Name = "subject"
+        subject.Size = New Size(52, 15)
+        subject.TabIndex = 1
+        subject.Text = "Subject :"
         ' 
         ' Label3
         ' 
@@ -113,12 +116,16 @@ Partial Class Registrar_Class
         DataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
         DataGridView1.Location = New Point(18, 35)
         DataGridView1.Name = "DataGridView1"
+        DataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect
         DataGridView1.Size = New Size(1058, 319)
         DataGridView1.TabIndex = 7
         ' 
         ' GroupBox1
         ' 
-        GroupBox1.Controls.Add(className)
+        GroupBox1.Controls.Add(clrBtn)
+        GroupBox1.Controls.Add(FormComboBox1)
+        GroupBox1.Controls.Add(Label2)
+        GroupBox1.Controls.Add(subject)
         GroupBox1.Controls.Add(TextBox1)
         GroupBox1.Controls.Add(dltBtn)
         GroupBox1.Controls.Add(updBtn)
@@ -129,62 +136,98 @@ Partial Class Registrar_Class
         GroupBox1.Controls.Add(Label4)
         GroupBox1.Controls.Add(TextBox2)
         GroupBox1.Font = New Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        GroupBox1.Location = New Point(57, 423)
+        GroupBox1.Location = New Point(57, 441)
         GroupBox1.Name = "GroupBox1"
         GroupBox1.Size = New Size(1058, 251)
         GroupBox1.TabIndex = 8
         GroupBox1.TabStop = False
         GroupBox1.Text = "Class Information"
         ' 
+        ' clrBtn
+        ' 
+        clrBtn.BackColor = Color.Red
+        clrBtn.Location = New Point(512, 196)
+        clrBtn.Name = "clrBtn"
+        clrBtn.Size = New Size(129, 27)
+        clrBtn.TabIndex = 10
+        clrBtn.Text = "Clear"
+        clrBtn.UseVisualStyleBackColor = False
+        ' 
+        ' FormComboBox1
+        ' 
+        FormComboBox1.FormattingEnabled = True
+        FormComboBox1.Items.AddRange(New Object() {"Form 1", "Form 2", "Form 3", "Form 4", "Form 5"})
+        FormComboBox1.Location = New Point(119, 185)
+        FormComboBox1.Name = "FormComboBox1"
+        FormComboBox1.Size = New Size(121, 28)
+        FormComboBox1.TabIndex = 13
+        ' 
+        ' Label2
+        ' 
+        Label2.AutoSize = True
+        Label2.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        Label2.Location = New Point(21, 192)
+        Label2.Name = "Label2"
+        Label2.Size = New Size(41, 15)
+        Label2.TabIndex = 12
+        Label2.Text = "Form :"
+        ' 
         ' dltBtn
         ' 
+        dltBtn.BackColor = Color.Red
         dltBtn.Font = New Font("Segoe UI", 9.75F)
         dltBtn.Location = New Point(512, 159)
         dltBtn.Name = "dltBtn"
         dltBtn.Size = New Size(129, 31)
         dltBtn.TabIndex = 11
         dltBtn.Text = "Delete Selected"
-        dltBtn.UseVisualStyleBackColor = True
+        dltBtn.UseVisualStyleBackColor = False
         ' 
         ' updBtn
         ' 
+        updBtn.BackColor = Color.FromArgb(CByte(255), CByte(128), CByte(0))
         updBtn.Font = New Font("Segoe UI", 9.75F)
         updBtn.Location = New Point(512, 122)
         updBtn.Name = "updBtn"
         updBtn.Size = New Size(129, 31)
         updBtn.TabIndex = 10
         updBtn.Text = "Update Selected"
-        updBtn.UseVisualStyleBackColor = True
+        updBtn.UseVisualStyleBackColor = False
         ' 
         ' viewBtn
         ' 
+        viewBtn.BackColor = Color.FromArgb(CByte(255), CByte(128), CByte(0))
         viewBtn.Font = New Font("Segoe UI", 9.75F)
         viewBtn.Location = New Point(512, 85)
         viewBtn.Name = "viewBtn"
         viewBtn.Size = New Size(129, 31)
         viewBtn.TabIndex = 8
         viewBtn.Text = "View"
-        viewBtn.UseVisualStyleBackColor = True
+        viewBtn.UseVisualStyleBackColor = False
         ' 
         ' addBtn
         ' 
+        addBtn.BackColor = Color.FromArgb(CByte(255), CByte(128), CByte(0))
         addBtn.Font = New Font("Segoe UI", 9.75F)
+        addBtn.ForeColor = SystemColors.ControlText
         addBtn.Location = New Point(512, 48)
         addBtn.Name = "addBtn"
         addBtn.Size = New Size(129, 31)
         addBtn.TabIndex = 7
         addBtn.Text = "Add"
-        addBtn.UseVisualStyleBackColor = True
+        addBtn.UseVisualStyleBackColor = False
         ' 
         ' srcBtn
         ' 
+        srcBtn.BackColor = Color.SpringGreen
         srcBtn.Font = New Font("Segoe UI", 9.75F)
+        srcBtn.ForeColor = SystemColors.ControlText
         srcBtn.Location = New Point(947, 360)
         srcBtn.Name = "srcBtn"
         srcBtn.Size = New Size(129, 31)
         srcBtn.TabIndex = 9
         srcBtn.Text = "Search"
-        srcBtn.UseVisualStyleBackColor = True
+        srcBtn.UseVisualStyleBackColor = False
         ' 
         ' Panel1
         ' 
@@ -214,7 +257,7 @@ Partial Class Registrar_Class
     End Sub
 
     Friend WithEvents Label1 As Label
-    Friend WithEvents className As Label
+    Friend WithEvents subject As Label
     Friend WithEvents Label3 As Label
     Friend WithEvents Label4 As Label
     Friend WithEvents TextBox1 As TextBox
@@ -228,5 +271,8 @@ Partial Class Registrar_Class
     Friend WithEvents viewBtn As Button
     Friend WithEvents addBtn As Button
     Friend WithEvents Panel1 As Panel
+    Friend WithEvents Label2 As Label
+    Friend WithEvents FormComboBox1 As ComboBox
+    Friend WithEvents clrBtn As Button
 
 End Class
