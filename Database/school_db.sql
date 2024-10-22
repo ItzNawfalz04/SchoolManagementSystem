@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 15, 2024 at 04:33 AM
+-- Generation Time: Oct 22, 2024 at 07:40 AM
 -- Server version: 10.4.32-MariaDB
--- PHP Version: 8.0.30
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,30 @@ SET time_zone = "+00:00";
 --
 -- Database: `school_db`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `class`
+--
+
+CREATE TABLE `class` (
+  `id` int(10) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `teacher` varchar(50) NOT NULL,
+  `location` varchar(50) NOT NULL,
+  `form` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `class`
+--
+
+INSERT INTO `class` (`id`, `name`, `teacher`, `location`, `form`) VALUES
+(7, 'Add Maths', 'Mr. Azeem', 'Class Palladium', 'Form 4'),
+(9, ' English', 'Mr. Azib', ' Class Pintar', 'Form 5'),
+(10, 'Bahasa Melayu', 'Mr. Nawfal', 'Class Emerald', 'Form 2'),
+(11, ' Science', ' Mr. Zuhdi', ' Class Sapphire', 'Form 3');
 
 -- --------------------------------------------------------
 
@@ -94,6 +118,12 @@ INSERT INTO `teacher` (`id`, `username`, `password`) VALUES
 --
 
 --
+-- Indexes for table `class`
+--
+ALTER TABLE `class`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `registrar`
 --
 ALTER TABLE `registrar`
@@ -114,6 +144,12 @@ ALTER TABLE `teacher`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `class`
+--
+ALTER TABLE `class`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `registrar`

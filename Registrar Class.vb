@@ -43,7 +43,8 @@ Public Class Registrar_Class
 
         disp_data()
 
-        MessageBox.Show("Record Save Successfully!")
+        'Display the message
+        MessageBox.Show("Record Saved Succesfully!")
 
     End Sub
 
