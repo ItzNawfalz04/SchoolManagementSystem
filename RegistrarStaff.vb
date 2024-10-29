@@ -367,7 +367,4 @@ Public Class RegistrarStaff
         Return relativePath
     End Function
 
-    Private Sub StaffDataGridView_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles StaffDataGridView.CellContentClick
-
-    End Sub
 End Class
