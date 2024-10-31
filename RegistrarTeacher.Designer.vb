@@ -53,6 +53,11 @@ Partial Class RegistrarTeacher
         SearchTextBox = New TextBox()
         TeacherDataGridView = New DataGridView()
         Label1 = New Label()
+        Panel = New Panel()
+        Label11 = New Label()
+        ClassesComboBox = New ComboBox()
+        Label12 = New Label()
+        SubjectComboBox = New ComboBox()
         GroupBox1.SuspendLayout()
         CType(TeacherPictureBox, ComponentModel.ISupportInitialize).BeginInit()
         Panel1.SuspendLayout()
@@ -61,6 +66,10 @@ Partial Class RegistrarTeacher
         ' 
         ' GroupBox1
         ' 
+        GroupBox1.Controls.Add(SubjectComboBox)
+        GroupBox1.Controls.Add(Label12)
+        GroupBox1.Controls.Add(ClassesComboBox)
+        GroupBox1.Controls.Add(Label11)
         GroupBox1.Controls.Add(RemoveButton)
         GroupBox1.Controls.Add(ImportButton)
         GroupBox1.Controls.Add(TeacherPictureBox)
@@ -94,7 +103,7 @@ Partial Class RegistrarTeacher
         GroupBox1.Size = New Size(606, 287)
         GroupBox1.TabIndex = 3
         GroupBox1.TabStop = False
-        GroupBox1.Text = "Staff Account Information"
+        GroupBox1.Text = "Teacher Account Information"
         ' 
         ' RemoveButton
         ' 
@@ -439,12 +448,60 @@ Partial Class RegistrarTeacher
         Label1.TabIndex = 1
         Label1.Text = "TEACHER DATA"
         ' 
+        ' Panel
+        ' 
+        Panel.Location = New Point(3, 3)
+        Panel.Name = "Panel"
+        Panel.Size = New Size(645, 559)
+        Panel.TabIndex = 4
+        ' 
+        ' Label11
+        ' 
+        Label11.AutoSize = True
+        Label11.Location = New Point(308, 241)
+        Label11.Name = "Label11"
+        Label11.Size = New Size(48, 15)
+        Label11.TabIndex = 29
+        Label11.Text = "Classes:"
+        ' 
+        ' ClassesComboBox
+        ' 
+        ClassesComboBox.DropDownStyle = ComboBoxStyle.DropDownList
+        ClassesComboBox.FormattingEnabled = True
+        ClassesComboBox.Items.AddRange(New Object() {"Male", "Female"})
+        ClassesComboBox.Location = New Point(362, 240)
+        ClassesComboBox.Margin = New Padding(3, 2, 3, 2)
+        ClassesComboBox.Name = "ClassesComboBox"
+        ClassesComboBox.Size = New Size(84, 23)
+        ClassesComboBox.TabIndex = 30
+        ' 
+        ' Label12
+        ' 
+        Label12.AutoSize = True
+        Label12.Location = New Point(453, 241)
+        Label12.Name = "Label12"
+        Label12.Size = New Size(49, 15)
+        Label12.TabIndex = 31
+        Label12.Text = "Subject:"
+        ' 
+        ' SubjectComboBox
+        ' 
+        SubjectComboBox.DropDownStyle = ComboBoxStyle.DropDownList
+        SubjectComboBox.FormattingEnabled = True
+        SubjectComboBox.Items.AddRange(New Object() {"Male", "Female"})
+        SubjectComboBox.Location = New Point(508, 241)
+        SubjectComboBox.Margin = New Padding(3, 2, 3, 2)
+        SubjectComboBox.Name = "SubjectComboBox"
+        SubjectComboBox.Size = New Size(84, 23)
+        SubjectComboBox.TabIndex = 32
+        ' 
         ' RegistrarTeacher
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         Controls.Add(GroupBox1)
         Controls.Add(Panel1)
+        Controls.Add(Panel)
         Name = "RegistrarTeacher"
         Size = New Size(648, 562)
         GroupBox1.ResumeLayout(False)
@@ -487,5 +544,10 @@ Partial Class RegistrarTeacher
     Friend WithEvents SearchTextBox As TextBox
     Friend WithEvents TeacherDataGridView As DataGridView
     Friend WithEvents Label1 As Label
+    Friend WithEvents Panel As Panel
+    Friend WithEvents SubjectComboBox As ComboBox
+    Friend WithEvents Label12 As Label
+    Friend WithEvents ClassesComboBox As ComboBox
+    Friend WithEvents Label11 As Label
 
 End Class
