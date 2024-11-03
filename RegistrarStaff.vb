@@ -366,5 +366,4 @@ Public Class RegistrarStaff
         Dim relativePath As String = Path.Combine("StaffImages", fileName)
         Return relativePath
     End Function
-
 End Class

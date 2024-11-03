@@ -28,7 +28,7 @@ Public Class RegistrarMainForm
         RegistrarStaff.BringToFront
     End Sub
 
-    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles TeacherButton.Click
-        RegistrarTeacher.BringToFront()
+    Private Sub TeacherButton_Click(sender As Object, e As EventArgs) Handles TeacherButton.Click
+        registrarTeacher.BringToFront()
     End Sub
 End Class

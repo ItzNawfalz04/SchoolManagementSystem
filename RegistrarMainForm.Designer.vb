@@ -42,9 +42,9 @@ Partial Class RegistrarMainForm
         Label1.AutoSize = True
         Label1.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Label1.ForeColor = SystemColors.ControlLightLight
-        Label1.Location = New Point(38, 131)
+        Label1.Location = New Point(43, 175)
         Label1.Name = "Label1"
-        Label1.Size = New Size(153, 21)
+        Label1.Size = New Size(186, 28)
         Label1.TabIndex = 0
         Label1.Text = "Welcome, Registrar"
         Label1.TextAlign = ContentAlignment.MiddleCenter
@@ -63,9 +63,8 @@ Partial Class RegistrarMainForm
         Panel1.Controls.Add(Label1)
         Panel1.Dock = DockStyle.Left
         Panel1.Location = New Point(0, 0)
-        Panel1.Margin = New Padding(3, 2, 3, 2)
         Panel1.Name = "Panel1"
-        Panel1.Size = New Size(236, 527)
+        Panel1.Size = New Size(270, 703)
         Panel1.TabIndex = 1
         ' 
         ' StaffButton
@@ -74,10 +73,9 @@ Partial Class RegistrarMainForm
         StaffButton.FlatStyle = FlatStyle.Flat
         StaffButton.Font = New Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         StaffButton.ForeColor = Color.White
-        StaffButton.Location = New Point(38, 206)
-        StaffButton.Margin = New Padding(3, 2, 3, 2)
+        StaffButton.Location = New Point(43, 275)
         StaffButton.Name = "StaffButton"
-        StaffButton.Size = New Size(163, 30)
+        StaffButton.Size = New Size(186, 40)
         StaffButton.TabIndex = 9
         StaffButton.Text = "STAFF"
         StaffButton.UseVisualStyleBackColor = False
@@ -88,10 +86,9 @@ Partial Class RegistrarMainForm
         Button2.FlatStyle = FlatStyle.Flat
         Button2.Font = New Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Button2.ForeColor = Color.White
-        Button2.Location = New Point(38, 309)
-        Button2.Margin = New Padding(3, 2, 3, 2)
+        Button2.Location = New Point(43, 412)
         Button2.Name = "Button2"
-        Button2.Size = New Size(163, 30)
+        Button2.Size = New Size(186, 40)
         Button2.TabIndex = 3
         Button2.Text = "STUDENT"
         Button2.UseVisualStyleBackColor = False
@@ -102,10 +99,9 @@ Partial Class RegistrarMainForm
         TeacherButton.FlatStyle = FlatStyle.Flat
         TeacherButton.Font = New Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         TeacherButton.ForeColor = Color.White
-        TeacherButton.Location = New Point(38, 240)
-        TeacherButton.Margin = New Padding(3, 2, 3, 2)
+        TeacherButton.Location = New Point(43, 320)
         TeacherButton.Name = "TeacherButton"
-        TeacherButton.Size = New Size(163, 30)
+        TeacherButton.Size = New Size(186, 40)
         TeacherButton.TabIndex = 4
         TeacherButton.Text = "TEACHER"
         TeacherButton.UseVisualStyleBackColor = False
@@ -116,10 +112,9 @@ Partial Class RegistrarMainForm
         Button1.FlatStyle = FlatStyle.Flat
         Button1.Font = New Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Button1.ForeColor = Color.White
-        Button1.Location = New Point(38, 274)
-        Button1.Margin = New Padding(3, 2, 3, 2)
+        Button1.Location = New Point(43, 365)
         Button1.Name = "Button1"
-        Button1.Size = New Size(163, 30)
+        Button1.Size = New Size(186, 40)
         Button1.TabIndex = 2
         Button1.Text = "CLASS"
         Button1.UseVisualStyleBackColor = False
@@ -130,10 +125,9 @@ Partial Class RegistrarMainForm
         DashboardButton.FlatStyle = FlatStyle.Flat
         DashboardButton.Font = New Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         DashboardButton.ForeColor = Color.White
-        DashboardButton.Location = New Point(38, 171)
-        DashboardButton.Margin = New Padding(3, 2, 3, 2)
+        DashboardButton.Location = New Point(43, 228)
         DashboardButton.Name = "DashboardButton"
-        DashboardButton.Size = New Size(163, 30)
+        DashboardButton.Size = New Size(186, 40)
         DashboardButton.TabIndex = 8
         DashboardButton.Text = "DASHBOARD"
         DashboardButton.UseVisualStyleBackColor = False
@@ -145,10 +139,9 @@ Partial Class RegistrarMainForm
         SignOutBtn.ForeColor = Color.Black
         SignOutBtn.Image = My.Resources.Resources.logout_2_
         SignOutBtn.ImageAlign = ContentAlignment.MiddleLeft
-        SignOutBtn.Location = New Point(68, 481)
-        SignOutBtn.Margin = New Padding(3, 2, 3, 2)
+        SignOutBtn.Location = New Point(78, 641)
         SignOutBtn.Name = "SignOutBtn"
-        SignOutBtn.Size = New Size(99, 38)
+        SignOutBtn.Size = New Size(113, 51)
         SignOutBtn.TabIndex = 7
         SignOutBtn.Text = "Log Out"
         SignOutBtn.TextAlign = ContentAlignment.MiddleRight
@@ -160,10 +153,9 @@ Partial Class RegistrarMainForm
         Button4.FlatStyle = FlatStyle.Flat
         Button4.Font = New Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Button4.ForeColor = Color.White
-        Button4.Location = New Point(38, 344)
-        Button4.Margin = New Padding(3, 2, 3, 2)
+        Button4.Location = New Point(43, 459)
         Button4.Name = "Button4"
-        Button4.Size = New Size(163, 30)
+        Button4.Size = New Size(186, 40)
         Button4.TabIndex = 5
         Button4.Text = "REGISTRATION"
         Button4.UseVisualStyleBackColor = False
@@ -171,10 +163,9 @@ Partial Class RegistrarMainForm
         ' PictureBox1
         ' 
         PictureBox1.Image = My.Resources.Resources.settings
-        PictureBox1.Location = New Point(60, 26)
-        PictureBox1.Margin = New Padding(3, 2, 3, 2)
+        PictureBox1.Location = New Point(69, 35)
         PictureBox1.Name = "PictureBox1"
-        PictureBox1.Size = New Size(118, 101)
+        PictureBox1.Size = New Size(135, 135)
         PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage
         PictureBox1.TabIndex = 1
         PictureBox1.TabStop = False
@@ -183,21 +174,19 @@ Partial Class RegistrarMainForm
         ' 
         Panel2.BackColor = SystemColors.ControlDarkDark
         Panel2.Dock = DockStyle.Fill
-        Panel2.Location = New Point(236, 0)
-        Panel2.Margin = New Padding(3, 2, 3, 2)
+        Panel2.Location = New Point(270, 0)
         Panel2.Name = "Panel2"
-        Panel2.Size = New Size(711, 527)
+        Panel2.Size = New Size(762, 703)
         Panel2.TabIndex = 2
         ' 
         ' RegistrarMainForm
         ' 
-        AutoScaleDimensions = New SizeF(7F, 15F)
+        AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(947, 527)
+        ClientSize = New Size(1032, 703)
         Controls.Add(Panel2)
         Controls.Add(Panel1)
         FormBorderStyle = FormBorderStyle.FixedDialog
-        Margin = New Padding(3, 2, 3, 2)
         Name = "RegistrarMainForm"
         Text = "Registrar Dashboard"
         Panel1.ResumeLayout(False)

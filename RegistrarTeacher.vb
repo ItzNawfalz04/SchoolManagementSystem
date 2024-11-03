@@ -1,11 +1,12 @@
-﻿Imports System.IO
-Imports MySql.Data.MySqlClient
-Imports Stystem.IO
+﻿Imports MySql.Data.MySqlClient
+Imports System.IO
 
 Public Class RegistrarTeacher
     Dim isAddMode As Boolean = False ' Track if we are in Add mode
     Dim isEditMode As Boolean = False ' Track if we are in Edit mode
-    Dim originalTeacherId As Integer ' To store the selected staff ID
+    Dim originalStaffID As Integer ' To store the selected Teacher ID
+
+    ' Form Load Event - Load Teacher data into the DataGridView when the form loads
     Private Sub RegistrarTeacher_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LoadTeacherData()
         SetDefaultFormState()
@@ -47,13 +48,14 @@ Public Class RegistrarTeacher
         TeacherPictureBox.Tag = Nothing
     End Sub
 
+    ' Enable or disable input controls (TextBoxes, ComboBox, DateTimePicker)
     Private Sub EnableInputControls(enable As Boolean)
-        TeacherIDTextBox.Enabled = False ' StaffID is auto-generated, so always disabled
+        TeacherIDTextBox.Enabled = False ' TeacherID is auto-generated, so always disabled
         TeacherNameTextBox.Enabled = enable
         GenderComboBox.Enabled = enable
         BirthdayDateTimePicker.Enabled = enable
         TeacherEmailTextBox.Enabled = enable
-        TeacherPhoneTextBox.Enabled = enable
+        PhoneTextBox.Enabled = enable
         TeacherICTextBox.Enabled = enable
         TeacherUsernameTextBox.Enabled = enable
         TeacherPasswordTextBox.Enabled = enable
@@ -63,13 +65,13 @@ Public Class RegistrarTeacher
         RemoveButton.Visible = enable
     End Sub
 
-    ' Event to handle row selection in StaffDataGridView - populate TextBoxes with selected staff data
+    ' Event to handle row selection in TeacherDataGridView - populate TextBoxes with selected teacher data
     Private Sub TeacherDataGridView_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles TeacherDataGridView.CellClick
         If e.RowIndex >= 0 Then
             Dim selectedRow As DataGridViewRow = TeacherDataGridView.Rows(e.RowIndex)
 
             If selectedRow IsNot Nothing AndAlso selectedRow.Cells("id").Value IsNot DBNull.Value Then
-                ' Populate the TextBoxes with the selected staff data
+                ' Populate the TextBoxes with the selected Teacher data
                 TeacherIDTextBox.Text = selectedRow.Cells("id").Value.ToString()
                 TeacherNameTextBox.Text = selectedRow.Cells("name").Value.ToString()
                 GenderComboBox.Text = selectedRow.Cells("gender").Value.ToString()
@@ -77,7 +79,7 @@ Public Class RegistrarTeacher
                     BirthdayDateTimePicker.Value = DateTime.Parse(selectedRow.Cells("birthday").Value.ToString())
                 End If
                 TeacherEmailTextBox.Text = selectedRow.Cells("email").Value.ToString()
-                TeacherPhoneTextBox.Text = selectedRow.Cells("phone").Value.ToString()
+                PhoneTextBox.Text = selectedRow.Cells("phone").Value.ToString()
                 TeacherICTextBox.Text = selectedRow.Cells("ic").Value.ToString()
                 TeacherUsernameTextBox.Text = selectedRow.Cells("username").Value.ToString()
                 TeacherPasswordTextBox.Text = selectedRow.Cells("password").Value.ToString()
@@ -104,7 +106,7 @@ Public Class RegistrarTeacher
         End If
     End Sub
 
-    ' Add Button Function
+    ' Handle Add Button Click - Add or Save new teacher
     Private Sub AddBtn_Click(sender As Object, e As EventArgs) Handles AddBtn.Click
         If Not isAddMode And Not isEditMode Then
             ' Enter Add Mode
@@ -118,14 +120,14 @@ Public Class RegistrarTeacher
             DeleteBtn.Visible = False
             ClearBtn.Visible = False
         ElseIf isAddMode Then
-            ' Save new staff to the database
+            ' Save new teacher to the database
             If ValidateInputFields() Then
                 SaveNewTeacher()
                 LoadTeacherData() ' Reload data after adding
                 SetDefaultFormState() ' Reset the form
             End If
         ElseIf isEditMode Then
-            ' Save edited staff to the database
+            ' Save edited teacher to the database
             If ValidateInputFields() Then
                 SaveEditedTeacher()
                 LoadTeacherData() ' Reload data after editing
@@ -134,7 +136,7 @@ Public Class RegistrarTeacher
         End If
     End Sub
 
-    ' Handle Edit Button Click - Edit or Cancel editing staff
+    ' Handle Edit Button Click - Edit or Cancel editing teacher
     Private Sub EditBtn_Click(sender As Object, e As EventArgs) Handles EditBtn.Click
         If Not isEditMode And TeacherIDTextBox.Text <> "" Then
             ' Enter Edit Mode
@@ -155,13 +157,13 @@ Public Class RegistrarTeacher
                 GenderComboBox.Text = selectedRow.Cells("gender").Value.ToString()
                 BirthdayDateTimePicker.Value = DateTime.Parse(selectedRow.Cells("birthday").Value.ToString())
                 TeacherEmailTextBox.Text = selectedRow.Cells("email").Value.ToString()
-                TeacherPhoneTextBox.Text = selectedRow.Cells("phone").Value.ToString()
+                PhoneTextBox.Text = selectedRow.Cells("phone").Value.ToString()
                 TeacherICTextBox.Text = selectedRow.Cells("ic").Value.ToString()
                 TeacherUsernameTextBox.Text = selectedRow.Cells("username").Value.ToString()
                 TeacherPasswordTextBox.Text = selectedRow.Cells("password").Value.ToString()
                 SetDefaultFormState()
             Else
-                ' Save edited staff to the database
+                ' Save edited teacher to the database
                 If ValidateInputFields() Then
                     SaveEditedTeacher()
                     LoadTeacherData() ' Reload data after editing
@@ -178,7 +180,7 @@ Public Class RegistrarTeacher
     ' Handle Delete Button Click - Delete selected teacher
     Private Sub DeleteBtn_Click(sender As Object, e As EventArgs) Handles DeleteBtn.Click
         If TeacherIDTextBox.Text <> "" Then
-            Dim result As DialogResult = MessageBox.Show("Are you sure you want to delete this staff?", "Confirm Delete", MessageBoxButtons.YesNo)
+            Dim result As DialogResult = MessageBox.Show("Are you sure you want to delete this teacher?", "Confirm Delete", MessageBoxButtons.YesNo)
             If result = DialogResult.Yes Then
                 DeleteTeacher()
                 LoadTeacherData() ' Reload data after deleting
@@ -192,13 +194,14 @@ Public Class RegistrarTeacher
         ClearInputFields()
     End Sub
 
+    ' Method to clear all input fields
     Private Sub ClearInputFields()
         TeacherIDTextBox.Clear()
         TeacherNameTextBox.Clear()
         GenderComboBox.SelectedIndex = -1
         BirthdayDateTimePicker.Value = DateTime.Now
         TeacherEmailTextBox.Clear()
-        TeacherPhoneTextBox.Clear()
+        PhoneTextBox.Clear()
         TeacherICTextBox.Clear()
         TeacherUsernameTextBox.Clear()
         TeacherPasswordTextBox.Clear()
@@ -207,17 +210,17 @@ Public Class RegistrarTeacher
     ' Method to validate input fields before saving
     Private Function ValidateInputFields() As Boolean
         If TeacherNameTextBox.Text = "" Or GenderComboBox.SelectedIndex = -1 Or TeacherEmailTextBox.Text = "" Or
-           TeacherPhoneTextBox.Text = "" Or TeacherUsernameTextBox.Text = "" Or TeacherPasswordTextBox.Text = "" Then
+           PhoneTextBox.Text = "" Or TeacherUsernameTextBox.Text = "" Or TeacherPasswordTextBox.Text = "" Then
             MessageBox.Show("All fields must be filled!")
             Return False
         End If
         Return True
     End Function
 
-    ' Method to save new teacher to the database
+    ' Method to save new staff to the database
     Private Sub SaveNewTeacher()
         Dim connectionString As String = "server=localhost;user id=root;database=school_db;"
-        Dim query As String = "INSERT INTO staff (name, gender, birthday, email, phone, ic, username, password, picture) " &
+        Dim query As String = "INSERT INTO teacher (name, gender, birthday, email, phone, ic, username, password, picture) " &
                               "VALUES (@name, @gender, @birthday, @email, @phone, @ic, @username, @password, @picture)"
         Using conn As New MySqlConnection(connectionString)
             Try
@@ -227,22 +230,22 @@ Public Class RegistrarTeacher
                     cmd.Parameters.AddWithValue("@gender", GenderComboBox.Text)
                     cmd.Parameters.AddWithValue("@birthday", BirthdayDateTimePicker.Value)
                     cmd.Parameters.AddWithValue("@email", TeacherEmailTextBox.Text)
-                    cmd.Parameters.AddWithValue("@phone", TeacherPhoneTextBox.Text)
+                    cmd.Parameters.AddWithValue("@phone", PhoneTextBox.Text)
                     cmd.Parameters.AddWithValue("@ic", TeacherICTextBox.Text)
                     cmd.Parameters.AddWithValue("@username", TeacherUsernameTextBox.Text)
                     cmd.Parameters.AddWithValue("@password", TeacherPasswordTextBox.Text)
                     Dim imagePath As String = SaveImage(TeacherPictureBox.Image)
                     cmd.Parameters.AddWithValue("@picture", imagePath)
                     cmd.ExecuteNonQuery()
-                    MessageBox.Show("New staff added successfully!")
+                    MessageBox.Show("New teacher added successfully!")
                 End Using
             Catch ex As MySqlException
-                MessageBox.Show("Error adding staff: " & ex.Message)
+                MessageBox.Show("Error adding teacher: " & ex.Message)
             End Try
         End Using
     End Sub
 
-    ' Method to save edited teacher to the database
+    ' Method to save edited staff to the database
     Private Sub SaveEditedTeacher()
         Dim connectionString As String = "server=localhost;user id=root;database=school_db;"
         Dim query As String = "UPDATE teacher SET name=@name, gender=@gender, birthday=@birthday, email=@email, phone=@phone, " &
@@ -256,7 +259,7 @@ Public Class RegistrarTeacher
                     cmd.Parameters.AddWithValue("@gender", GenderComboBox.Text)
                     cmd.Parameters.AddWithValue("@birthday", BirthdayDateTimePicker.Value)
                     cmd.Parameters.AddWithValue("@email", TeacherEmailTextBox.Text)
-                    cmd.Parameters.AddWithValue("@phone", TeacherPhoneTextBox.Text)
+                    cmd.Parameters.AddWithValue("@phone", PhoneTextBox.Text)
                     cmd.Parameters.AddWithValue("@ic", TeacherICTextBox.Text)
                     cmd.Parameters.AddWithValue("@username", TeacherUsernameTextBox.Text)
                     cmd.Parameters.AddWithValue("@password", TeacherPasswordTextBox.Text)
@@ -266,12 +269,12 @@ Public Class RegistrarTeacher
                     MessageBox.Show("Teacher data updated successfully!")
                 End Using
             Catch ex As MySqlException
-                MessageBox.Show("Error updating staff: " & ex.Message)
+                MessageBox.Show("Error updating teacher: " & ex.Message)
             End Try
         End Using
     End Sub
 
-    ' Method to delete teacher from the database
+    ' Method to delete staff from the database
     Private Sub DeleteTeacher()
         Dim connectionString As String = "server=localhost;user id=root;database=school_db;"
         Dim query As String = "DELETE FROM teacher WHERE id=@id"
@@ -284,7 +287,7 @@ Public Class RegistrarTeacher
                     MessageBox.Show("Teacher deleted successfully!")
                 End Using
             Catch ex As MySqlException
-                MessageBox.Show("Error deleting Teacher: " & ex.Message)
+                MessageBox.Show("Error deleting teacher: " & ex.Message)
             End Try
         End Using
     End Sub
@@ -299,13 +302,15 @@ Public Class RegistrarTeacher
             TeacherPasswordTextBox.PasswordChar = "•"c
         End If
     End Sub
+
     Private Sub Panel_Scroll(sender As Object, e As ScrollEventArgs) Handles Panel.Scroll
         ' Ensure Smooth Scrolling
         If e.ScrollOrientation = ScrollOrientation.VerticalScroll Then
             Panel.VerticalScroll.Value = e.NewValue
         End If
     End Sub
-    ' Method to filter teacher data based on search text
+
+    ' Method to filter staff data based on search text
     Private Sub FilterTeacherData(searchText As String)
         Dim connectionString As String = "server=localhost;user id=root;database=school_db;"
         Dim query As String = "SELECT id, name, gender, birthday, email, phone, username, ic, password FROM teacher " &
@@ -318,7 +323,6 @@ Public Class RegistrarTeacher
             TeacherDataGridView.DataSource = dataTable
         End Using
     End Sub
-
 
     ' Handle SearchTextBox TextChanged event - Filter teacher data as user types
     Private Sub SearchTextBox_TextChanged(sender As Object, e As EventArgs) Handles SearchTextBox.TextChanged
@@ -341,11 +345,13 @@ Public Class RegistrarTeacher
             End If
         End Using
     End Sub
-    ' Handle Remove Button Click - Remove picture from TeacherPictureBox
+
+    ' Handle Remove Button Click - Remove picture from TeachePictureBox
     Private Sub RemoveBtn_Click(sender As Object, e As EventArgs) Handles RemoveButton.Click
         TeacherPictureBox.Image = My.Resources._default
         TeacherPictureBox.Tag = Nothing ' Clear the stored path
     End Sub
+
     ' Method to save an image to a designated folder within the project and return the relative path
     Private Function SaveImage(img As Image) As String
         Dim folderPath As String = Path.Combine(Application.StartupPath, "TeacherImages")
@@ -360,6 +366,4 @@ Public Class RegistrarTeacher
         Dim relativePath As String = Path.Combine("TeacherImages", fileName)
         Return relativePath
     End Function
-
-
 End Class
