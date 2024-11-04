@@ -14,7 +14,7 @@ Public Class RegistrarTeacher
     ' Method to load staff data from the database into the DataGridView
     Private Sub LoadTeacherData()
         Dim connectionString As String = "server=localhost;user id=root;database=school_db;"
-        Dim query As String = "SELECT id, name, gender, birthday, email, phone, ic, username, password, picture FROM teacher"
+        Dim query As String = "SELECT id, name, gender, birthday, email, phone, ic, username, password, classes, subject, picture FROM teacher"
         Using conn As New MySqlConnection(connectionString)
             Dim adapter As New MySqlDataAdapter(query, conn)
             Dim dataTable As New DataTable()
@@ -73,6 +73,8 @@ Public Class RegistrarTeacher
                 TeacherIDTextBox.Text = selectedRow.Cells("id").Value.ToString()
                 TeacherNameTextBox.Text = selectedRow.Cells("name").Value.ToString()
                 GenderComboBox.Text = selectedRow.Cells("gender").Value.ToString()
+                ClassesComboBox.Text = selectedRow.Cells("classes").Value.ToString()
+                SubjectComboBox.Text = selectedRow.Cells("subject").Value.ToString()
                 If selectedRow.Cells("birthday").Value IsNot DBNull.Value Then
                     BirthdayDateTimePicker.Value = DateTime.Parse(selectedRow.Cells("birthday").Value.ToString())
                 End If
@@ -202,6 +204,8 @@ Public Class RegistrarTeacher
         TeacherICTextBox.Clear()
         TeacherUsernameTextBox.Clear()
         TeacherPasswordTextBox.Clear()
+        ClassesComboBox.SelectedIndex = -1
+        SubjectComboBox.SelectedIndex = -1
     End Sub
 
     ' Method to validate input fields before saving
@@ -217,8 +221,8 @@ Public Class RegistrarTeacher
     ' Method to save new teacher to the database
     Private Sub SaveNewTeacher()
         Dim connectionString As String = "server=localhost;user id=root;database=school_db;"
-        Dim query As String = "INSERT INTO staff (name, gender, birthday, email, phone, ic, username, password, picture) " &
-                              "VALUES (@name, @gender, @birthday, @email, @phone, @ic, @username, @password, @picture)"
+        Dim query As String = "INSERT INTO teacher (name, gender, birthday, email, phone, ic, username, password, picture) " &
+                              "VALUES (@name, @gender, @birthday, @email, @phone, @ic, @username, @password, @picture, @subject, @classes)"
         Using conn As New MySqlConnection(connectionString)
             Try
                 conn.Open()
@@ -231,13 +235,15 @@ Public Class RegistrarTeacher
                     cmd.Parameters.AddWithValue("@ic", TeacherICTextBox.Text)
                     cmd.Parameters.AddWithValue("@username", TeacherUsernameTextBox.Text)
                     cmd.Parameters.AddWithValue("@password", TeacherPasswordTextBox.Text)
+                    cmd.Parameters.AddWithValue("@subject", SubjectComboBox.Text)
+                    cmd.Parameters.AddWithValue("@classes", ClassesComboBox.Text)
                     Dim imagePath As String = SaveImage(TeacherPictureBox.Image)
                     cmd.Parameters.AddWithValue("@picture", imagePath)
                     cmd.ExecuteNonQuery()
-                    MessageBox.Show("New staff added successfully!")
+                    MessageBox.Show("New Teacher added successfully!")
                 End Using
             Catch ex As MySqlException
-                MessageBox.Show("Error adding staff: " & ex.Message)
+                MessageBox.Show("Error adding Teacher: " & ex.Message)
             End Try
         End Using
     End Sub
@@ -246,7 +252,7 @@ Public Class RegistrarTeacher
     Private Sub SaveEditedTeacher()
         Dim connectionString As String = "server=localhost;user id=root;database=school_db;"
         Dim query As String = "UPDATE teacher SET name=@name, gender=@gender, birthday=@birthday, email=@email, phone=@phone, " &
-                              "ic=@ic, username=@username, password=@password, picture = @picture WHERE id=@id"
+                              "ic=@ic, username=@username, password=@password, picture = @picture, subject = @subject, classes = @classes WHERE id=@id"
         Using conn As New MySqlConnection(connectionString)
             Try
                 conn.Open()

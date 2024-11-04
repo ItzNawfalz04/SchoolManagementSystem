@@ -23,6 +23,10 @@ Partial Class RegistrarTeacher
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         GroupBox1 = New GroupBox()
+        SubjectComboBox = New ComboBox()
+        Label12 = New Label()
+        ClassesComboBox = New ComboBox()
+        Label11 = New Label()
         RemoveButton = New Button()
         ImportButton = New Button()
         TeacherPictureBox = New PictureBox()
@@ -54,10 +58,6 @@ Partial Class RegistrarTeacher
         TeacherDataGridView = New DataGridView()
         Label1 = New Label()
         Panel = New Panel()
-        Label11 = New Label()
-        ClassesComboBox = New ComboBox()
-        Label12 = New Label()
-        SubjectComboBox = New ComboBox()
         GroupBox1.SuspendLayout()
         CType(TeacherPictureBox, ComponentModel.ISupportInitialize).BeginInit()
         Panel1.SuspendLayout()
@@ -104,6 +104,46 @@ Partial Class RegistrarTeacher
         GroupBox1.TabIndex = 3
         GroupBox1.TabStop = False
         GroupBox1.Text = "Teacher Account Information"
+        ' 
+        ' SubjectComboBox
+        ' 
+        SubjectComboBox.DropDownStyle = ComboBoxStyle.DropDownList
+        SubjectComboBox.FormattingEnabled = True
+        SubjectComboBox.Items.AddRange(New Object() {"DATA ANALYTICS", "COMPUTER SECURITY", "BUSINESS ACCOUNTING", "PELAJARAN ISLAM", "BUSINESS LAW", "ETHICS AND CIVILIZATION"})
+        SubjectComboBox.Location = New Point(508, 241)
+        SubjectComboBox.Margin = New Padding(3, 2, 3, 2)
+        SubjectComboBox.Name = "SubjectComboBox"
+        SubjectComboBox.Size = New Size(84, 23)
+        SubjectComboBox.TabIndex = 32
+        ' 
+        ' Label12
+        ' 
+        Label12.AutoSize = True
+        Label12.Location = New Point(453, 241)
+        Label12.Name = "Label12"
+        Label12.Size = New Size(49, 15)
+        Label12.TabIndex = 31
+        Label12.Text = "Subject:"
+        ' 
+        ' ClassesComboBox
+        ' 
+        ClassesComboBox.DropDownStyle = ComboBoxStyle.DropDownList
+        ClassesComboBox.FormattingEnabled = True
+        ClassesComboBox.Items.AddRange(New Object() {"DDWD", "DDWI", "DDWJ", "DDWA", "DDWK"})
+        ClassesComboBox.Location = New Point(362, 240)
+        ClassesComboBox.Margin = New Padding(3, 2, 3, 2)
+        ClassesComboBox.Name = "ClassesComboBox"
+        ClassesComboBox.Size = New Size(84, 23)
+        ClassesComboBox.TabIndex = 30
+        ' 
+        ' Label11
+        ' 
+        Label11.AutoSize = True
+        Label11.Location = New Point(308, 241)
+        Label11.Name = "Label11"
+        Label11.Size = New Size(48, 15)
+        Label11.TabIndex = 29
+        Label11.Text = "Classes:"
         ' 
         ' RemoveButton
         ' 
@@ -454,46 +494,6 @@ Partial Class RegistrarTeacher
         Panel.Name = "Panel"
         Panel.Size = New Size(645, 559)
         Panel.TabIndex = 4
-        ' 
-        ' Label11
-        ' 
-        Label11.AutoSize = True
-        Label11.Location = New Point(308, 241)
-        Label11.Name = "Label11"
-        Label11.Size = New Size(48, 15)
-        Label11.TabIndex = 29
-        Label11.Text = "Classes:"
-        ' 
-        ' ClassesComboBox
-        ' 
-        ClassesComboBox.DropDownStyle = ComboBoxStyle.DropDownList
-        ClassesComboBox.FormattingEnabled = True
-        ClassesComboBox.Items.AddRange(New Object() {"Male", "Female"})
-        ClassesComboBox.Location = New Point(362, 240)
-        ClassesComboBox.Margin = New Padding(3, 2, 3, 2)
-        ClassesComboBox.Name = "ClassesComboBox"
-        ClassesComboBox.Size = New Size(84, 23)
-        ClassesComboBox.TabIndex = 30
-        ' 
-        ' Label12
-        ' 
-        Label12.AutoSize = True
-        Label12.Location = New Point(453, 241)
-        Label12.Name = "Label12"
-        Label12.Size = New Size(49, 15)
-        Label12.TabIndex = 31
-        Label12.Text = "Subject:"
-        ' 
-        ' SubjectComboBox
-        ' 
-        SubjectComboBox.DropDownStyle = ComboBoxStyle.DropDownList
-        SubjectComboBox.FormattingEnabled = True
-        SubjectComboBox.Items.AddRange(New Object() {"Male", "Female"})
-        SubjectComboBox.Location = New Point(508, 241)
-        SubjectComboBox.Margin = New Padding(3, 2, 3, 2)
-        SubjectComboBox.Name = "SubjectComboBox"
-        SubjectComboBox.Size = New Size(84, 23)
-        SubjectComboBox.TabIndex = 32
         ' 
         ' RegistrarTeacher
         ' 
