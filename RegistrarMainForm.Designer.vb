@@ -24,10 +24,11 @@ Partial Class RegistrarMainForm
     Private Sub InitializeComponent()
         Label1 = New Label()
         Panel1 = New Panel()
+        SubjectButton = New Button()
+        StudentButton = New Button()
         StaffButton = New Button()
-        Button2 = New Button()
         TeacherButton = New Button()
-        Button1 = New Button()
+        ClassButton = New Button()
         DashboardButton = New Button()
         SignOutBtn = New Button()
         Button4 = New Button()
@@ -52,10 +53,11 @@ Partial Class RegistrarMainForm
         ' Panel1
         ' 
         Panel1.BackColor = Color.Teal
+        Panel1.Controls.Add(SubjectButton)
+        Panel1.Controls.Add(StudentButton)
         Panel1.Controls.Add(StaffButton)
-        Panel1.Controls.Add(Button2)
         Panel1.Controls.Add(TeacherButton)
-        Panel1.Controls.Add(Button1)
+        Panel1.Controls.Add(ClassButton)
         Panel1.Controls.Add(DashboardButton)
         Panel1.Controls.Add(SignOutBtn)
         Panel1.Controls.Add(Button4)
@@ -66,6 +68,32 @@ Partial Class RegistrarMainForm
         Panel1.Name = "Panel1"
         Panel1.Size = New Size(270, 703)
         Panel1.TabIndex = 1
+        ' 
+        ' SubjectButton
+        ' 
+        SubjectButton.BackColor = Color.Teal
+        SubjectButton.FlatStyle = FlatStyle.Flat
+        SubjectButton.Font = New Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        SubjectButton.ForeColor = Color.White
+        SubjectButton.Location = New Point(43, 458)
+        SubjectButton.Name = "SubjectButton"
+        SubjectButton.Size = New Size(186, 40)
+        SubjectButton.TabIndex = 10
+        SubjectButton.Text = "SUBJECT"
+        SubjectButton.UseVisualStyleBackColor = False
+        ' 
+        ' StudentButton
+        ' 
+        StudentButton.BackColor = Color.Teal
+        StudentButton.FlatStyle = FlatStyle.Flat
+        StudentButton.Font = New Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        StudentButton.ForeColor = Color.White
+        StudentButton.Location = New Point(43, 367)
+        StudentButton.Name = "StudentButton"
+        StudentButton.Size = New Size(186, 40)
+        StudentButton.TabIndex = 3
+        StudentButton.Text = "STUDENT"
+        StudentButton.UseVisualStyleBackColor = False
         ' 
         ' StaffButton
         ' 
@@ -80,44 +108,31 @@ Partial Class RegistrarMainForm
         StaffButton.Text = "STAFF"
         StaffButton.UseVisualStyleBackColor = False
         ' 
-        ' Button2
-        ' 
-        Button2.BackColor = Color.Teal
-        Button2.FlatStyle = FlatStyle.Flat
-        Button2.Font = New Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Button2.ForeColor = Color.White
-        Button2.Location = New Point(43, 412)
-        Button2.Name = "Button2"
-        Button2.Size = New Size(186, 40)
-        Button2.TabIndex = 3
-        Button2.Text = "STUDENT"
-        Button2.UseVisualStyleBackColor = False
-        ' 
         ' TeacherButton
         ' 
         TeacherButton.BackColor = Color.Teal
         TeacherButton.FlatStyle = FlatStyle.Flat
         TeacherButton.Font = New Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         TeacherButton.ForeColor = Color.White
-        TeacherButton.Location = New Point(43, 320)
+        TeacherButton.Location = New Point(43, 413)
         TeacherButton.Name = "TeacherButton"
         TeacherButton.Size = New Size(186, 40)
         TeacherButton.TabIndex = 4
         TeacherButton.Text = "TEACHER"
         TeacherButton.UseVisualStyleBackColor = False
         ' 
-        ' Button1
+        ' ClassButton
         ' 
-        Button1.BackColor = Color.Teal
-        Button1.FlatStyle = FlatStyle.Flat
-        Button1.Font = New Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Button1.ForeColor = Color.White
-        Button1.Location = New Point(43, 365)
-        Button1.Name = "Button1"
-        Button1.Size = New Size(186, 40)
-        Button1.TabIndex = 2
-        Button1.Text = "CLASS"
-        Button1.UseVisualStyleBackColor = False
+        ClassButton.BackColor = Color.Teal
+        ClassButton.FlatStyle = FlatStyle.Flat
+        ClassButton.Font = New Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        ClassButton.ForeColor = Color.White
+        ClassButton.Location = New Point(43, 321)
+        ClassButton.Name = "ClassButton"
+        ClassButton.Size = New Size(186, 40)
+        ClassButton.TabIndex = 2
+        ClassButton.Text = "CLASS"
+        ClassButton.UseVisualStyleBackColor = False
         ' 
         ' DashboardButton
         ' 
@@ -153,7 +168,7 @@ Partial Class RegistrarMainForm
         Button4.FlatStyle = FlatStyle.Flat
         Button4.Font = New Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Button4.ForeColor = Color.White
-        Button4.Location = New Point(43, 459)
+        Button4.Location = New Point(43, 504)
         Button4.Name = "Button4"
         Button4.Size = New Size(186, 40)
         Button4.TabIndex = 5
@@ -176,14 +191,14 @@ Partial Class RegistrarMainForm
         Panel2.Dock = DockStyle.Fill
         Panel2.Location = New Point(270, 0)
         Panel2.Name = "Panel2"
-        Panel2.Size = New Size(762, 703)
+        Panel2.Size = New Size(752, 703)
         Panel2.TabIndex = 2
         ' 
         ' RegistrarMainForm
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(1032, 703)
+        ClientSize = New Size(1022, 703)
         Controls.Add(Panel2)
         Controls.Add(Panel1)
         FormBorderStyle = FormBorderStyle.FixedDialog
@@ -197,14 +212,15 @@ Partial Class RegistrarMainForm
 
     Friend WithEvents Label1 As Label
     Friend WithEvents Panel1 As Panel
-    Friend WithEvents Button1 As Button
+    Friend WithEvents ClassButton As Button
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents TeacherButton As Button
-    Friend WithEvents Button2 As Button
+    Friend WithEvents StudentButton As Button
     Friend WithEvents Button4 As Button
     Friend WithEvents ShowPasswordBtn As Button
     Friend WithEvents SignOutBtn As Button
     Friend WithEvents DashboardButton As Button
     Friend WithEvents StaffButton As Button
     Friend WithEvents Panel2 As Panel
+    Friend WithEvents SubjectButton As Button
 End Class

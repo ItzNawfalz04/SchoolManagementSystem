@@ -15,7 +15,7 @@ Public Class RegistrarStaff
     ' Method to load staff data from the database into the DataGridView
     Private Sub LoadStaffData()
         Dim connectionString As String = "server=localhost;user id=root;database=school_db;"
-        Dim query As String = "SELECT id, name, gender, birthday, email, phone, ic, username, password, picture FROM staff"
+        Dim query As String = "SELECT StaffID, name, gender, birthday, email, phone, ic, username, password, picture FROM staff"
         Using conn As New MySqlConnection(connectionString)
             Dim adapter As New MySqlDataAdapter(query, conn)
             Dim dataTable As New DataTable()
@@ -70,9 +70,9 @@ Public Class RegistrarStaff
         If e.RowIndex >= 0 Then
             Dim selectedRow As DataGridViewRow = StaffDataGridView.Rows(e.RowIndex)
 
-            If selectedRow IsNot Nothing AndAlso selectedRow.Cells("id").Value IsNot DBNull.Value Then
+            If selectedRow IsNot Nothing AndAlso selectedRow.Cells("StaffID").Value IsNot DBNull.Value Then
                 ' Populate the TextBoxes with the selected staff data
-                StaffIDTextBox.Text = selectedRow.Cells("id").Value.ToString()
+                StaffIDTextBox.Text = selectedRow.Cells("StaffID").Value.ToString()
                 StaffNameTextBox.Text = selectedRow.Cells("name").Value.ToString()
                 GenderComboBox.Text = selectedRow.Cells("gender").Value.ToString()
                 If selectedRow.Cells("birthday").Value IsNot DBNull.Value Then
@@ -152,7 +152,7 @@ Public Class RegistrarStaff
             If EditBtn.Text = "Cancel" Then
                 ' Cancel editing mode
                 Dim selectedRow As DataGridViewRow = StaffDataGridView.Rows(StaffDataGridView.SelectedCells(0).RowIndex)
-                StaffIDTextBox.Text = selectedRow.Cells("id").Value.ToString()
+                StaffIDTextBox.Text = selectedRow.Cells("StaffID").Value.ToString()
                 StaffNameTextBox.Text = selectedRow.Cells("name").Value.ToString()
                 GenderComboBox.Text = selectedRow.Cells("gender").Value.ToString()
                 BirthdayDateTimePicker.Value = DateTime.Parse(selectedRow.Cells("birthday").Value.ToString())
@@ -249,12 +249,12 @@ Public Class RegistrarStaff
     Private Sub SaveEditedStaff()
         Dim connectionString As String = "server=localhost;user id=root;database=school_db;"
         Dim query As String = "UPDATE staff SET name=@name, gender=@gender, birthday=@birthday, email=@email, phone=@phone, " &
-                              "ic=@ic, username=@username, password=@password, picture = @picture WHERE id=@id"
+                              "ic=@ic, username=@username, password=@password, picture = @picture WHERE StaffID=@StaffID"
         Using conn As New MySqlConnection(connectionString)
             Try
                 conn.Open()
                 Using cmd As New MySqlCommand(query, conn)
-                    cmd.Parameters.AddWithValue("@id", StaffIDTextBox.Text)
+                    cmd.Parameters.AddWithValue("@StaffID", StaffIDTextBox.Text)
                     cmd.Parameters.AddWithValue("@name", StaffNameTextBox.Text)
                     cmd.Parameters.AddWithValue("@gender", GenderComboBox.Text)
                     cmd.Parameters.AddWithValue("@birthday", BirthdayDateTimePicker.Value)
@@ -277,12 +277,12 @@ Public Class RegistrarStaff
     ' Method to delete staff from the database
     Private Sub DeleteStaff()
         Dim connectionString As String = "server=localhost;user id=root;database=school_db;"
-        Dim query As String = "DELETE FROM staff WHERE id=@id"
+        Dim query As String = "DELETE FROM staff WHERE StaffID=@StaffID"
         Using conn As New MySqlConnection(connectionString)
             Try
                 conn.Open()
                 Using cmd As New MySqlCommand(query, conn)
-                    cmd.Parameters.AddWithValue("@id", StaffIDTextBox.Text)
+                    cmd.Parameters.AddWithValue("@StaffID", StaffIDTextBox.Text)
                     cmd.ExecuteNonQuery()
                     MessageBox.Show("Staff deleted successfully!")
                 End Using
@@ -313,8 +313,8 @@ Public Class RegistrarStaff
     ' Method to filter staff data based on search text
     Private Sub FilterStaffData(searchText As String)
         Dim connectionString As String = "server=localhost;user id=root;database=school_db;"
-        Dim query As String = "SELECT id, name, gender, birthday, email, phone, username, ic, password FROM staff " &
-                              "WHERE id LIKE @searchText OR ic LIKE @searchText OR gender LIKE @searchText OR name LIKE @searchText OR email LIKE @searchText OR phone LIKE @searchText"
+        Dim query As String = "SELECT StaffID, name, gender, birthday, email, phone, username, ic, password FROM staff " &
+                              "WHERE StaffID LIKE @searchText OR ic LIKE @searchText OR gender LIKE @searchText OR name LIKE @searchText OR email LIKE @searchText OR phone LIKE @searchText"
         Using conn As New MySqlConnection(connectionString)
             Dim adapter As New MySqlDataAdapter(query, conn)
             adapter.SelectCommand.Parameters.AddWithValue("@searchText", "%" & searchText & "%")

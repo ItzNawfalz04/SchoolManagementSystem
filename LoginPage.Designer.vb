@@ -42,6 +42,7 @@ Partial Class LoginForm
         ' 
         PictureBox1.BackColor = SystemColors.Control
         PictureBox1.BorderStyle = BorderStyle.FixedSingle
+        PictureBox1.Image = My.Resources.Resources.logo
         PictureBox1.Location = New Point(33, 135)
         PictureBox1.Name = "PictureBox1"
         PictureBox1.Size = New Size(276, 271)
@@ -54,11 +55,11 @@ Partial Class LoginForm
         Label3.AutoSize = True
         Label3.Font = New Font("Segoe UI", 10.8F, FontStyle.Italic, GraphicsUnit.Point, CByte(0))
         Label3.ForeColor = Color.White
-        Label3.Location = New Point(113, 96)
+        Label3.Location = New Point(34, 97)
         Label3.Name = "Label3"
-        Label3.Size = New Size(117, 25)
+        Label3.Size = New Size(275, 25)
         Label3.TabIndex = 2
-        Label3.Text = "School Name"
+        Label3.Text = "~Cempaka International School~"
         Label3.TextAlign = ContentAlignment.MiddleCenter
         ' 
         ' Title
