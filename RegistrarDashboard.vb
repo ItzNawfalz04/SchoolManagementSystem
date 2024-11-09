@@ -6,6 +6,7 @@ Public Class RegistrarDashboard
 
     Private Sub RegistrarDashboard_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LoadUserData()
+        LoadCounts() ' Load counts of students, teachers, and staff
         ToggleEditMode(False)
     End Sub
 
@@ -27,6 +28,38 @@ Public Class RegistrarDashboard
                 End Using
             Catch ex As MySqlException
                 MessageBox.Show("Error loading user data: " & ex.Message)
+            End Try
+        End Using
+    End Sub
+
+    Private Sub LoadCounts()
+        Using conn As New MySqlConnection(connectionString)
+            Try
+                conn.Open()
+
+                ' Get total number of students
+                Dim studentCountQuery As String = "SELECT COUNT(*) FROM student"
+                Using cmd As New MySqlCommand(studentCountQuery, conn)
+                    Dim studentCount As Integer = Convert.ToInt32(cmd.ExecuteScalar())
+                    StudentNumber.Text = studentCount.ToString()
+                End Using
+
+                ' Get total number of teachers
+                Dim teacherCountQuery As String = "SELECT COUNT(*) FROM teacher"
+                Using cmd As New MySqlCommand(teacherCountQuery, conn)
+                    Dim teacherCount As Integer = Convert.ToInt32(cmd.ExecuteScalar())
+                    TeacherNumber.Text = teacherCount.ToString()
+                End Using
+
+                ' Get total number of staff
+                Dim staffCountQuery As String = "SELECT COUNT(*) FROM staff"
+                Using cmd As New MySqlCommand(staffCountQuery, conn)
+                    Dim staffCount As Integer = Convert.ToInt32(cmd.ExecuteScalar())
+                    StaffNumber.Text = staffCount.ToString()
+                End Using
+
+            Catch ex As MySqlException
+                MessageBox.Show("Error loading counts: " & ex.Message)
             End Try
         End Using
     End Sub

@@ -16,12 +16,17 @@ Public Class RegistrarStudent
     ' Method to load student data from the database into the DataGridView
     Private Sub LoadStudentData()
         Dim connectionString As String = "server=localhost;user id=root;database=school_db;"
-        Dim query As String = "SELECT StudentID, name, gender, birthday, email, phone, ic, ClassID, picture FROM student"
+        Dim query As String = "SELECT StudentID, name, gender, birthday, email, phone, ic, class.ClassName, picture " &
+                          "FROM student " &
+                          "JOIN class ON student.ClassID = class.ClassID"
         Using conn As New MySqlConnection(connectionString)
             Dim adapter As New MySqlDataAdapter(query, conn)
             Dim dataTable As New DataTable()
             adapter.Fill(dataTable)
             StudentDataGridView.DataSource = dataTable
+
+            ' Optionally, rename the ClassName column to ClassID for display purposes
+            StudentDataGridView.Columns("ClassName").HeaderText = "Class Name"
         End Using
     End Sub
 
@@ -80,7 +85,7 @@ Public Class RegistrarStudent
     End Sub
 
     ' Event to handle row selection in StudentDataGridView - populate TextBoxes with selected student data
-    Private Sub StaffDataGridView_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles StudentDataGridView.CellClick
+    Private Sub StudentDataGridView_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles StudentDataGridView.CellClick
         If e.RowIndex >= 0 Then
             Dim selectedRow As DataGridViewRow = StudentDataGridView.Rows(e.RowIndex)
 
@@ -95,7 +100,11 @@ Public Class RegistrarStudent
                 EmailTextBox.Text = selectedRow.Cells("email").Value.ToString()
                 PhoneTextBox.Text = selectedRow.Cells("phone").Value.ToString()
                 ICTextBox.Text = selectedRow.Cells("ic").Value.ToString()
-                StudentClassComboBox.Text = selectedRow.Cells("ClassID").Value.ToString()
+
+                ' Set the ClassID based on the selected ClassName
+                Dim className As String = selectedRow.Cells("ClassName").Value.ToString()
+                Dim classID As Integer = GetClassIDByName(className)
+                StudentClassComboBox.SelectedValue = classID
 
                 ' Load picture from the relative path stored in the database
                 If selectedRow.Cells("picture").Value IsNot DBNull.Value Then
@@ -113,11 +122,27 @@ Public Class RegistrarStudent
                     PictureBox.Tag = Nothing
                 End If
 
-
                 EnableInputControls(False) ' Disable controls initially
             End If
         End If
     End Sub
+
+    ' Method to get ClassID by ClassName
+    Private Function GetClassIDByName(className As String) As Integer
+        Dim connectionString As String = "server=localhost;user id=root;database=school_db;"
+        Dim query As String = "SELECT ClassID FROM class WHERE ClassName = @ClassName"
+        Using conn As New MySqlConnection(connectionString)
+            Using cmd As New MySqlCommand(query, conn)
+                cmd.Parameters.AddWithValue("@ClassName", className)
+                conn.Open()
+                Dim result As Object = cmd.ExecuteScalar()
+                If result IsNot Nothing Then
+                    Return Convert.ToInt32(result)
+                End If
+            End Using
+        End Using
+        Return -1 ' Return -1 if not found
+    End Function
 
     ' Handle Add Button Click - Add or Save new student
     Private Sub AddBtn_Click(sender As Object, e As EventArgs) Handles AddBtn.Click
@@ -172,7 +197,7 @@ Public Class RegistrarStudent
                 EmailTextBox.Text = selectedRow.Cells("email").Value.ToString()
                 PhoneTextBox.Text = selectedRow.Cells("phone").Value.ToString()
                 ICTextBox.Text = selectedRow.Cells("ic").Value.ToString()
-                StudentClassComboBox.Text = selectedRow.Cells("ClassID").Value.ToString()
+                StudentClassComboBox.Text = selectedRow.Cells("ClassName").Value.ToString()
                 SetDefaultFormState()
             Else
                 ' Save edited student to the database

@@ -16,11 +16,15 @@ Public Class RegistrarClass
     ' Method to load class data from the database into the DataGridView
     Private Sub LoadClassData()
         Dim connectionString As String = "server=localhost;user id=root;database=school_db;"
-        Dim query As String = "SELECT ClassID, ClassName, TeacherID, Remarks FROM class"
+        Dim query As String = "SELECT class.ClassID, class.ClassName, teacher.name AS TeacherName, class.Remarks " &
+                          "FROM class " &
+                          "JOIN teacher ON class.TeacherID = teacher.TeacherID"
         Using conn As New MySqlConnection(connectionString)
             Dim adapter As New MySqlDataAdapter(query, conn)
             Dim dataTable As New DataTable()
             adapter.Fill(dataTable)
+
+            ' Set the DataSource of the DataGridView to the loaded data
             ClassDataGridView.DataSource = dataTable
         End Using
     End Sub
@@ -69,13 +73,35 @@ Public Class RegistrarClass
                 ' Populate the TextBoxes with the selected class data
                 ClassIDTextBox.Text = selectedRow.Cells("ClassID").Value.ToString()
                 ClassNameTextBox.Text = selectedRow.Cells("ClassName").Value.ToString()
-                ClassTeacherComboBox.SelectedValue = selectedRow.Cells("TeacherID").Value
+
+                ' Set the selected TeacherID based on the displayed TeacherName
+                Dim teacherName As String = selectedRow.Cells("TeacherName").Value.ToString()
+                Dim teacherID As Integer = GetTeacherIDByName(teacherName)
+                ClassTeacherComboBox.SelectedValue = teacherID
+
                 RemarksTextBox.Text = selectedRow.Cells("Remarks").Value.ToString()
 
                 EnableInputControls(False) ' Disable controls initially
             End If
         End If
     End Sub
+
+    ' Method to get TeacherID by TeacherName
+    Private Function GetTeacherIDByName(teacherName As String) As Integer
+        Dim connectionString As String = "server=localhost;user id=root;database=school_db;"
+        Dim query As String = "SELECT TeacherID FROM teacher WHERE name = @TeacherName"
+        Using conn As New MySqlConnection(connectionString)
+            Using cmd As New MySqlCommand(query, conn)
+                cmd.Parameters.AddWithValue("@TeacherName", teacherName)
+                conn.Open()
+                Dim result As Object = cmd.ExecuteScalar()
+                If result IsNot Nothing Then
+                    Return Convert.ToInt32(result)
+                End If
+            End Using
+        End Using
+        Return -1 ' Return -1 if not found
+    End Function
 
     ' Handle Add Button Click - Add or Save new class
     Private Sub AddBtn_Click(sender As Object, e As EventArgs) Handles AddBtn.Click
