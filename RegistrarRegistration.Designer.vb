@@ -22,14 +22,18 @@ Partial Class RegistrarRegistration
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        components = New ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(RegistrarRegistration))
         Label4 = New Label()
         RegistrationIDTextBox = New TextBox()
         Panel1 = New Panel()
-        ClassFilterComboBox = New ComboBox()
+        StudentFilterComboBox = New ComboBox()
         SearchStudentTextBox = New TextBox()
         StudentRegistrationDataGridView = New DataGridView()
         Label1 = New Label()
         GroupBox1 = New GroupBox()
+        EmailBtn = New Button()
+        PrintBtn = New Button()
         ClearBtnStudent = New Button()
         StudentIDTextBox = New TextBox()
         Label11 = New Label()
@@ -60,6 +64,10 @@ Partial Class RegistrarRegistration
         SearchStudentSubjectTextBox = New TextBox()
         StudentSubjectRegistrationDataGridView = New DataGridView()
         Label6 = New Label()
+        ToolTip = New ToolTip(components)
+        PrintDocument1 = New Printing.PrintDocument()
+        PrintDialog1 = New PrintDialog()
+        PrintPreviewDialog1 = New PrintPreviewDialog()
         Panel1.SuspendLayout()
         CType(StudentRegistrationDataGridView, ComponentModel.ISupportInitialize).BeginInit()
         GroupBox1.SuspendLayout()
@@ -94,7 +102,7 @@ Partial Class RegistrarRegistration
         ' Panel1
         ' 
         Panel1.BackColor = Color.Teal
-        Panel1.Controls.Add(ClassFilterComboBox)
+        Panel1.Controls.Add(StudentFilterComboBox)
         Panel1.Controls.Add(SearchStudentTextBox)
         Panel1.Controls.Add(StudentRegistrationDataGridView)
         Panel1.Controls.Add(Label1)
@@ -103,13 +111,13 @@ Partial Class RegistrarRegistration
         Panel1.Size = New Size(657, 331)
         Panel1.TabIndex = 2
         ' 
-        ' ClassFilterComboBox
+        ' StudentFilterComboBox
         ' 
-        ClassFilterComboBox.FormattingEnabled = True
-        ClassFilterComboBox.Location = New Point(339, 20)
-        ClassFilterComboBox.Name = "ClassFilterComboBox"
-        ClassFilterComboBox.Size = New Size(151, 28)
-        ClassFilterComboBox.TabIndex = 27
+        StudentFilterComboBox.FormattingEnabled = True
+        StudentFilterComboBox.Location = New Point(339, 20)
+        StudentFilterComboBox.Name = "StudentFilterComboBox"
+        StudentFilterComboBox.Size = New Size(151, 28)
+        StudentFilterComboBox.TabIndex = 27
         ' 
         ' SearchStudentTextBox
         ' 
@@ -145,6 +153,8 @@ Partial Class RegistrarRegistration
         ' 
         ' GroupBox1
         ' 
+        GroupBox1.Controls.Add(EmailBtn)
+        GroupBox1.Controls.Add(PrintBtn)
         GroupBox1.Controls.Add(ClearBtnStudent)
         GroupBox1.Controls.Add(StudentIDTextBox)
         GroupBox1.Controls.Add(Label11)
@@ -167,13 +177,41 @@ Partial Class RegistrarRegistration
         GroupBox1.TabStop = False
         GroupBox1.Text = "Student Information"
         ' 
+        ' EmailBtn
+        ' 
+        EmailBtn.BackColor = Color.FromArgb(CByte(0), CByte(192), CByte(0))
+        EmailBtn.Cursor = Cursors.Hand
+        EmailBtn.FlatStyle = FlatStyle.Flat
+        EmailBtn.ForeColor = SystemColors.ControlLightLight
+        EmailBtn.Image = My.Resources.Resources.envelope
+        EmailBtn.Location = New Point(532, 175)
+        EmailBtn.Name = "EmailBtn"
+        EmailBtn.Size = New Size(45, 45)
+        EmailBtn.TabIndex = 39
+        ToolTip.SetToolTip(EmailBtn, "Email Student Registration Slip to Student")
+        EmailBtn.UseVisualStyleBackColor = False
+        ' 
+        ' PrintBtn
+        ' 
+        PrintBtn.BackColor = Color.FromArgb(CByte(0), CByte(192), CByte(0))
+        PrintBtn.Cursor = Cursors.Hand
+        PrintBtn.FlatStyle = FlatStyle.Flat
+        PrintBtn.ForeColor = SystemColors.ControlLightLight
+        PrintBtn.Image = My.Resources.Resources.print1
+        PrintBtn.Location = New Point(588, 175)
+        PrintBtn.Name = "PrintBtn"
+        PrintBtn.Size = New Size(45, 45)
+        PrintBtn.TabIndex = 38
+        ToolTip.SetToolTip(PrintBtn, "Print Student Registration Information")
+        PrintBtn.UseVisualStyleBackColor = False
+        ' 
         ' ClearBtnStudent
         ' 
         ClearBtnStudent.BackColor = Color.Teal
         ClearBtnStudent.Cursor = Cursors.Hand
         ClearBtnStudent.FlatStyle = FlatStyle.Flat
         ClearBtnStudent.ForeColor = SystemColors.ControlLightLight
-        ClearBtnStudent.Location = New Point(532, 180)
+        ClearBtnStudent.Location = New Point(413, 41)
         ClearBtnStudent.Name = "ClearBtnStudent"
         ClearBtnStudent.Size = New Size(101, 40)
         ClearBtnStudent.TabIndex = 36
@@ -513,6 +551,25 @@ Partial Class RegistrarRegistration
         Label6.TabIndex = 1
         Label6.Text = "STUDENT SUBJECT"
         ' 
+        ' ToolTip
+        ' 
+        ToolTip.ToolTipIcon = ToolTipIcon.Info
+        ToolTip.ToolTipTitle = "Information"
+        ' 
+        ' PrintDialog1
+        ' 
+        PrintDialog1.UseEXDialog = True
+        ' 
+        ' PrintPreviewDialog1
+        ' 
+        PrintPreviewDialog1.AutoScrollMargin = New Size(0, 0)
+        PrintPreviewDialog1.AutoScrollMinSize = New Size(0, 0)
+        PrintPreviewDialog1.ClientSize = New Size(400, 300)
+        PrintPreviewDialog1.Enabled = True
+        PrintPreviewDialog1.Icon = CType(resources.GetObject("PrintPreviewDialog1.Icon"), Icon)
+        PrintPreviewDialog1.Name = "PrintPreviewDialog1"
+        PrintPreviewDialog1.Visible = False
+        ' 
         ' RegistrarRegistration
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
@@ -548,7 +605,7 @@ Partial Class RegistrarRegistration
     Friend WithEvents SearchStudentSubjectTextBox As TextBox
     Friend WithEvents StudentSubjectRegistrationDataGridView As DataGridView
     Friend WithEvents Label6 As Label
-    Friend WithEvents ClassFilterComboBox As ComboBox
+    Friend WithEvents StudentFilterComboBox As ComboBox
     Friend WithEvents TotalCreditTextBox As TextBox
     Friend WithEvents StudentFeeTextBox As TextBox
     Friend WithEvents Label8 As Label
@@ -571,5 +628,11 @@ Partial Class RegistrarRegistration
     Friend WithEvents StudentIDTextBox As TextBox
     Friend WithEvents Label11 As Label
     Friend WithEvents ClearBtnStudent As Button
+    Friend WithEvents PrintBtn As Button
+    Friend WithEvents EmailBtn As Button
+    Friend WithEvents ToolTip As ToolTip
+    Friend WithEvents PrintDocument1 As Printing.PrintDocument
+    Friend WithEvents PrintDialog1 As PrintDialog
+    Friend WithEvents PrintPreviewDialog1 As PrintPreviewDialog
 
 End Class

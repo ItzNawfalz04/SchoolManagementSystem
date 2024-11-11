@@ -33,6 +33,7 @@ Partial Class StaffMainForm
         Button4 = New Button()
         ProfilePictureBox = New PictureBox()
         Panel2 = New Panel()
+        Button6 = New Button()
         Panel1.SuspendLayout()
         CType(ProfilePictureBox, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
@@ -40,7 +41,7 @@ Partial Class StaffMainForm
         ' StaffNameLabel
         ' 
         StaffNameLabel.AutoSize = True
-        StaffNameLabel.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0)
+        StaffNameLabel.Font = New Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         StaffNameLabel.ForeColor = SystemColors.ControlLightLight
         StaffNameLabel.Location = New Point(61, 175)
         StaffNameLabel.Name = "StaffNameLabel"
@@ -52,6 +53,7 @@ Partial Class StaffMainForm
         ' Panel1
         ' 
         Panel1.BackColor = Color.MidnightBlue
+        Panel1.Controls.Add(Button6)
         Panel1.Controls.Add(Button5)
         Panel1.Controls.Add(Button2)
         Panel1.Controls.Add(Button3)
@@ -64,16 +66,16 @@ Partial Class StaffMainForm
         Panel1.Dock = DockStyle.Left
         Panel1.Location = New Point(0, 0)
         Panel1.Name = "Panel1"
-        Panel1.Size = New Size(270, 753)
+        Panel1.Size = New Size(270, 853)
         Panel1.TabIndex = 3
         ' 
         ' Button5
         ' 
         Button5.BackColor = Color.RoyalBlue
         Button5.FlatStyle = FlatStyle.Flat
-        Button5.Font = New Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0)
+        Button5.Font = New Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Button5.ForeColor = Color.White
-        Button5.Location = New Point(44, 458)
+        Button5.Location = New Point(44, 504)
         Button5.Name = "Button5"
         Button5.Size = New Size(186, 40)
         Button5.TabIndex = 9
@@ -84,9 +86,9 @@ Partial Class StaffMainForm
         ' 
         Button2.BackColor = Color.RoyalBlue
         Button2.FlatStyle = FlatStyle.Flat
-        Button2.Font = New Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0)
+        Button2.Font = New Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Button2.ForeColor = Color.White
-        Button2.Location = New Point(44, 366)
+        Button2.Location = New Point(44, 320)
         Button2.Name = "Button2"
         Button2.Size = New Size(186, 40)
         Button2.TabIndex = 3
@@ -97,9 +99,9 @@ Partial Class StaffMainForm
         ' 
         Button3.BackColor = Color.RoyalBlue
         Button3.FlatStyle = FlatStyle.Flat
-        Button3.Font = New Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0)
+        Button3.Font = New Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Button3.ForeColor = Color.White
-        Button3.Location = New Point(44, 274)
+        Button3.Location = New Point(44, 366)
         Button3.Name = "Button3"
         Button3.Size = New Size(186, 40)
         Button3.TabIndex = 4
@@ -110,9 +112,9 @@ Partial Class StaffMainForm
         ' 
         Button1.BackColor = Color.RoyalBlue
         Button1.FlatStyle = FlatStyle.Flat
-        Button1.Font = New Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0)
+        Button1.Font = New Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Button1.ForeColor = Color.White
-        Button1.Location = New Point(44, 320)
+        Button1.Location = New Point(44, 274)
         Button1.Name = "Button1"
         Button1.Size = New Size(186, 40)
         Button1.TabIndex = 2
@@ -123,7 +125,7 @@ Partial Class StaffMainForm
         ' 
         DashboardButton.BackColor = Color.RoyalBlue
         DashboardButton.FlatStyle = FlatStyle.Flat
-        DashboardButton.Font = New Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0)
+        DashboardButton.Font = New Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         DashboardButton.ForeColor = Color.White
         DashboardButton.Location = New Point(44, 228)
         DashboardButton.Name = "DashboardButton"
@@ -135,11 +137,11 @@ Partial Class StaffMainForm
         ' SignOutBtn
         ' 
         SignOutBtn.Cursor = Cursors.Hand
-        SignOutBtn.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0)
+        SignOutBtn.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         SignOutBtn.ForeColor = Color.Black
         SignOutBtn.Image = My.Resources.Resources.logout_2_
         SignOutBtn.ImageAlign = ContentAlignment.MiddleLeft
-        SignOutBtn.Location = New Point(78, 561)
+        SignOutBtn.Location = New Point(68, 632)
         SignOutBtn.Name = "SignOutBtn"
         SignOutBtn.Size = New Size(113, 50)
         SignOutBtn.TabIndex = 7
@@ -151,9 +153,9 @@ Partial Class StaffMainForm
         ' 
         Button4.BackColor = Color.RoyalBlue
         Button4.FlatStyle = FlatStyle.Flat
-        Button4.Font = New Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0)
+        Button4.Font = New Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Button4.ForeColor = Color.White
-        Button4.Location = New Point(44, 412)
+        Button4.Location = New Point(44, 458)
         Button4.Name = "Button4"
         Button4.Size = New Size(186, 40)
         Button4.TabIndex = 5
@@ -176,14 +178,27 @@ Partial Class StaffMainForm
         Panel2.Dock = DockStyle.Fill
         Panel2.Location = New Point(0, 0)
         Panel2.Name = "Panel2"
-        Panel2.Size = New Size(1282, 753)
+        Panel2.Size = New Size(1382, 853)
         Panel2.TabIndex = 4
+        ' 
+        ' Button6
+        ' 
+        Button6.BackColor = Color.RoyalBlue
+        Button6.FlatStyle = FlatStyle.Flat
+        Button6.Font = New Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Button6.ForeColor = Color.White
+        Button6.Location = New Point(44, 412)
+        Button6.Name = "Button6"
+        Button6.Size = New Size(186, 40)
+        Button6.TabIndex = 10
+        Button6.Text = "SUBJECT"
+        Button6.UseVisualStyleBackColor = False
         ' 
         ' StaffMainForm
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(1282, 753)
+        ClientSize = New Size(1382, 853)
         Controls.Add(Panel1)
         Controls.Add(Panel2)
         FormBorderStyle = FormBorderStyle.FixedDialog
@@ -206,4 +221,5 @@ Partial Class StaffMainForm
     Friend WithEvents ProfilePictureBox As PictureBox
     Friend WithEvents Panel2 As Panel
     Friend WithEvents Button5 As Button
+    Friend WithEvents Button6 As Button
 End Class

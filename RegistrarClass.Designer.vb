@@ -110,9 +110,9 @@ Partial Class RegistrarClass
         ' Panel1
         ' 
         Panel1.BackColor = Color.Teal
+        Panel1.Controls.Add(Label1)
         Panel1.Controls.Add(SearchTextBox)
         Panel1.Controls.Add(ClassDataGridView)
-        Panel1.Controls.Add(Label1)
         Panel1.Location = New Point(19, 20)
         Panel1.Name = "Panel1"
         Panel1.Size = New Size(589, 331)
