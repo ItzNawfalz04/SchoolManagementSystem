@@ -429,13 +429,13 @@ Partial Class RegistrarStaff
         Panel.Name = "Panel"
         Panel.Size = New Size(730, 760)
         Panel.TabIndex = 2
-        ' 
+
         ' RegistrarStaff
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
         Controls.Add(Panel)
-        Name = "RegistrarStaff"
+        name = "RegistrarStaffDataGridView"
         Size = New Size(730, 760)
         Panel1.ResumeLayout(False)
         Panel1.PerformLayout()

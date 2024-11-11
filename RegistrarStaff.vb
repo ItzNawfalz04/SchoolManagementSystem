@@ -13,6 +13,7 @@ Public Class RegistrarStaff
     End Sub
 
     ' Method to load staff data from the database into the DataGridView
+    ' Method to load staff data from the database into the DataGridView
     Private Sub LoadStaffData()
         Dim connectionString As String = "server=localhost;user id=root;database=school_db;"
         Dim query As String = "SELECT StaffID, name, gender, birthday, email, phone, ic, username, password, picture FROM staff"
@@ -21,6 +22,18 @@ Public Class RegistrarStaff
             Dim dataTable As New DataTable()
             adapter.Fill(dataTable)
             StaffDataGridView.DataSource = dataTable
+
+            ' Set custom headers for the DataGridView columns
+            StaffDataGridView.Columns("StaffID").HeaderText = "Staff ID"
+            StaffDataGridView.Columns("name").HeaderText = "Full Name"
+            StaffDataGridView.Columns("gender").HeaderText = "Gender"
+            StaffDataGridView.Columns("birthday").HeaderText = "Date of Birth"
+            StaffDataGridView.Columns("email").HeaderText = "Email Address"
+            StaffDataGridView.Columns("phone").HeaderText = "Phone Number"
+            StaffDataGridView.Columns("ic").HeaderText = "IC Number"
+            StaffDataGridView.Columns("username").HeaderText = "Username"
+            StaffDataGridView.Columns("password").HeaderText = "Password" ' Consider hiding this column for security
+            StaffDataGridView.Columns("picture").HeaderText = "Profile Picture" ' Consider hiding this column if not needed
         End Using
     End Sub
 

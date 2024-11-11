@@ -30,7 +30,7 @@ Public Class LoginForm
                 ' Check Staff Table
                 If CheckLogin(conn, "staff", username, password) Then
                     MessageBox.Show("Login Successful as Staff")
-                    Dim staffForm As New StaffMainForm
+                    Dim staffForm As New StaffMainForm(username) ' Pass the username to StaffMainForm
                     staffForm.Show()
                     Hide()
                     Return

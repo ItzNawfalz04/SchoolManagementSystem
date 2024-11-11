@@ -6,6 +6,8 @@ Public Class RegistrarMainForm
     Private registrarTeacher As New RegistrarTeacher
     Private registrarClass As New RegistrarClass
     Private registrarStudent As New RegistrarStudent
+    Private registrarSubject As New RegistrarSubject
+    Private registrarRegistration As New RegistrarRegistration
     Private userId As Integer
     Private Sub SignOutBtn_Click(sender As Object, e As EventArgs) Handles SignOutBtn.Click
         ' Sign Out back to login Page
@@ -19,11 +21,15 @@ Public Class RegistrarMainForm
         registrarTeacher.Dock = DockStyle.Fill
         registrarClass.Dock = DockStyle.Fill
         registrarStudent.Dock = DockStyle.Fill
+        registrarSubject.Dock = DockStyle.Fill
+        registrarRegistration.Dock = DockStyle.Fill
         Me.Controls.Add(registrarDashboard)
         Me.Controls.Add(registrarStaff)
         Me.Controls.Add(registrarTeacher)
         Me.Controls.Add(registrarClass)
         Me.Controls.Add(registrarStudent)
+        Me.Controls.Add(registrarSubject)
+        Me.Controls.Add(registrarRegistration)
     End Sub
 
     Private Sub DashboardButton_Click(sender As Object, e As EventArgs) Handles DashboardButton.Click
@@ -44,5 +50,13 @@ Public Class RegistrarMainForm
 
     Private Sub StudentButton_Click(sender As Object, e As EventArgs) Handles StudentButton.Click
         registrarStudent.BringToFront()
+    End Sub
+
+    Private Sub SubjectButton_Click(sender As Object, e As EventArgs) Handles SubjectButton.Click
+        registrarSubject.BringToFront()
+    End Sub
+
+    Private Sub RegistrationButton_Click(sender As Object, e As EventArgs) Handles RegistrationButton.Click
+        registrarRegistration.BringToFront()
     End Sub
 End Class

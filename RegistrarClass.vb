@@ -67,23 +67,68 @@ Public Class RegistrarClass
     ' Event to handle row selection in ClassDataGridView - populate TextBoxes with selected class data
     Private Sub ClassDataGridView_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles ClassDataGridView.CellClick
         If e.RowIndex >= 0 Then
-            Dim selectedRow As DataGridViewRow = ClassDataGridView.Rows(e.RowIndex)
+            Dim selectedRow = ClassDataGridView.Rows(e.RowIndex)
 
             If selectedRow IsNot Nothing AndAlso selectedRow.Cells("ClassID").Value IsNot DBNull.Value Then
                 ' Populate the TextBoxes with the selected class data
-                ClassIDTextBox.Text = selectedRow.Cells("ClassID").Value.ToString()
-                ClassNameTextBox.Text = selectedRow.Cells("ClassName").Value.ToString()
+                ClassIDTextBox.Text = selectedRow.Cells("ClassID").Value.ToString
+                ClassNameTextBox.Text = selectedRow.Cells("ClassName").Value.ToString
 
                 ' Set the selected TeacherID based on the displayed TeacherName
-                Dim teacherName As String = selectedRow.Cells("TeacherName").Value.ToString()
-                Dim teacherID As Integer = GetTeacherIDByName(teacherName)
+                Dim teacherName = selectedRow.Cells("TeacherName").Value.ToString
+                Dim teacherID = GetTeacherIDByName(teacherName)
                 ClassTeacherComboBox.SelectedValue = teacherID
 
-                RemarksTextBox.Text = selectedRow.Cells("Remarks").Value.ToString()
+                RemarksTextBox.Text = selectedRow.Cells("Remarks").Value.ToString
 
                 EnableInputControls(False) ' Disable controls initially
+
+                ' Load students for the selected class
+                LoadStudentList(selectedRow.Cells("ClassID").Value.ToString())
             End If
         End If
+    End Sub
+
+    ' Method to load students for the selected class
+    Private Sub LoadStudentList(classID As String)
+        Dim connectionString As String = "server=localhost;user id=root;database=school_db;"
+        Dim query As String = "SELECT StudentID, name FROM student WHERE ClassID = @ClassID"
+        Using conn As New MySqlConnection(connectionString)
+            Dim adapter As New MySqlDataAdapter(query, conn)
+            adapter.SelectCommand.Parameters.AddWithValue("@ClassID", classID)
+            Dim dataTable As New DataTable()
+            adapter.Fill(dataTable)
+
+            ' Set the DataSource of the ClassStudentListDataGridView to the loaded data
+            ClassStudentListDataGridView.DataSource = dataTable
+        End Using
+    End Sub
+
+    ' Handle SearchTextBox TextChanged event - Filter student data as user types
+    Private Sub StudentListSearchTextBox_TextChanged(sender As Object, e As EventArgs) Handles StudentListSearchTextBox.TextChanged
+        If StudentListSearchTextBox.Text <> "" Then
+            FilterStudentData(StudentListSearchTextBox.Text)
+        Else
+            Dim selectedClassID As String = ClassIDTextBox.Text
+            If Not String.IsNullOrEmpty(selectedClassID) Then
+                LoadStudentList(selectedClassID) ' Reload all student data for the selected class if search text is empty
+            End If
+        End If
+    End Sub
+
+    ' Method to filter student data based on search text
+    Private Sub FilterStudentData(searchText As String)
+        Dim classID As String = ClassIDTextBox.Text
+        Dim connectionString As String = "server=localhost;user id=root;database=school_db;"
+        Dim query As String = "SELECT StudentID, name FROM student WHERE ClassID = @ClassID AND (name LIKE @searchText OR StudentID LIKE @searchText)"
+        Using conn As New MySqlConnection(connectionString)
+            Dim adapter As New MySqlDataAdapter(query, conn)
+            adapter.SelectCommand.Parameters.AddWithValue("@ClassID", classID)
+            adapter.SelectCommand.Parameters.AddWithValue("@searchText", "%" & searchText & "%")
+            Dim dataTable As New DataTable()
+            adapter.Fill(dataTable)
+            ClassStudentListDataGridView.DataSource = dataTable
+        End Using
     End Sub
 
     ' Method to get TeacherID by TeacherName
@@ -271,8 +316,12 @@ Public Class RegistrarClass
 
     Private Sub FilterClassData(searchText As String)
         Dim connectionString As String = "server=localhost;user id=root;database=school_db;"
-        Dim query As String = "SELECT ClassID, gender, birthday, email, phone, username, ic, password FROM staff " &
-                              "WHERE ClassID LIKE @searchText OR ic LIKE @searchText OR gender LIKE @searchText OR name LIKE @searchText OR email LIKE @searchText OR phone LIKE @searchText"
+        Dim query As String = "SELECT class.ClassID, class.ClassName, teacher.name AS TeacherName, class.Remarks " &
+                          "FROM class " &
+                          "JOIN teacher ON class.TeacherID = teacher.TeacherID " &
+                          "WHERE class.ClassID LIKE @searchText OR class.ClassName LIKE @searchText OR " &
+                          "teacher.name LIKE @searchText OR class.Remarks LIKE @searchText"
+
         Using conn As New MySqlConnection(connectionString)
             Dim adapter As New MySqlDataAdapter(query, conn)
             adapter.SelectCommand.Parameters.AddWithValue("@searchText", "%" & searchText & "%")
@@ -282,12 +331,12 @@ Public Class RegistrarClass
         End Using
     End Sub
 
-    ' Handle SearchTextBox TextChanged event - Filter staff data as user types
+    ' Handle SearchTextBox TextChanged event - Filter class data as user types
     Private Sub SearchTextBox_TextChanged(sender As Object, e As EventArgs) Handles SearchTextBox.TextChanged
         If SearchTextBox.Text <> "" Then
             FilterClassData(SearchTextBox.Text)
         Else
-            LoadClassData() ' Reload all staff data if search text is empty
+            LoadClassData ' Reload all class data if search text is empty
         End If
     End Sub
 End Class

@@ -23,6 +23,10 @@ Partial Class RegistrarClass
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Panel = New Panel()
+        Panel2 = New Panel()
+        StudentListSearchTextBox = New TextBox()
+        ClassStudentListDataGridView = New DataGridView()
+        Label4 = New Label()
         Panel1 = New Panel()
         SearchTextBox = New TextBox()
         ClassDataGridView = New DataGridView()
@@ -41,6 +45,8 @@ Partial Class RegistrarClass
         ClassNameTextBox = New TextBox()
         Label2 = New Label()
         Panel.SuspendLayout()
+        Panel2.SuspendLayout()
+        CType(ClassStudentListDataGridView, ComponentModel.ISupportInitialize).BeginInit()
         Panel1.SuspendLayout()
         CType(ClassDataGridView, ComponentModel.ISupportInitialize).BeginInit()
         GroupBox1.SuspendLayout()
@@ -49,13 +55,57 @@ Partial Class RegistrarClass
         ' Panel
         ' 
         Panel.AutoScroll = True
+        Panel.Controls.Add(Panel2)
         Panel.Controls.Add(Panel1)
         Panel.Controls.Add(GroupBox1)
         Panel.Dock = DockStyle.Fill
         Panel.Location = New Point(0, 0)
         Panel.Name = "Panel"
-        Panel.Size = New Size(730, 760)
+        Panel.Size = New Size(1000, 760)
         Panel.TabIndex = 0
+        ' 
+        ' Panel2
+        ' 
+        Panel2.BackColor = Color.Teal
+        Panel2.Controls.Add(StudentListSearchTextBox)
+        Panel2.Controls.Add(ClassStudentListDataGridView)
+        Panel2.Controls.Add(Label4)
+        Panel2.Location = New Point(627, 20)
+        Panel2.Name = "Panel2"
+        Panel2.Size = New Size(355, 721)
+        Panel2.TabIndex = 27
+        ' 
+        ' StudentListSearchTextBox
+        ' 
+        StudentListSearchTextBox.BackColor = Color.White
+        StudentListSearchTextBox.BorderStyle = BorderStyle.FixedSingle
+        StudentListSearchTextBox.Cursor = Cursors.IBeam
+        StudentListSearchTextBox.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
+        StudentListSearchTextBox.Location = New Point(196, 20)
+        StudentListSearchTextBox.Name = "StudentListSearchTextBox"
+        StudentListSearchTextBox.PlaceholderText = "  Search..."
+        StudentListSearchTextBox.Size = New Size(145, 27)
+        StudentListSearchTextBox.TabIndex = 26
+        ' 
+        ' ClassStudentListDataGridView
+        ' 
+        ClassStudentListDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        ClassStudentListDataGridView.Location = New Point(16, 55)
+        ClassStudentListDataGridView.Name = "ClassStudentListDataGridView"
+        ClassStudentListDataGridView.RowHeadersWidth = 51
+        ClassStudentListDataGridView.Size = New Size(325, 648)
+        ClassStudentListDataGridView.TabIndex = 2
+        ' 
+        ' Label4
+        ' 
+        Label4.AutoSize = True
+        Label4.Font = New Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label4.ForeColor = SystemColors.ControlLightLight
+        Label4.Location = New Point(16, 20)
+        Label4.Name = "Label4"
+        Label4.Size = New Size(148, 28)
+        Label4.TabIndex = 1
+        Label4.Text = "STUDENT LIST"
         ' 
         ' Panel1
         ' 
@@ -65,7 +115,7 @@ Partial Class RegistrarClass
         Panel1.Controls.Add(Label1)
         Panel1.Location = New Point(19, 20)
         Panel1.Name = "Panel1"
-        Panel1.Size = New Size(693, 331)
+        Panel1.Size = New Size(589, 331)
         Panel1.TabIndex = 2
         ' 
         ' SearchTextBox
@@ -74,7 +124,7 @@ Partial Class RegistrarClass
         SearchTextBox.BorderStyle = BorderStyle.FixedSingle
         SearchTextBox.Cursor = Cursors.IBeam
         SearchTextBox.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        SearchTextBox.Location = New Point(531, 21)
+        SearchTextBox.Location = New Point(426, 20)
         SearchTextBox.Name = "SearchTextBox"
         SearchTextBox.PlaceholderText = "  Search..."
         SearchTextBox.Size = New Size(145, 27)
@@ -86,7 +136,7 @@ Partial Class RegistrarClass
         ClassDataGridView.Location = New Point(16, 55)
         ClassDataGridView.Name = "ClassDataGridView"
         ClassDataGridView.RowHeadersWidth = 51
-        ClassDataGridView.Size = New Size(661, 260)
+        ClassDataGridView.Size = New Size(555, 260)
         ClassDataGridView.TabIndex = 2
         ' 
         ' Label1
@@ -116,7 +166,7 @@ Partial Class RegistrarClass
         GroupBox1.Controls.Add(Label2)
         GroupBox1.Location = New Point(19, 357)
         GroupBox1.Name = "GroupBox1"
-        GroupBox1.Size = New Size(693, 383)
+        GroupBox1.Size = New Size(589, 384)
         GroupBox1.TabIndex = 3
         GroupBox1.TabStop = False
         GroupBox1.Text = "Class Information"
@@ -130,7 +180,7 @@ Partial Class RegistrarClass
         RemarksTextBox.Location = New Point(111, 139)
         RemarksTextBox.Multiline = True
         RemarksTextBox.Name = "RemarksTextBox"
-        RemarksTextBox.Size = New Size(393, 181)
+        RemarksTextBox.Size = New Size(327, 215)
         RemarksTextBox.TabIndex = 25
         ' 
         ' Label3
@@ -149,7 +199,7 @@ Partial Class RegistrarClass
         DeleteBtn.Cursor = Cursors.Hand
         DeleteBtn.FlatStyle = FlatStyle.Flat
         DeleteBtn.ForeColor = SystemColors.ControlLightLight
-        DeleteBtn.Location = New Point(531, 184)
+        DeleteBtn.Location = New Point(470, 133)
         DeleteBtn.Name = "DeleteBtn"
         DeleteBtn.Size = New Size(101, 40)
         DeleteBtn.TabIndex = 23
@@ -162,7 +212,7 @@ Partial Class RegistrarClass
         ClearBtn.Cursor = Cursors.Hand
         ClearBtn.FlatStyle = FlatStyle.Flat
         ClearBtn.ForeColor = SystemColors.ControlLightLight
-        ClearBtn.Location = New Point(531, 230)
+        ClearBtn.Location = New Point(470, 179)
         ClearBtn.Name = "ClearBtn"
         ClearBtn.Size = New Size(101, 40)
         ClearBtn.TabIndex = 20
@@ -175,7 +225,7 @@ Partial Class RegistrarClass
         EditBtn.Cursor = Cursors.Hand
         EditBtn.FlatStyle = FlatStyle.Flat
         EditBtn.ForeColor = SystemColors.ControlLightLight
-        EditBtn.Location = New Point(531, 138)
+        EditBtn.Location = New Point(470, 87)
         EditBtn.Name = "EditBtn"
         EditBtn.Size = New Size(101, 40)
         EditBtn.TabIndex = 19
@@ -188,7 +238,7 @@ Partial Class RegistrarClass
         AddBtn.Cursor = Cursors.Hand
         AddBtn.FlatStyle = FlatStyle.Flat
         AddBtn.ForeColor = SystemColors.ControlLightLight
-        AddBtn.Location = New Point(531, 92)
+        AddBtn.Location = New Point(470, 41)
         AddBtn.Name = "AddBtn"
         AddBtn.Size = New Size(101, 40)
         AddBtn.TabIndex = 10
@@ -199,16 +249,16 @@ Partial Class RegistrarClass
         ' 
         ClassTeacherComboBox.DropDownStyle = ComboBoxStyle.DropDownList
         ClassTeacherComboBox.FormattingEnabled = True
-        ClassTeacherComboBox.Location = New Point(272, 41)
+        ClassTeacherComboBox.Location = New Point(260, 41)
         ClassTeacherComboBox.Name = "ClassTeacherComboBox"
-        ClassTeacherComboBox.Size = New Size(232, 28)
+        ClassTeacherComboBox.Size = New Size(178, 28)
         ClassTeacherComboBox.TabIndex = 16
         ' 
         ' Label7
         ' 
         Label7.AutoSize = True
         Label7.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        Label7.Location = New Point(166, 43)
+        Label7.Location = New Point(154, 43)
         Label7.Name = "Label7"
         Label7.Size = New Size(100, 20)
         Label7.TabIndex = 15
@@ -243,7 +293,7 @@ Partial Class RegistrarClass
         ClassNameTextBox.Font = New Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         ClassNameTextBox.Location = New Point(111, 92)
         ClassNameTextBox.Name = "ClassNameTextBox"
-        ClassNameTextBox.Size = New Size(393, 27)
+        ClassNameTextBox.Size = New Size(327, 27)
         ClassNameTextBox.TabIndex = 5
         ' 
         ' Label2
@@ -262,8 +312,11 @@ Partial Class RegistrarClass
         AutoScaleMode = AutoScaleMode.Font
         Controls.Add(Panel)
         Name = "RegistrarClass"
-        Size = New Size(730, 760)
+        Size = New Size(1000, 760)
         Panel.ResumeLayout(False)
+        Panel2.ResumeLayout(False)
+        Panel2.PerformLayout()
+        CType(ClassStudentListDataGridView, ComponentModel.ISupportInitialize).EndInit()
         Panel1.ResumeLayout(False)
         Panel1.PerformLayout()
         CType(ClassDataGridView, ComponentModel.ISupportInitialize).EndInit()
@@ -290,5 +343,9 @@ Partial Class RegistrarClass
     Friend WithEvents Label2 As Label
     Friend WithEvents RemarksTextBox As TextBox
     Friend WithEvents Label3 As Label
+    Friend WithEvents Panel2 As Panel
+    Friend WithEvents StudentListSearchTextBox As TextBox
+    Friend WithEvents ClassStudentListDataGridView As DataGridView
+    Friend WithEvents Label4 As Label
 
 End Class
