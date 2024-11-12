@@ -92,4 +92,12 @@ Public Class LoginForm
         End Using
         Return -1 ' Return -1 if no valid TeacherID is found
     End Function
+
+    Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
+        ' Create an instance of AboutBox1
+        Dim aboutBox As New AboutBox1()
+
+        ' Show the AboutBox1 form
+        aboutBox.ShowDialog() ' Use ShowDialog to open it as a modal dialog
+    End Sub
 End Class

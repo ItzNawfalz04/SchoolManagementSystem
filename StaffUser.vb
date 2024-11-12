@@ -36,7 +36,7 @@ Public Class StaffUser
         EnableInputControls(False)
 
         AddBtn.Text = "Add"
-        AddBtn.BackColor = Color.Teal
+        AddBtn.BackColor = Color.MidnightBlue
         EditBtn.Text = "Edit"
         DeleteBtn.Visible = True
         ClearBtn.Visible = True

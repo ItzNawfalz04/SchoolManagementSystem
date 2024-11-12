@@ -154,9 +154,9 @@ Partial Class RegistrarMainForm
         SignOutBtn.ForeColor = Color.Black
         SignOutBtn.Image = My.Resources.Resources.logout_2_
         SignOutBtn.ImageAlign = ContentAlignment.MiddleLeft
-        SignOutBtn.Location = New Point(78, 641)
+        SignOutBtn.Location = New Point(81, 624)
         SignOutBtn.Name = "SignOutBtn"
-        SignOutBtn.Size = New Size(113, 51)
+        SignOutBtn.Size = New Size(111, 51)
         SignOutBtn.TabIndex = 7
         SignOutBtn.Text = "Log Out"
         SignOutBtn.TextAlign = ContentAlignment.MiddleRight

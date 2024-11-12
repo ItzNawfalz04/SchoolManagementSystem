@@ -6,8 +6,9 @@ Public Class TeacherGradeSubbmission
     Private connectionString As String = "server=localhost;user id=root;database=school_db;"
     Private selectedRegistrationID As Integer
 
+
     ' Form Load Event - Load student data and subject data into DataGridView when the form loads
-    Private Sub RegistrarRegistration_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub TeacherGradeSubmission_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LoadClassData() ' Load class data into StudentFilterComboBox
         LoadStudentData() ' Load all student data
         LoadSubjectData() ' Load subject data
@@ -16,6 +17,7 @@ Public Class TeacherGradeSubbmission
         ClearSubjectFields()
     End Sub
 
+
     ' Method to clear subject-related input fields
     Private Sub ClearSubjectFields()
         SubjectNameComboBox.SelectedIndex = -1
@@ -23,6 +25,7 @@ Public Class TeacherGradeSubbmission
         SubjectCodeTextBox.Clear()
         SubjectCreditHourTextBox.Clear()
     End Sub
+
 
     ' Method to load class names into StudentFilterComboBox
     Private Sub LoadClassData()
@@ -49,7 +52,7 @@ Public Class TeacherGradeSubbmission
     ' Method to load all student data into StudentInformationDataGridView
     Private Sub LoadStudentData(Optional classID As Object = Nothing)
         Dim query As String = "SELECT s.StudentID, s.name AS StudentName, s.email AS StudentEmail, c.ClassID, c.ClassName, " &
-                          "IFNULL((SELECT SUM(su.SubjectCreditHour) FROM registrationdetail rd " &
+                          "IFNULL((SELECT SUM(su.SubjectCreditHour ) FROM registrationdetail rd " &
                           "JOIN subject su ON rd.SubjectID = su.SubjectID WHERE rd.RegistrationID = r.RegistrationID), 0) AS StudentTotalCreditHour, " &
                           "r.RegistrationID " &
                           "FROM student s " &
@@ -78,7 +81,7 @@ Public Class TeacherGradeSubbmission
                 .Columns("StudentName").HeaderText = "Student Name"
                 .Columns("StudentEmail").HeaderText = "Student Email"
                 .Columns("ClassName").HeaderText = "Class Name"
-                .Columns("StudentTotalCreditHour").HeaderText = "Total Credit Hours" ' Add this line
+                .Columns("StudentTotalCreditHour").HeaderText = "Total Credit Hours"
 
                 ' Set display order
                 .Columns("RegistrationID").DisplayIndex = 0
@@ -86,7 +89,7 @@ Public Class TeacherGradeSubbmission
                 .Columns("StudentName").DisplayIndex = 2
                 .Columns("StudentEmail").DisplayIndex = 3
                 .Columns("ClassName").DisplayIndex = 4
-                .Columns("StudentTotalCreditHour").DisplayIndex = 5 ' Set the display order
+                .Columns("StudentTotalCreditHour").DisplayIndex = 5
 
                 ' Hide ClassID column
                 .Columns("ClassID").Visible = False
@@ -94,37 +97,19 @@ Public Class TeacherGradeSubbmission
         End Using
     End Sub
 
-
-    ' Method to assign a RegistrationID to a student
-    Private Function AssignRegistrationID(studentID As Integer) As Integer
-        Dim newRegistrationID As Integer
-        Dim query As String = "INSERT INTO registration (StudentID) VALUES (@StudentID); SELECT LAST_INSERT_ID();"
-
-        Using conn As New MySqlConnection(connectionString)
-            conn.Open()
-            Dim cmd As New MySqlCommand(query, conn)
-            cmd.Parameters.AddWithValue("@StudentID", studentID)
-            newRegistrationID = Convert.ToInt32(cmd.ExecuteScalar())
-        End Using
-
-        Return newRegistrationID
-    End Function
-
     ' Method to load subject names into SubjectNameComboBox
+
     Private Sub LoadSubjectData()
         Dim query As String = "SELECT SubjectID, SubjectName, SubjectCode, SubjectCreditHour FROM subject"
-
         Using conn As New MySqlConnection(connectionString)
             Dim adapter As New MySqlDataAdapter(query, conn)
             Dim dataTable As New DataTable()
             adapter.Fill(dataTable)
-
             SubjectNameComboBox.DataSource = dataTable
             SubjectNameComboBox.DisplayMember = "SubjectName"
             SubjectNameComboBox.ValueMember = "SubjectID"
         End Using
     End Sub
-
 
     ' Method to load subjects registered by the selected student
     Private Sub LoadStudentSubjectData()
@@ -152,6 +137,7 @@ Public Class TeacherGradeSubbmission
         End Using
     End Sub
 
+
     ' Event to handle row selection in StudentInformationDataGridView
     Private Sub StudentInformationDataGridView_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles StudentInformationDataGridView.CellClick
         If e.RowIndex >= 0 AndAlso e.RowIndex < StudentInformationDataGridView.Rows.Count Then
@@ -171,6 +157,7 @@ Public Class TeacherGradeSubbmission
         End If
     End Sub
 
+
     Private Sub DisplayStudentInfo(selectedRow As DataGridViewRow)
         RegistrationIDTextBox.Text = selectedRow.Cells("RegistrationID").Value.ToString()
         StudentIDTextBox.Text = selectedRow.Cells("StudentID").Value.ToString()
@@ -178,99 +165,48 @@ Public Class TeacherGradeSubbmission
         StudentEmailTextBox.Text = selectedRow.Cells("StudentEmail").Value.ToString()
         ClassTextBox.Text = selectedRow.Cells("ClassName").Value.ToString()
 
-        ' Display total credit hours
+        ' Calculate total credit hours and fees
         Dim totalCreditHours As Integer = CInt(selectedRow.Cells("StudentTotalCreditHour").Value)
         TotalCreditTextBox.Text = totalCreditHours.ToString()
     End Sub
 
-    ' Method to update the registration table with total credit hours and fee
-    Private Sub UpdateRegistrationTable(totalCreditHours As Integer, studentFee As Decimal)
-        Dim query As String = "UPDATE registration SET StudentTotalCreditHour = @TotalCreditHour, StudentFee = @StudentFee WHERE RegistrationID = @RegistrationID"
 
-        Using conn As New MySqlConnection(connectionString)
-            conn.Open()
-            Dim cmd As New MySqlCommand(query, conn)
-            cmd.Parameters.AddWithValue("@TotalCreditHour", totalCreditHours)
-            cmd.Parameters.AddWithValue("@StudentFee", studentFee)
-            cmd.Parameters.AddWithValue("@RegistrationID", selectedRegistrationID)
-            cmd.ExecuteNonQuery()
-        End Using
-    End Sub
+    ' Event handler for StudentSubjectGradeDataGridView cell click
+    Private Sub StudentSubjectGradeDataGridView_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles StudentSubjectGradeDataGridView.CellClick
+        If e.RowIndex >= 0 AndAlso e.RowIndex < StudentSubjectGradeDataGridView.Rows.Count Then
+            Dim selectedRow As DataGridViewRow = StudentSubjectGradeDataGridView.Rows(e.RowIndex)
 
-    ' Event handler for SubjectNameComboBox selection change
-    Private Sub SubjectNameComboBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles SubjectNameComboBox.SelectedIndexChanged
-        If SubjectNameComboBox.SelectedItem IsNot Nothing Then
-            Dim selectedRowView As DataRowView = CType(SubjectNameComboBox.SelectedItem, DataRowView)
-            Dim selectedSubjectID As Integer = Convert.ToInt32(selectedRowView("SubjectID")) ' Extract SubjectID
-
-            Dim query As String = "SELECT SubjectCode, SubjectCreditHour FROM subject WHERE SubjectID = @SubjectID"
-
-            Using conn As New MySqlConnection(connectionString)
-                Dim cmd As New MySqlCommand(query, conn)
-                cmd.Parameters.AddWithValue("@SubjectID", selectedSubjectID)
-                conn.Open()
-                Dim reader As MySqlDataReader = cmd.ExecuteReader()
-                If reader.Read() Then
-                    SubjectCodeTextBox.Text = reader("SubjectCode").ToString()
-                    SubjectCreditHourTextBox.Text = reader("SubjectCreditHour").ToString()
-                End If
-            End Using
-        End If
-    End Sub
-
-    ' Event handler for AddBtn - Adds selected subject to the student's registered subjects
-    Private Sub AddBtn_Click(sender As Object, e As EventArgs) Handles EditBtn.Click
-        If SubjectNameComboBox.SelectedItem IsNot Nothing Then
-            Dim selectedRowView = CType(SubjectNameComboBox.SelectedItem, DataRowView)
-            Dim subjectID = Convert.ToInt32(selectedRowView("SubjectID")) ' Extract SubjectID
-
-            Dim query = "INSERT INTO registrationdetail (RegistrationID, SubjectID) " &
-                              "VALUES (@RegistrationID, @SubjectID)"
-
-            Using conn As New MySqlConnection(connectionString)
-                conn.Open()
-                Dim cmd As New MySqlCommand(query, conn)
-                cmd.Parameters.AddWithValue("@RegistrationID", selectedRegistrationID)
-                cmd.Parameters.AddWithValue("@SubjectID", subjectID)
-                cmd.ExecuteNonQuery()
-            End Using
-
-            ' Refresh DataGridView and update student information
-            LoadStudentSubjectData()
-            LoadStudentData() ' Refresh student data to update total credit hours and fees
-        Else
-            MessageBox.Show("Please select a subject to add.", "Selection Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-        End If
-    End Sub
-
-    ' Event handler for DeleteBtn - Deletes the selected subject from the student's registered subjects
-    Private Sub DeleteBtn_Click(sender As Object, e As EventArgs)
-        If StudentSubjectGradeDataGridView.SelectedCells.Count > 0 Then
-            Dim selectedCell = StudentSubjectGradeDataGridView.SelectedCells(0)
-            Dim selectedRow = selectedCell.OwningRow
-
-            ' Check if the SubjectID cell is not null or empty
+            ' Populate fields with selected subject information
             If Not IsDBNull(selectedRow.Cells("SubjectID").Value) Then
-                Dim subjectID As Integer = selectedRow.Cells("SubjectID").Value
+                Dim subjectID As Integer = CInt(selectedRow.Cells("SubjectID").Value)
+                SubjectNameComboBox.SelectedValue = subjectID
+                SubjectCodeTextBox.Text = selectedRow.Cells("SubjectCode").Value.ToString()
+                SubjectCreditHourTextBox.Text = selectedRow.Cells("SubjectCreditHour").Value.ToString()
+                SubjectGradeComboBox.SelectedItem = selectedRow.Cells("SubjectGrade").Value.ToString()
+            End If
+        End If
+    End Sub
 
-                Dim query = "DELETE FROM registrationdetail WHERE RegistrationID = @RegistrationID AND SubjectID = @SubjectID"
 
-                Using conn As New MySqlConnection(connectionString)
-                    conn.Open()
-                    Dim cmd As New MySqlCommand(query, conn)
-                    cmd.Parameters.AddWithValue("@RegistrationID", selectedRegistrationID)
-                    cmd.Parameters.AddWithValue("@SubjectID", subjectID)
-                    cmd.ExecuteNonQuery()
-                End Using
+    ' Event handler for EditBtn - Updates the subject grade
+    Private Sub EditBtn_Click(sender As Object, e As EventArgs) Handles EditBtn.Click
+        If StudentSubjectGradeDataGridView.SelectedCells.Count > 0 Then
+            Dim selectedCell As DataGridViewCell = StudentSubjectGradeDataGridView.SelectedCells(0)
+            Dim selectedRow As DataGridViewRow = selectedCell.OwningRow
 
-                ' Refresh DataGridView and update student information
+            If Not IsDBNull(selectedRow.Cells("SubjectID").Value) Then
+                Dim subjectID As Integer = CInt(selectedRow.Cells("SubjectID").Value)
+                Dim grade As String = SubjectGradeComboBox.SelectedItem.ToString()
+
+                UpdateSubjectGrade(subjectID, grade)
+
+                ' Refresh the subject data grid view
                 LoadStudentSubjectData()
-                LoadStudentData() ' Refresh student data to update total credit hours and fees
             Else
-                MessageBox.Show("Please select a valid subject to delete.", "Selection Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                MessageBox.Show("Please select a valid subject to edit.", "Selection Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
             End If
         Else
-            MessageBox.Show("Please select a subject to delete.", "Selection Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            MessageBox.Show("Please select a subject to edit.", "Selection Error", MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End If
     End Sub
 
@@ -290,27 +226,27 @@ Public Class TeacherGradeSubbmission
     End Sub
 
 
-    ' Event handler for ClearBtn - Clears the input fields
-    Private Sub ClearBtn_Click(sender As Object, e As EventArgs)
-        SubjectNameComboBox.SelectedIndex = -1
-        SubjectGradeComboBox.SelectedIndex = -1
-        SubjectCodeTextBox.Clear()
-        SubjectCreditHourTextBox.Clear()
+    ' Event handler for SubjectNameComboBox selection change
+    Private Sub SubjectNameComboBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles SubjectNameComboBox.SelectedIndexChanged
+        If SubjectNameComboBox.SelectedItem IsNot Nothing Then
+            Dim selectedRowView As DataRowView = CType(SubjectNameComboBox.SelectedItem, DataRowView)
+            Dim selectedSubjectID As Integer = Convert.ToInt32(selectedRowView("SubjectID"))
+
+            Dim query As String = "SELECT SubjectCode, SubjectCreditHour FROM subject WHERE SubjectID = @SubjectID"
+
+            Using conn As New MySqlConnection(connectionString)
+                Dim cmd As New MySqlCommand(query, conn)
+                cmd.Parameters.AddWithValue("@SubjectID", selectedSubjectID)
+                conn.Open()
+                Dim reader As MySqlDataReader = cmd.ExecuteReader()
+                If reader.Read() Then
+                    SubjectCodeTextBox.Text = reader("SubjectCode").ToString()
+                    SubjectCreditHourTextBox.Text = reader("SubjectCreditHour").ToString()
+                End If
+            End Using
+        End If
     End Sub
 
-
-    ' Event handler for ClearBtnStudent - Clears the input fields
-    Private Sub ClearBtnStudent_Click(sender As Object, e As EventArgs) Handles ClearBtnStudent.Click
-        StudentInformationDataGridView.ClearSelection()
-        StudentSubjectGradeDataGridView.DataSource = Nothing
-        ' Clear student information fields
-        RegistrationIDTextBox.Clear()
-        StudentIDTextBox.Clear()
-        StudentNameTextBox.Clear()
-        StudentEmailTextBox.Clear()
-        ClassTextBox.Clear()
-        TotalCreditTextBox.Clear()
-    End Sub
 
     ' Event handler for StudentFilterComboBox selection change
     Private Sub StudentFilterComboBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles StudentFilterComboBox.SelectedIndexChanged
@@ -336,9 +272,30 @@ Public Class TeacherGradeSubbmission
         End Using
     End Sub
 
+
+    ' Handle SearchStudentTextBox TextChanged event - Filter student data as user types
+    Private Sub SearchStudentTextBox_TextChanged(sender As Object, e As EventArgs) Handles SearchStudentTextBox.TextChanged
+        If SearchStudentTextBox.Text <> "" Then
+            FilterStudentData(SearchStudentTextBox.Text)
+        Else
+            LoadStudentData() ' Reload all student data if search text is empty
+        End If
+    End Sub
+
+
+    ' Handle SearchStudentSubjectTextBox TextChanged event - Filter student subject data as user types
+    Private Sub SearchStudentSubjectTextBox_TextChanged(sender As Object, e As EventArgs) Handles SearchStudentSubjectTextBox.TextChanged
+        If SearchStudentSubjectTextBox.Text <> "" Then
+            FilterStudentSubjectData(SearchStudentSubjectTextBox.Text)
+        Else
+            LoadStudentSubjectData() ' Reload all subjects for the selected student if search text is empty
+        End If
+    End Sub
+
+
     ' Method to filter student subject data based on search text
     Private Sub FilterStudentSubjectData(searchText As String)
-        Dim query As String = "SELECT rd.SubjectID, s.SubjectCode, s.SubjectName, s.SubjectCreditHour, s.SubjectRemarks " &
+        Dim query As String = "SELECT rd.SubjectID, s.SubjectCode, s.SubjectName, s.SubjectCreditHour, rd.SubjectGrade " &
                               "FROM registrationdetail rd " &
                               "JOIN subject s ON rd.SubjectID = s.SubjectID " &
                               "WHERE rd.RegistrationID = @RegistrationID AND (s.SubjectCode LIKE @searchText OR s.SubjectName LIKE @searchText)"
@@ -351,24 +308,6 @@ Public Class TeacherGradeSubbmission
             adapter.Fill(dataTable)
             StudentSubjectGradeDataGridView.DataSource = dataTable
         End Using
-    End Sub
-
-    ' Handle SearchStudentSubjectTextBox TextChanged event - Filter student subject data as user types
-    Private Sub SearchStudentSubjectTextBox_TextChanged(sender As Object, e As EventArgs) Handles SearchStudentSubjectTextBox.TextChanged
-        If SearchStudentSubjectTextBox.Text <> "" Then
-            FilterStudentSubjectData(SearchStudentSubjectTextBox.Text)
-        Else
-            LoadStudentSubjectData() ' Reload all subjects for the selected student if search text is empty
-        End If
-    End Sub
-
-    ' Handle SearchStudentTextBox TextChanged event - Filter student data as user types
-    Private Sub SearchStudentTextBox_TextChanged(sender As Object, e As EventArgs) Handles SearchStudentTextBox.TextChanged
-        If SearchStudentTextBox.Text <> "" Then
-            FilterStudentData(SearchStudentTextBox.Text)
-        Else
-            LoadStudentData() ' Reload all student data if search text is empty
-        End If
     End Sub
 
 
@@ -440,7 +379,7 @@ Public Class TeacherGradeSubbmission
         offsetY += 30
 
         ' Section Header - Registered Subjects
-        e.Graphics.DrawString("Registered Subjects", fontHeader, Brushes.Black, startX, offsetY)
+        e.Graphics.DrawString("Student Grade", fontHeader, Brushes.Black, startX, offsetY)
         offsetY += 30
 
         ' Registered Subjects Table
@@ -483,7 +422,7 @@ Public Class TeacherGradeSubbmission
 
         ' Thank You Note and Footer
         offsetY += 40
-        e.Graphics.DrawString("Thank you for your attention.", fontContent, Brushes.Black, startX, offsetY)
+        e.Graphics.DrawString("Thank you.", fontContent, Brushes.Black, startX, offsetY)
         offsetY += 30
         e.Graphics.DrawString("Page 1", fontContent, Brushes.Black, e.MarginBounds.Right - 50, e.MarginBounds.Bottom - 20)
     End Sub

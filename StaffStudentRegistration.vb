@@ -492,7 +492,7 @@ Public Class StaffStudentRegistration
 
         ' Thank You Note and Footer
         offsetY += 40
-        e.Graphics.DrawString("Thank you for your attention.", fontContent, Brushes.Black, startX, offsetY)
+        e.Graphics.DrawString("Thank you.", fontContent, Brushes.Black, startX, offsetY)
         offsetY += 30
         e.Graphics.DrawString("Page 1", fontContent, Brushes.Black, e.MarginBounds.Right - 50, e.MarginBounds.Bottom - 20)
     End Sub

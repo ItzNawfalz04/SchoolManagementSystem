@@ -419,6 +419,7 @@ Partial Class TeacherGradeSubbmission
         ' 
         SubjectGradeComboBox.DropDownStyle = ComboBoxStyle.DropDownList
         SubjectGradeComboBox.FormattingEnabled = True
+        SubjectGradeComboBox.Items.AddRange(New Object() {"A+", "A", "A-", "B+", "B", "B-", "C+", "C", "D", "E", "F"})
         SubjectGradeComboBox.Location = New Point(138, 126)
         SubjectGradeComboBox.Name = "SubjectGradeComboBox"
         SubjectGradeComboBox.Size = New Size(106, 28)
@@ -437,6 +438,7 @@ Partial Class TeacherGradeSubbmission
         ' SubjectNameComboBox
         ' 
         SubjectNameComboBox.DropDownStyle = ComboBoxStyle.DropDownList
+        SubjectNameComboBox.Enabled = False
         SubjectNameComboBox.FormattingEnabled = True
         SubjectNameComboBox.Location = New Point(138, 36)
         SubjectNameComboBox.Name = "SubjectNameComboBox"
@@ -489,7 +491,7 @@ Partial Class TeacherGradeSubbmission
         ' 
         ' EditBtn
         ' 
-        EditBtn.BackColor = Color.FromArgb(CByte(255), CByte(128), CByte(0))
+        EditBtn.BackColor = Color.Red
         EditBtn.Cursor = Cursors.Hand
         EditBtn.FlatStyle = FlatStyle.Flat
         EditBtn.ForeColor = SystemColors.ControlLightLight
@@ -497,7 +499,7 @@ Partial Class TeacherGradeSubbmission
         EditBtn.Name = "EditBtn"
         EditBtn.Size = New Size(101, 40)
         EditBtn.TabIndex = 10
-        EditBtn.Text = "Edit"
+        EditBtn.Text = "Save"
         EditBtn.UseVisualStyleBackColor = False
         ' 
         ' Label14

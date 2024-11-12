@@ -30,18 +30,20 @@ Public Class RegistrarMainForm
         Me.Controls.Add(registrarStudent)
         Me.Controls.Add(registrarSubject)
         Me.Controls.Add(registrarRegistration)
+
+        registrarDashboard.BringToFront()
     End Sub
 
     Private Sub DashboardButton_Click(sender As Object, e As EventArgs) Handles DashboardButton.Click
-        registrarDashboard.BringToFront
+        registrarDashboard.BringToFront()
     End Sub
 
     Private Sub StaffButton_Click(sender As Object, e As EventArgs) Handles StaffButton.Click
-        RegistrarStaff.BringToFront
+        registrarStaff.BringToFront()
     End Sub
 
     Private Sub TeacherButton_Click(sender As Object, e As EventArgs) Handles TeacherButton.Click
-        registrarTeacher.BringToFront
+        registrarTeacher.BringToFront()
     End Sub
 
     Private Sub ClassButton_Click(sender As Object, e As EventArgs) Handles ClassButton.Click
