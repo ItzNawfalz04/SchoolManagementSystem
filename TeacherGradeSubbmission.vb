@@ -219,7 +219,7 @@ Public Class TeacherGradeSubbmission
     End Sub
 
     ' Event handler for AddBtn - Adds selected subject to the student's registered subjects
-    Private Sub AddBtn_Click(sender As Object, e As EventArgs) Handles AddBtn.Click
+    Private Sub AddBtn_Click(sender As Object, e As EventArgs) Handles EditBtn.Click
         If SubjectNameComboBox.SelectedItem IsNot Nothing Then
             Dim selectedRowView = CType(SubjectNameComboBox.SelectedItem, DataRowView)
             Dim subjectID = Convert.ToInt32(selectedRowView("SubjectID")) ' Extract SubjectID
@@ -244,16 +244,16 @@ Public Class TeacherGradeSubbmission
     End Sub
 
     ' Event handler for DeleteBtn - Deletes the selected subject from the student's registered subjects
-    Private Sub DeleteBtn_Click(sender As Object, e As EventArgs) Handles DeleteBtn.Click
+    Private Sub DeleteBtn_Click(sender As Object, e As EventArgs)
         If StudentSubjectGradeDataGridView.SelectedCells.Count > 0 Then
-            Dim selectedCell As DataGridViewCell = StudentSubjectGradeDataGridView.SelectedCells(0)
-            Dim selectedRow As DataGridViewRow = selectedCell.OwningRow
+            Dim selectedCell = StudentSubjectGradeDataGridView.SelectedCells(0)
+            Dim selectedRow = selectedCell.OwningRow
 
             ' Check if the SubjectID cell is not null or empty
             If Not IsDBNull(selectedRow.Cells("SubjectID").Value) Then
-                Dim subjectID As Integer = CInt(selectedRow.Cells("SubjectID").Value)
+                Dim subjectID As Integer = selectedRow.Cells("SubjectID").Value
 
-                Dim query As String = "DELETE FROM registrationdetail WHERE RegistrationID = @RegistrationID AND SubjectID = @SubjectID"
+                Dim query = "DELETE FROM registrationdetail WHERE RegistrationID = @RegistrationID AND SubjectID = @SubjectID"
 
                 Using conn As New MySqlConnection(connectionString)
                     conn.Open()
@@ -291,7 +291,7 @@ Public Class TeacherGradeSubbmission
 
 
     ' Event handler for ClearBtn - Clears the input fields
-    Private Sub ClearBtn_Click(sender As Object, e As EventArgs) Handles ClearBtn.Click
+    Private Sub ClearBtn_Click(sender As Object, e As EventArgs)
         SubjectNameComboBox.SelectedIndex = -1
         SubjectGradeComboBox.SelectedIndex = -1
         SubjectCodeTextBox.Clear()
@@ -303,7 +303,6 @@ Public Class TeacherGradeSubbmission
     Private Sub ClearBtnStudent_Click(sender As Object, e As EventArgs) Handles ClearBtnStudent.Click
         StudentInformationDataGridView.ClearSelection()
         StudentSubjectGradeDataGridView.DataSource = Nothing
-        ClearBtn.PerformClick() ' Clear subject fields as well
         ' Clear student information fields
         RegistrationIDTextBox.Clear()
         StudentIDTextBox.Clear()

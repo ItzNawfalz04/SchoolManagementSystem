@@ -62,9 +62,7 @@ Partial Class TeacherGradeSubbmission
         SubjectCreditHourTextBox = New TextBox()
         SubjectCodeTextBox = New TextBox()
         Label12 = New Label()
-        DeleteBtn = New Button()
-        ClearBtn = New Button()
-        AddBtn = New Button()
+        EditBtn = New Button()
         Label14 = New Label()
         CType(StudentSubjectGradeDataGridView, ComponentModel.ISupportInitialize).BeginInit()
         Panel2.SuspendLayout()
@@ -408,9 +406,7 @@ Partial Class TeacherGradeSubbmission
         GroupBox2.Controls.Add(SubjectCreditHourTextBox)
         GroupBox2.Controls.Add(SubjectCodeTextBox)
         GroupBox2.Controls.Add(Label12)
-        GroupBox2.Controls.Add(DeleteBtn)
-        GroupBox2.Controls.Add(ClearBtn)
-        GroupBox2.Controls.Add(AddBtn)
+        GroupBox2.Controls.Add(EditBtn)
         GroupBox2.Controls.Add(Label14)
         GroupBox2.Location = New Point(18, 564)
         GroupBox2.Name = "GroupBox2"
@@ -425,7 +421,7 @@ Partial Class TeacherGradeSubbmission
         SubjectGradeComboBox.FormattingEnabled = True
         SubjectGradeComboBox.Location = New Point(138, 126)
         SubjectGradeComboBox.Name = "SubjectGradeComboBox"
-        SubjectGradeComboBox.Size = New Size(111, 28)
+        SubjectGradeComboBox.Size = New Size(106, 28)
         SubjectGradeComboBox.TabIndex = 35
         ' 
         ' Label7
@@ -491,44 +487,18 @@ Partial Class TeacherGradeSubbmission
         Label12.TabIndex = 26
         Label12.Text = "Subject Name:"
         ' 
-        ' DeleteBtn
+        ' EditBtn
         ' 
-        DeleteBtn.BackColor = Color.Red
-        DeleteBtn.Cursor = Cursors.Hand
-        DeleteBtn.FlatStyle = FlatStyle.Flat
-        DeleteBtn.ForeColor = SystemColors.ControlLightLight
-        DeleteBtn.Location = New Point(532, 83)
-        DeleteBtn.Name = "DeleteBtn"
-        DeleteBtn.Size = New Size(101, 40)
-        DeleteBtn.TabIndex = 23
-        DeleteBtn.Text = "Delete"
-        DeleteBtn.UseVisualStyleBackColor = False
-        ' 
-        ' ClearBtn
-        ' 
-        ClearBtn.BackColor = Color.Teal
-        ClearBtn.Cursor = Cursors.Hand
-        ClearBtn.FlatStyle = FlatStyle.Flat
-        ClearBtn.ForeColor = SystemColors.ControlLightLight
-        ClearBtn.Location = New Point(532, 129)
-        ClearBtn.Name = "ClearBtn"
-        ClearBtn.Size = New Size(101, 40)
-        ClearBtn.TabIndex = 20
-        ClearBtn.Text = "Clear"
-        ClearBtn.UseVisualStyleBackColor = False
-        ' 
-        ' AddBtn
-        ' 
-        AddBtn.BackColor = Color.FromArgb(CByte(255), CByte(128), CByte(0))
-        AddBtn.Cursor = Cursors.Hand
-        AddBtn.FlatStyle = FlatStyle.Flat
-        AddBtn.ForeColor = SystemColors.ControlLightLight
-        AddBtn.Location = New Point(532, 37)
-        AddBtn.Name = "AddBtn"
-        AddBtn.Size = New Size(101, 40)
-        AddBtn.TabIndex = 10
-        AddBtn.Text = "Add"
-        AddBtn.UseVisualStyleBackColor = False
+        EditBtn.BackColor = Color.FromArgb(CByte(255), CByte(128), CByte(0))
+        EditBtn.Cursor = Cursors.Hand
+        EditBtn.FlatStyle = FlatStyle.Flat
+        EditBtn.ForeColor = SystemColors.ControlLightLight
+        EditBtn.Location = New Point(532, 37)
+        EditBtn.Name = "EditBtn"
+        EditBtn.Size = New Size(101, 40)
+        EditBtn.TabIndex = 10
+        EditBtn.Text = "Edit"
+        EditBtn.UseVisualStyleBackColor = False
         ' 
         ' Label14
         ' 
@@ -596,9 +566,7 @@ Partial Class TeacherGradeSubbmission
     Friend WithEvents SubjectCreditHourTextBox As TextBox
     Friend WithEvents SubjectCodeTextBox As TextBox
     Friend WithEvents Label12 As Label
-    Friend WithEvents DeleteBtn As Button
-    Friend WithEvents ClearBtn As Button
-    Friend WithEvents AddBtn As Button
+    Friend WithEvents EditBtn As Button
     Friend WithEvents Label14 As Label
     Friend WithEvents Label7 As Label
     Friend WithEvents SubjectGradeComboBox As ComboBox
