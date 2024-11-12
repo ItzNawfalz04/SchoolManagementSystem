@@ -19,18 +19,20 @@ Public Class LoginForm
                 End If
 
                 ' Check Teacher Table
-                If CheckLogin(conn, "teacher", username, password) Then
+                Dim teacherId = GetTeacherId(conn, "teacher", username, password)
+                If teacherId > 0 Then
                     MessageBox.Show("Login Successful as Teacher")
-                    Dim teacherForm As New TeacherMainForm
+                    Dim teacherForm As New TeacherMainForm(teacherId)
                     teacherForm.Show()
                     Hide()
                     Return
                 End If
 
                 ' Check Staff Table
-                If CheckLogin(conn, "staff", username, password) Then
+                Dim staffId = GetStaffId(conn, "staff", username, password)
+                If staffId > 0 Then
                     MessageBox.Show("Login Successful as Staff")
-                    Dim staffForm As New StaffMainForm(username) ' Pass the username to StaffMainForm
+                    Dim staffForm As New StaffMainForm(staffId)
                     staffForm.Show()
                     Hide()
                     Return
@@ -63,4 +65,31 @@ Public Class LoginForm
             PasswordTextBox.PasswordChar = "•"c
         End If
     End Sub
+
+    Private Function GetStaffId(conn As MySqlConnection, tableName As String, username As String, password As String) As Integer
+        Dim query As String = $"SELECT StaffID FROM {tableName} WHERE username=@username AND password=@password"
+        Using cmd As New MySqlCommand(query, conn)
+            cmd.Parameters.AddWithValue("@username", username)
+            cmd.Parameters.AddWithValue("@password", password)
+            Dim result As Object = cmd.ExecuteScalar()
+            If result IsNot Nothing Then
+                Return Convert.ToInt32(result)
+            End If
+        End Using
+        Return -1 ' Return -1 if no valid StaffID is found
+    End Function
+
+    ' New function to get TeacherID
+    Private Function GetTeacherId(conn As MySqlConnection, tableName As String, username As String, password As String) As Integer
+        Dim query As String = $"SELECT TeacherID FROM {tableName} WHERE username=@username AND password=@password"
+        Using cmd As New MySqlCommand(query, conn)
+            cmd.Parameters.AddWithValue("@username", username)
+            cmd.Parameters.AddWithValue("@password", password)
+            Dim result As Object = cmd.ExecuteScalar()
+            If result IsNot Nothing Then
+                Return Convert.ToInt32(result)
+            End If
+        End Using
+        Return -1 ' Return -1 if no valid TeacherID is found
+    End Function
 End Class

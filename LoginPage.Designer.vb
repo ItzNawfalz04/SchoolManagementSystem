@@ -34,6 +34,7 @@ Partial Class LoginForm
         LoginBtn = New Button()
         InsLabel = New Label()
         ShowPasswordBtn = New Button()
+        LinkLabel1 = New LinkLabel()
         CType(PictureBox1, ComponentModel.ISupportInitialize).BeginInit()
         Panel2.SuspendLayout()
         SuspendLayout()
@@ -43,9 +44,9 @@ Partial Class LoginForm
         PictureBox1.BackColor = SystemColors.Control
         PictureBox1.BorderStyle = BorderStyle.Fixed3D
         PictureBox1.Image = My.Resources.Resources.logo
-        PictureBox1.Location = New Point(33, 142)
+        PictureBox1.Location = New Point(48, 140)
         PictureBox1.Name = "PictureBox1"
-        PictureBox1.Size = New Size(276, 258)
+        PictureBox1.Size = New Size(250, 258)
         PictureBox1.SizeMode = PictureBoxSizeMode.StretchImage
         PictureBox1.TabIndex = 7
         PictureBox1.TabStop = False
@@ -178,11 +179,22 @@ Partial Class LoginForm
         ShowPasswordBtn.TabIndex = 6
         ShowPasswordBtn.UseVisualStyleBackColor = True
         ' 
+        ' LinkLabel1
+        ' 
+        LinkLabel1.AutoSize = True
+        LinkLabel1.Location = New Point(559, 305)
+        LinkLabel1.Name = "LinkLabel1"
+        LinkLabel1.Size = New Size(101, 20)
+        LinkLabel1.TabIndex = 9
+        LinkLabel1.TabStop = True
+        LinkLabel1.Text = "About System"
+        ' 
         ' LoginForm
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(735, 434)
+        Controls.Add(LinkLabel1)
         Controls.Add(ShowPasswordBtn)
         Controls.Add(Label4)
         Controls.Add(InsLabel)
@@ -213,5 +225,6 @@ Partial Class LoginForm
     Friend WithEvents LoginBtn As Button
     Friend WithEvents InsLabel As Label
     Friend WithEvents ShowPasswordBtn As Button
+    Friend WithEvents LinkLabel1 As LinkLabel
 
 End Class

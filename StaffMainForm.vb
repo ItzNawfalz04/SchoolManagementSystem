@@ -1,54 +1,79 @@
-﻿Imports MySql.Data.MySqlClient
-Imports System.IO
+﻿Imports System.Threading
 
 Public Class StaffMainForm
-    Private connectionString As String = "server=localhost;user id=root;database=school_db;"
-    Private staffUsername As String ' Variable to hold the staff username
+    Private staffDashboard As StaffDashboard
+    Private staffClass As StaffClass
+    Private staffStudent As StaffStudent
+    Private staffTeacher As StaffTeacher
+    Private staffSubject As StaffSubject
+    Private staffStudentRegistration As StaffStudentRegistration
+    Private staffUser As StaffUser
 
-    ' Constructor that accepts the username
-    Public Sub New(username As String)
+    ' New constructor accepting staff ID
+    Public Sub New(staffId As Integer)
         InitializeComponent()
-        staffUsername = username
+        ' Initialize StaffDashboard and StaffClass with the staff ID
+        staffDashboard = New StaffDashboard(staffId)
+        staffClass = New StaffClass()
+        staffStudent = New StaffStudent()
+        staffTeacher = New StaffTeacher()
+        staffSubject = New StaffSubject()
+        staffStudentRegistration = New StaffStudentRegistration()
+        staffUser = New StaffUser
     End Sub
 
-    ' Load event for the form
     Private Sub StaffMainForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        LoadStaffProfile()
+        ' Set the dashboard and class views to fill the form
+        staffDashboard.Dock = DockStyle.Fill
+        staffClass.Dock = DockStyle.Fill
+        staffStudent.Dock = DockStyle.Fill
+        staffTeacher.Dock = DockStyle.Fill
+        staffSubject.Dock = DockStyle.Fill
+        staffStudentRegistration.Dock = DockStyle.Fill
+        staffUser.Dock = DockStyle.Fill
+        Me.Controls.Add(staffDashboard)
+        Me.Controls.Add(staffClass)
+        Me.Controls.Add(staffStudent)
+        Me.Controls.Add(staffTeacher)
+        Me.Controls.Add(staffSubject)
+        Me.Controls.Add(staffStudentRegistration)
+        Me.Controls.Add(staffUser)
+
+        ' Show the dashboard by default
+        staffDashboard.BringToFront()
     End Sub
 
-    ' Method to load staff profile information
-    Private Sub LoadStaffProfile()
-        Using conn As New MySqlConnection(connectionString)
-            conn.Open()
-            Dim query As String = "SELECT name, picture FROM staff WHERE username=@username"
-            Using cmd As New MySqlCommand(query, conn)
-                cmd.Parameters.AddWithValue("@username", staffUsername)
-
-                ' Execute the command and read the staff name and profile picture
-                Using reader As MySqlDataReader = cmd.ExecuteReader()
-                    If reader.Read() Then
-                        ' Get the staff name
-                        Dim staffName As String = reader("name").ToString()
-                        StaffNameLabel.Text = "Welcome, " & staffName ' Set the label text to the staff name
-
-                        ' Get the profile picture path
-                        Dim picturePath As String = reader("picture").ToString()
-                        If Not String.IsNullOrEmpty(picturePath) Then
-                            Dim fullImagePath As String = Path.Combine(Application.StartupPath, picturePath)
-                            If File.Exists(fullImagePath) Then
-                                ProfilePictureBox.Image = Image.FromFile(fullImagePath)
-                            Else
-                                ProfilePictureBox.Image = My.Resources._default ' Set a default image if the file does not exist
-                            End If
-                        Else
-                            ProfilePictureBox.Image = My.Resources._default ' Set a default image if no picture path is found
-                        End If
-                    Else
-                        MessageBox.Show("Staff not found.")
-                    End If
-                End Using
-            End Using
-        End Using
+    ' Handle the SignOut Button Click to log out and return to the login form
+    Private Sub SignOutBtn_Click(sender As Object, e As EventArgs) Handles SignOutBtn.Click
+        LoginForm.Show()
+        Me.Hide()
     End Sub
 
+    Private Sub DashboardButton_Click(sender As Object, e As EventArgs) Handles DashboardButton.Click
+        staffDashboard.BringToFront()
+    End Sub
+
+    Private Sub ClassButton_Click(sender As Object, e As EventArgs) Handles ClassButton.Click
+        staffClass.BringToFront()
+    End Sub
+
+    Private Sub StudentButton_Click(sender As Object, e As EventArgs) Handles StudentButton.Click
+        staffStudent.BringToFront()
+    End Sub
+
+    Private Sub TeacherButton_Click(sender As Object, e As EventArgs) Handles TeacherButton.Click
+        staffTeacher.BringToFront()
+    End Sub
+
+    Private Sub SubjectButton_Click(sender As Object, e As EventArgs) Handles SubjectButton.Click
+        staffSubject.BringToFront()
+    End Sub
+
+    Private Sub RegistrationButton_Click(sender As Object, e As EventArgs) Handles RegistrationButton.Click
+        staffStudentRegistration.BringToFront()
+    End Sub
+
+    Private Sub USerButton_Click(sender As Object, e As EventArgs) Handles UserButton.Click
+        staffUser.BringToFront()
+    End Sub
 End Class

@@ -1,7 +1,7 @@
 ﻿Imports MySql.Data.MySqlClient
 Imports System.IO
 
-Public Class RegistrarClass
+Public Class StaffClass
     Dim isAddMode As Boolean = False ' Track if we are in Add mode
     Dim isEditMode As Boolean = False ' Track if we are in Edit mode
     Dim originalClassID As Integer ' To store the selected class ID
@@ -251,7 +251,7 @@ Public Class RegistrarClass
     ' Method to save new class to the database
     Private Sub SaveNewClass()
         Dim connectionString As String = "server=localhost;user id=root;database=school_db;"
-        Dim query As String = "INSERT INTO class (ClassName, TeacherID, Remarks) VALUES (@ClassName, @TeacherID, @Remarks)"
+        Dim query As String = "INSERT INTO class (ClassName, TeacherID, Remarks) VALUES (@ClassName, @ClassGrade, @TeacherID, @Remarks)"
         Using conn As New MySqlConnection(connectionString)
             Try
                 conn.Open()
@@ -267,7 +267,6 @@ Public Class RegistrarClass
             End Try
         End Using
     End Sub
-
 
     ' Method to save edited class to the database
     Private Sub SaveEditedClass()
@@ -337,7 +336,7 @@ Public Class RegistrarClass
         If SearchTextBox.Text <> "" Then
             FilterClassData(SearchTextBox.Text)
         Else
-            LoadClassData() ' Call LoadClassData with parentheses
+            LoadClassData() ' Reload all class data if search text is empty
         End If
     End Sub
 End Class

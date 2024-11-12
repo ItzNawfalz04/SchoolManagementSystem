@@ -24,6 +24,7 @@ Partial Class TeacherMainForm
     Private Sub InitializeComponent()
         Label1 = New Label()
         Panel1 = New Panel()
+        GradeSubmissionButton = New Button()
         DashboardButton = New Button()
         SignOutBtn = New Button()
         PictureBox1 = New PictureBox()
@@ -47,6 +48,7 @@ Partial Class TeacherMainForm
         ' Panel1
         ' 
         Panel1.BackColor = Color.Teal
+        Panel1.Controls.Add(GradeSubmissionButton)
         Panel1.Controls.Add(DashboardButton)
         Panel1.Controls.Add(SignOutBtn)
         Panel1.Controls.Add(PictureBox1)
@@ -54,15 +56,28 @@ Partial Class TeacherMainForm
         Panel1.Dock = DockStyle.Left
         Panel1.Location = New Point(0, 0)
         Panel1.Name = "Panel1"
-        Panel1.Size = New Size(270, 633)
+        Panel1.Size = New Size(270, 853)
         Panel1.TabIndex = 5
+        ' 
+        ' GradeSubmissionButton
+        ' 
+        GradeSubmissionButton.BackColor = Color.PaleTurquoise
+        GradeSubmissionButton.FlatStyle = FlatStyle.Flat
+        GradeSubmissionButton.Font = New Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        GradeSubmissionButton.ForeColor = Color.Black
+        GradeSubmissionButton.Location = New Point(44, 274)
+        GradeSubmissionButton.Name = "GradeSubmissionButton"
+        GradeSubmissionButton.Size = New Size(186, 40)
+        GradeSubmissionButton.TabIndex = 9
+        GradeSubmissionButton.Text = "GRADE"
+        GradeSubmissionButton.UseVisualStyleBackColor = False
         ' 
         ' DashboardButton
         ' 
-        DashboardButton.BackColor = Color.Teal
+        DashboardButton.BackColor = Color.PaleTurquoise
         DashboardButton.FlatStyle = FlatStyle.Flat
         DashboardButton.Font = New Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        DashboardButton.ForeColor = Color.White
+        DashboardButton.ForeColor = Color.Black
         DashboardButton.Location = New Point(44, 228)
         DashboardButton.Name = "DashboardButton"
         DashboardButton.Size = New Size(186, 40)
@@ -87,7 +102,7 @@ Partial Class TeacherMainForm
         ' 
         ' PictureBox1
         ' 
-        PictureBox1.Image = My.Resources.Resources.settings
+        PictureBox1.Image = My.Resources.Resources.logo
         PictureBox1.Location = New Point(68, 35)
         PictureBox1.Name = "PictureBox1"
         PictureBox1.Size = New Size(135, 135)
@@ -101,14 +116,14 @@ Partial Class TeacherMainForm
         Panel2.Dock = DockStyle.Fill
         Panel2.Location = New Point(0, 0)
         Panel2.Name = "Panel2"
-        Panel2.Size = New Size(1012, 633)
+        Panel2.Size = New Size(1382, 853)
         Panel2.TabIndex = 6
         ' 
         ' TeacherMainForm
         ' 
         AutoScaleDimensions = New SizeF(8F, 20F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(1012, 633)
+        ClientSize = New Size(1382, 853)
         Controls.Add(Panel1)
         Controls.Add(Panel2)
         Name = "TeacherMainForm"
@@ -125,4 +140,5 @@ Partial Class TeacherMainForm
     Friend WithEvents SignOutBtn As Button
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents Panel2 As Panel
+    Friend WithEvents GradeSubmissionButton As Button
 End Class

@@ -25,10 +25,13 @@ Partial Class RegistrarDashboard
         Label4 = New Label()
         Panel1 = New Panel()
         Panel4 = New Panel()
+        TeacherNumber = New Label()
         Label6 = New Label()
         Panel3 = New Panel()
+        StaffNumber = New Label()
         Label7 = New Label()
         Panel2 = New Panel()
+        StudentNumber = New Label()
         Label5 = New Label()
         GroupBox1 = New GroupBox()
         EditBtn = New Button()
@@ -40,9 +43,6 @@ Partial Class RegistrarDashboard
         Label3 = New Label()
         Label2 = New Label()
         Label1 = New Label()
-        StudentNumber = New Label()
-        TeacherNumber = New Label()
-        StaffNumber = New Label()
         Panel1.SuspendLayout()
         Panel4.SuspendLayout()
         Panel3.SuspendLayout()
@@ -84,6 +84,17 @@ Partial Class RegistrarDashboard
         Panel4.Size = New Size(185, 171)
         Panel4.TabIndex = 1
         ' 
+        ' TeacherNumber
+        ' 
+        TeacherNumber.Font = New Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        TeacherNumber.ForeColor = Color.Black
+        TeacherNumber.Location = New Point(56, 33)
+        TeacherNumber.Name = "TeacherNumber"
+        TeacherNumber.Size = New Size(79, 85)
+        TeacherNumber.TabIndex = 5
+        TeacherNumber.Text = "0"
+        TeacherNumber.TextAlign = ContentAlignment.MiddleCenter
+        ' 
         ' Label6
         ' 
         Label6.AutoSize = True
@@ -106,6 +117,17 @@ Partial Class RegistrarDashboard
         Panel3.Size = New Size(185, 171)
         Panel3.TabIndex = 1
         ' 
+        ' StaffNumber
+        ' 
+        StaffNumber.Font = New Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        StaffNumber.ForeColor = Color.Black
+        StaffNumber.Location = New Point(57, 33)
+        StaffNumber.Name = "StaffNumber"
+        StaffNumber.Size = New Size(79, 85)
+        StaffNumber.TabIndex = 6
+        StaffNumber.Text = "0"
+        StaffNumber.TextAlign = ContentAlignment.MiddleCenter
+        ' 
         ' Label7
         ' 
         Label7.AutoSize = True
@@ -127,6 +149,17 @@ Partial Class RegistrarDashboard
         Panel2.Name = "Panel2"
         Panel2.Size = New Size(185, 171)
         Panel2.TabIndex = 0
+        ' 
+        ' StudentNumber
+        ' 
+        StudentNumber.Font = New Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        StudentNumber.ForeColor = Color.Black
+        StudentNumber.Location = New Point(53, 33)
+        StudentNumber.Name = "StudentNumber"
+        StudentNumber.Size = New Size(79, 85)
+        StudentNumber.TabIndex = 4
+        StudentNumber.Text = "0"
+        StudentNumber.TextAlign = ContentAlignment.MiddleCenter
         ' 
         ' Label5
         ' 
@@ -258,39 +291,6 @@ Partial Class RegistrarDashboard
         Label1.Size = New Size(63, 25)
         Label1.TabIndex = 0
         Label1.Text = "Name:"
-        ' 
-        ' StudentNumber
-        ' 
-        StudentNumber.Font = New Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        StudentNumber.ForeColor = Color.Black
-        StudentNumber.Location = New Point(53, 33)
-        StudentNumber.Name = "StudentNumber"
-        StudentNumber.Size = New Size(79, 85)
-        StudentNumber.TabIndex = 4
-        StudentNumber.Text = "0"
-        StudentNumber.TextAlign = ContentAlignment.MiddleCenter
-        ' 
-        ' TeacherNumber
-        ' 
-        TeacherNumber.Font = New Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        TeacherNumber.ForeColor = Color.Black
-        TeacherNumber.Location = New Point(56, 33)
-        TeacherNumber.Name = "TeacherNumber"
-        TeacherNumber.Size = New Size(79, 85)
-        TeacherNumber.TabIndex = 5
-        TeacherNumber.Text = "0"
-        TeacherNumber.TextAlign = ContentAlignment.MiddleCenter
-        ' 
-        ' StaffNumber
-        ' 
-        StaffNumber.Font = New Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        StaffNumber.ForeColor = Color.Black
-        StaffNumber.Location = New Point(57, 33)
-        StaffNumber.Name = "StaffNumber"
-        StaffNumber.Size = New Size(79, 85)
-        StaffNumber.TabIndex = 6
-        StaffNumber.Text = "0"
-        StaffNumber.TextAlign = ContentAlignment.MiddleCenter
         ' 
         ' RegistrarDashboard
         ' 
